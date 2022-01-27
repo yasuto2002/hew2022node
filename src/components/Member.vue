@@ -13,51 +13,266 @@
       <p class="membership-box-toptxt">
         お客様の情報をご入力後、利用規約をお読みになり、「下記の利用規約に同意して確認画面へ」ボタンを押してください。<br />※印は必須入力項目です。
       </p>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">お名前</p>
-        <input type="text" class="membership-Form-Item-Input-mini" />
-        <input type="text" class="membership-Form-Item-Input-mini" />
-      </div>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">フリガナ</p>
-        <input type="text" class="membership-Form-Item-Input-mini" />
-        <input type="text" class="membership-Form-Item-Input-mini" />
-      </div>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">性別</p>
-        <input type="radio" class="membership-Form-Item-Input" />
-      </div>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">生年月日</p>
-        <input type="text" class="membership-Form-Item-Input" />
-      </div>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">メールアドレス</p>
-        <input type="text" class="membership-Form-Item-Input" />
-      </div>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">パスワード</p>
-        <input type="password" class="membership-Form-Item-Input" />
-      </div>
-      <div class="membership-Form-Item">
-        <p class="membership-Form-Item-Label">パスワード<br />（確認用）</p>
-        <input type="password" class="membership-Form-Item-Input" />
-      </div>
-      <input class="member-submiti-btn" type="submit" value="登録する" />
+      <form style="margin-top: 50px; width: 90%">
+        <div class="form-wrapp" style="margin-left: 10%">
+          <p class="membership-Form-Item-Label" style="text-align: left">
+            お名前
+          </p>
+          <div class="membership-Form-Item">
+            <p
+              class="membership-Form-Item-Label"
+              style="width: 8%; text-align: center"
+            >
+              性
+            </p>
+            <!-- <p class="membership-Form-Item-Label">お名前</p> -->
+            <input type="text" class="membership-Form-Item-Input-mini" />
+            <p
+              class="membership-Form-Item-Label"
+              style="width: 8%; text-align: center"
+            >
+              名
+            </p>
+            <input type="text" class="membership-Form-Item-Input-mini" />
+          </div>
+          <p class="membership-Form-Item-Label" style="text-align: left">
+            フリガナ
+          </p>
+          <div class="membership-Form-Item">
+            <p
+              class="membership-Form-Item-Label"
+              style="width: 8%; text-align: center"
+            >
+              セイ
+            </p>
+            <input type="text" class="membership-Form-Item-Input-mini" />
+            <p
+              class="membership-Form-Item-Label"
+              style="width: 8%; text-align: center"
+            >
+              メイ
+            </p>
+            <input type="text" class="membership-Form-Item-Input-mini" />
+          </div>
+
+          <p
+            class="membership-Form-Item-Label"
+            style="width: 80%; text-align: left"
+          >
+            性別
+          </p>
+          <div class="membership-Form-Item" style="width: 100%">
+            <div
+              class="membership-Form-Item-Label-radios"
+              style="
+                display: flex;
+                width: 5%;
+                align-items: center;
+                margin-left: 7%;
+                padding-right: 1em;
+                justify-content: space-around;
+                min-width: 165px;
+              "
+            >
+              <!-- <div class="membership-Form-Item-Label-radios" style="width: 20%;"> -->
+              <div
+                class="content"
+                style="
+                  display: flex;
+                  width: 25%;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <label for="radio1">男</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="radio1"
+                  style="margin: 0; padding-left: 90%"
+                />
+              </div>
+              <div
+                class="content"
+                style="
+                  display: flex;
+                  width: 25%;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <label for="radio2">女</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="radio2"
+                  style="margin: 0; padding-left: 90%"
+                />
+              </div>
+            </div>
+          </div>
+          <p class="membership-Form-Item-Label" style="text-align: left">
+            生年月日
+          </p>
+          <div class="membership-Form-Item" style="justify-content: flex-end">
+            <input
+              type="text"
+              class="membership-Form-Item-Input"
+              style="
+                width: 70%;
+                padding: 0;
+                margin: 0;
+                margin-right: 20%;
+                padding-left: 1%;
+              "
+            />
+          </div>
+          <p class="membership-Form-Item-Label" style="text-align: left">
+            メールアドレス
+          </p>
+          <div class="membership-Form-Item" style="justify-content: flex-end">
+            <input
+              type="text"
+              class="membership-Form-Item-Input"
+              style="
+                width: 70%;
+                padding: 0;
+                margin: 0;
+                margin-right: 20%;
+                padding-left: 1%;
+              "
+            />
+          </div>
+          <p class="membership-Form-Item-Label" style="text-align: left">
+            パスワード
+          </p>
+          <div class="membership-Form-Item" style="justify-content: flex-end">
+            <input
+              type="password"
+              class="membership-Form-Item-Input"
+              style="
+                width: 70%;
+                padding: 0;
+                margin: 0;
+                margin-right: 20%;
+                padding-left: 1%;
+              "
+            />
+          </div>
+          <p class="membership-Form-Item-Label" style="text-align: left">
+            パスワード<br />（確認用）
+          </p>
+          <div class="membership-Form-Item" style="justify-content: flex-end">
+            <input
+              type="password"
+              class="membership-Form-Item-Input"
+              style="
+                width: 70%;
+                padding: 0;
+                margin: 0;
+                margin-right: 20%;
+                padding-left: 1%;
+              "
+            />
+          </div>
+        </div>
+        <button
+          class="member-submiti-btn"
+          type="button"
+          value="登録する"
+          @click="postData"
+        >
+          登録する
+        </button>
+      </form>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+import axiosJsonpAdapter from "axios-jsonp";
+import { reactive } from "vue";
+let url = "http://localhost:8080/rest";
 export default {
   name: "Member",
+  data: function () {
+    return {
+      title: "HelloWorld",
+      msg: "This is HelloWorld component.",
+      jso: null,
+    };
+  },
+  methods: {
+    async postData() {
+      let id = 1; // ☆id番号
+      try {
+        let data = await axios.get(url, {
+          // adapter: axiosJsonpAdapter,
+          // callbackParamName: "cb",
+          // params: {
+          //   name: "foo",
+          // },
+        });
+        console.log(data.data);
+      } catch (error) {
+        console.log("post Error");
+        // ダメなときはエラー
+        console.error(error);
+      }
+    },
+  },
   // setup(props, context) {
   //   const data = reactive({
   //     title: "HelloWorld",
   //     msg: "This is HelloWorld component.",
+  //     jso: null,
   //   });
-  //   return {
-  //     data,
+  // const postData = async () => {
+  //   let id = 1; // ☆id番号
+  //   try {
+  //     data.jso = await axios.get(url, {
+  //       adapter: axiosJsonpAdapter,
+  //       // callbackParamName: "cb",
+  //       // params: {
+  //       //   name: "foo",
+  //       // },
+  //     });
+  //     console.log("成成功");
+  //   } catch (error) {
+  //     console.log("post Error");
+  //     // ダメなときはエラー
+  //     console.error(error);
+  //   }
+
+  // .then((res) => {
+  //   console.log(res);
+  //   data.jso = res.data;
+  //   // data.json_data = res.data;
+  // })
+  // .catch((error) => {
+  //   // data.message = "ERROR!";
+  //   // data.json_data = null;
+  //   console.log("error");
+  // });
+  // };
+
+  //   const postData = async () => {
+  //     try {
+  //       let vul = await fetch("http://localhost:8080/rest", {
+  //         adapter: axiosJsonpAdapter,
+  //       });
+  //       console.log(val); //statusが OKか確認する。
+  //       data.jso = await val.json();
+  //       console.log(data.jso);
+  //     } catch (err) {
+  //       error.value = err.message;
+  //       console.log(error.value);
+  //     }
   //   };
+  // return {
+  //   data,
+  //   postData,
+  // };
   // },
 };
 </script>
