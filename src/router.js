@@ -7,6 +7,7 @@ import HelloJSX from './components/Hello.vue'
 import Member from './components/Member.vue'
 import Top from './components/Top.vue'
 import Login from './components/Login.vue'
+import Test from './components/Test.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -29,6 +30,11 @@ export const router = createRouter({
       path: '/Hello',
       name: 'Hello',
       component: HelloJSX,
+    },
+    {
+      path: '/Test',
+      name: 'Test',
+      component: Test,
     },
   ],
 })
