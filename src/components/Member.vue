@@ -192,87 +192,42 @@
 import axios from "axios";
 import axiosJsonpAdapter from "axios-jsonp";
 import { reactive } from "vue";
-let url = "http://localhost:8080/rest";
+let url = "http://localhost:8080/reg";
+// axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+// axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
 export default {
   name: "Member",
-  data: function () {
-    return {
+  devServer: {
+    proxy: "http://localhost:8080",
+  },
+  setup() {
+    const data = reactive({
       title: "HelloWorld",
       msg: "This is HelloWorld component.",
       jso: null,
-    };
-  },
-  methods: {
-    async postData() {
-      let id = 1; // ☆id番号
+    });
+
+    const postData = async () => {
+      let params = new URLSearchParams();
+      params.append("id", "テストだよー");
       try {
-        let data = await axios.get(url, {
+        data.jso = await axios.post(
+          url,
           // adapter: axiosJsonpAdapter,
           // callbackParamName: "cb",
-          // params: {
-          //   name: "foo",
-          // },
-        });
-        console.log(data.data);
+          params
+        );
+        console.log(data.jso.data.data);
       } catch (error) {
         console.log("post Error");
         // ダメなときはエラー
         console.error(error);
       }
-    },
+    };
+    return {
+      data,
+      postData,
+    };
   },
-  // setup(props, context) {
-  //   const data = reactive({
-  //     title: "HelloWorld",
-  //     msg: "This is HelloWorld component.",
-  //     jso: null,
-  //   });
-  // const postData = async () => {
-  //   let id = 1; // ☆id番号
-  //   try {
-  //     data.jso = await axios.get(url, {
-  //       adapter: axiosJsonpAdapter,
-  //       // callbackParamName: "cb",
-  //       // params: {
-  //       //   name: "foo",
-  //       // },
-  //     });
-  //     console.log("成成功");
-  //   } catch (error) {
-  //     console.log("post Error");
-  //     // ダメなときはエラー
-  //     console.error(error);
-  //   }
-
-  // .then((res) => {
-  //   console.log(res);
-  //   data.jso = res.data;
-  //   // data.json_data = res.data;
-  // })
-  // .catch((error) => {
-  //   // data.message = "ERROR!";
-  //   // data.json_data = null;
-  //   console.log("error");
-  // });
-  // };
-
-  //   const postData = async () => {
-  //     try {
-  //       let vul = await fetch("http://localhost:8080/rest", {
-  //         adapter: axiosJsonpAdapter,
-  //       });
-  //       console.log(val); //statusが OKか確認する。
-  //       data.jso = await val.json();
-  //       console.log(data.jso);
-  //     } catch (err) {
-  //       error.value = err.message;
-  //       console.log(error.value);
-  //     }
-  //   };
-  // return {
-  //   data,
-  //   postData,
-  // };
-  // },
 };
 </script>
