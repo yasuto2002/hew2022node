@@ -225,10 +225,14 @@ io.on('connection', (socket) => {
   });
   socket.on('disconnect', function () {
     if (room != "") {
-      io.to(room).emit('breakRoom');
+      io.to(MEMBER[socket.id].name).emit('breakRoom', {
+        name: MEMBER[socket.id].name
+      });
+      console.log(MEMBER[socket.id].name);
     }
     socket.broadcast.emit("member-quit", {
-      token: MEMBER[socket.id].count
+      token: MEMBER[socket.id].count,
+      name: MEMBER[socket.id].name
     });
     delete MEMBER[socket.id];
   });

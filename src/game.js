@@ -110,10 +110,11 @@ socket.on("member-join", (data) => {
   addMemberList(data.token, data.name);
 });
 socket.on("member-quit", (data) => {
-  console.log(MEMBER);
-  const name = MEMBER[data.token];
-  console.log(`${name}さんが退室しました`);
-  removeMemberList(data.token);
+  if (room == data.name) {
+    const name = MEMBER[data.token];
+    console.log(`${name}さんが退室しました`);
+    removeMemberList(data.token);
+  }
 });
 
 function addMemberList(token, name) {
@@ -883,6 +884,8 @@ socket.on('gameStart', function (msg) {
   }
 })
 
-socket.on('breakRoom', function () {
-  console.log("相手が退出しました");
+socket.on('breakRoom', function (data) {
+  if (room == data.name) {
+    console.log("相手が退出しました");
+  }
 })
