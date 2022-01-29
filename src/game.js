@@ -62,6 +62,7 @@ var timedstart;
 var interval_id;
 var over_text;
 var Timetext;
+var over;
 const IAM = {
   token: null, // トークン
   name: null, // 名前
@@ -558,45 +559,16 @@ function create() {
   //   callbackScope: this,
   //   repeat: 64
   // });
-
-}
-
-socket.on('Start', function () {
-  console.log("Start");
-  console.log(socket.id);
-  start();
-})
-
-function start() {
-  interval_id = setInterval(() => {
-    Subtraction();
-  }, 1000)
-}
-
-function Subtraction() {
-  timeScore -= 1;
-  if (timeScore == 60) {
-    over_text.setText('START');
-    deletewall();
-  }
-  if (timeScore <= 60) {
-    Timetext.setText(timeScore);
-  } else {
-    Timetext.setText(timeScore - 60);
-  }
-  if (timeScore == 59) {
-    textChange();
-  }
-  if (timeScore == 0) {
-    clearInterval(interval_id);
+  over = () => {
     this.physics.pause();
-    this.player.setTint(0xff0000);
     gameOver = true;
-    this.over = this.add.text(650, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
-    this.over.setText('GAME OVER');
+    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over.setText('GAME OVER!');
+    clearInterval(interval_id);
   }
-  return;
+
 }
+
 
 function textChange() {
   over_text.setText('');
@@ -868,7 +840,40 @@ function npcHit(npc, spike) {
     repeat: 5,
   });
 }
+socket.on('Start', function () {
+  console.log("Start");
+  console.log(socket.id);
+  interval_id = setInterval(() => {
+    Subtraction();
+  }, 1000)
+})
 
+
+function Subtraction() {
+  timeScore -= 1;
+  if (timeScore == 60) {
+    over_text.setText('START');
+    deletewall();
+  }
+  if (timeScore <= 60) {
+    Timetext.setText(timeScore);
+  } else {
+    Timetext.setText(timeScore - 60);
+  }
+  if (timeScore == 59) {
+    textChange();
+  }
+  if (timeScore == 0) {
+    // clearInterval(interval_id);
+    // this.physics.pause();
+    // this.player.setTint(0xff0000);
+    // gameOver = true;
+    // this.over = this.add.text(650, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    // this.over.setText('GAME OVER');
+    over();
+  }
+  return;
+}
 socket.emit('gameStart', {
   room: room,
   value: 2,
@@ -883,6 +888,21 @@ socket.on('gameStart', function (msg) {
     });
   }
 })
+
+// socket.emit('gameStart', {
+//   room: room,
+//   value: 2,
+//   player_id: player_id
+// });
+// socket.on('gameStart', function (msg) {
+//   if (msg.player_id != player_id) {
+//     socket.emit('Start', {
+//       room: room,
+//       value: 2,
+//       player_id: player_id
+//     });
+//   }
+// })
 
 socket.on('breakRoom', function (data) {
   if (room == data.name) {
