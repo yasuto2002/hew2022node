@@ -55,6 +55,21 @@ function makeToken(id) {
 }
 // app.use("/static", express.static(path.join(__dirname, "static")));
 
+function getMemberList() {
+  const list = [];
+  console.log();
+  for (let key in MEMBER) {
+    const cur = MEMBER[key];
+    if (cur.name !== null) {
+      list.push({
+        token: cur.count,
+        name: cur.name
+      });
+    }
+  }
+  return (list);
+}
+
 const connection = mysql.createConnection({
   host: 'localhost',
   port: 3306,
@@ -168,8 +183,14 @@ io.on('connection', (socket) => {
       count: MEMBER_COUNT
     };
     MEMBER_COUNT++;
+    console.log(MEMBER);
   });
   socket.on("join", (data) => {
+    const memberlist = getMemberList();
+    io.to(socket.id).emit("join-result", {
+      status: true,
+      list: memberlist
+    });
     // メンバー一覧に追加
     MEMBER[socket.id].name = data.name;
 

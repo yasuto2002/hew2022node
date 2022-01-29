@@ -81,8 +81,28 @@ socket.on("token", (data) => {
   IAM.token = data.token;
   socket.emit("join", {
     token: IAM.token,
-    name: player_id
+    name: room
   });
+});
+
+socket.on("join-result", (data) => {
+  //------------------------
+  // 正常に入室できた
+  //------------------------
+  if (data.status) {
+    // 入室フラグを立てる
+    IAM.is_join = true;
+    console.log(data);
+    // すでにログイン中のメンバー一覧を反映
+    for (let i = 1; i < data.list.length; i++) {
+      const cur = data.list[i];
+      // console.log(item);
+      if (!(cur.token in MEMBER)) {
+        addMemberList(cur.token, cur.name);
+      }
+    }
+  };
+
 });
 
 socket.on("member-join", (data) => {
@@ -90,6 +110,7 @@ socket.on("member-join", (data) => {
   addMemberList(data.token, data.name);
 });
 socket.on("member-quit", (data) => {
+  console.log(MEMBER);
   const name = MEMBER[data.token];
   console.log(`${name}さんが退室しました`);
   removeMemberList(data.token);
