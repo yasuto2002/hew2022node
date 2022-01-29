@@ -10,13 +10,16 @@ module.exports = {
   mode: 'development',
 
   //メインとなるjsファイル(エントリーポイント)
-  entry: "./src/index.js",
+  entry: {
+    bundle: "./src/index.js",
+    main: "./src/game.js",
+  },
   //ファイルの出力設定
   output: {
     //出力先のディレクトリ（絶対パスで指定）
     path: path.resolve(__dirname, "public"),
     //出力ファイル名
-    filename: "bundle.js",
+    filename: "[name].js",
   },
   //ローダーの設定
   module: {

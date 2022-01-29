@@ -1,20 +1,219 @@
 //Expressのモジュールを取り込んで生成
 const express = require('express')
 const path = require('path')
+const mysql = require('mysql');
 const app = express()
 const cors = require('cors');
 const axios = require('axios');
 const axiosJsonpAdapter = require("axios-jsonp");
+const fs = require("fs");
+var roomFile;
+var room;
+const crypto = require("crypto");
 
-
-
-
+app.set('views', path.join(__dirname, 'templates'));
+app.set('view engine', 'ejs');
+app.get('/match', (req, res) => {
+  return res.render("match", {
+    url: __dirname
+  });
+});
 
 
 //サーバーを起動
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
   console.log('sucsess!!')
 })
+// //サーバーを起動
+// const server = app.listen(3000, () => {
+//   console.log('sucsess!!')
+// })
+
+
+const {
+  Server
+} = require("socket.io");
+var io = new Server(server);
+app.get('/game', (req, res) => {
+  io.on('connection', (socket) => {
+
+    console.log('a user connected');
+    socket.join(req.query.roomid);
+    room = req.query.roomid;
+    console.log(socket.rooms);
+  });
+  return res.render("game", {
+    player_id: req.query.player_id,
+    roomid: req.query.roomid
+  });
+});
+
+
+function makeToken(id) {
+  const str = SECRET_TOKEN + id;
+  return (crypto.createHash("sha1").update(str).digest('hex'));
+}
+// app.use("/static", express.static(path.join(__dirname, "static")));
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '',
+  database: 'test'
+});
+app.get('/sql', (req, res) => {
+  connection.query(
+    'SELECT * FROM items',
+    (error, results) => {
+      res.render('sqltest.ejs', {
+        items: results
+      });
+    }
+  );
+});
+
+
+app.get('/matchRequest', (req, res) => {
+  fs.readFile("room.json", {
+    encoding: "utf-8",
+    flag: 'r+',
+  }, (err, data) => {
+    if (err) throw err;
+    roomFile = JSON.parse(data);
+    let check = false;
+    var resData;
+    let i = 0;
+    while (i < 3 && !check) {
+      console.log(roomFile[i].player1);
+      if (roomFile[i].player1 == null) {
+        resData = {
+          "judg": true,
+          "roomid": roomFile[i].roomid,
+          "playerid": 1
+        };
+        roomFile[i].player1 = true;
+        roomFile = JSON.stringify(roomFile);
+        fs.writeFile("room.json", roomFile, (err) => {
+          if (err) throw err;
+        });
+        check = true;
+        res.json(resData);
+      } else if (roomFile[i].player2 == null) {
+        resData = {
+          "judg": true,
+          "roomid": roomFile[i].roomid,
+          "playerid": 2
+        };
+        roomFile[i].player2 = true;
+        roomFile = JSON.stringify(roomFile);
+        fs.writeFile("room.json", roomFile, (err) => {
+          if (err) throw err;
+        });
+        check = true;
+        res.json(resData);
+      }
+      i++;
+    }
+    if (!check) {
+      resData = {
+        "judg": false,
+        "roomid": null,
+        "playerid": null
+      };
+      res.json(resData);
+    }
+    // else {
+    //   roomFile = JSON.stringify(roomFile);
+    //   fs.writeFile("room.json", roomFile, (err) => {
+    //     if (err) throw err;
+    //     console.log('正常に書き込みが完了しました');
+    //   });
+    // }
+  });
+  // res.json(resData);
+});
+
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+//   socket.join("room1");
+// });
+
+const SECRET_TOKEN = "abcdefghijklmn12345";
+const MEMBER = [{}];
+let MEMBER_COUNT = 1;
+
+
+// server.listen(3000, () => {
+//   console.log('listening on *:3000');
+// });
+io.on('connection', (socket) => {
+  const token = makeToken(socket.id);
+  MEMBER[socket.id] = {
+    "token": token,
+    "name": null,
+    "count": MEMBER_COUNT
+  };
+  MEMBER_COUNT++;
+  io.on("connection", (socket) => {
+    const token = makeToken(socket.id);
+    io.to(socket.id).emit("token", {
+      token: token
+    });
+    console.log(socket.id);
+    // ユーザーリストに追加
+    MEMBER[socket.id] = {
+      token: token,
+      name: null,
+      count: MEMBER_COUNT
+    };
+    MEMBER_COUNT++;
+  });
+  socket.on("join", (data) => {
+    // メンバー一覧に追加
+    MEMBER[socket.id].name = data.name;
+
+    // 入室通知
+    io.to(socket.id).emit("member-join", data);
+    socket.broadcast.emit("member-join", {
+      name: data.name,
+      token: MEMBER[socket.id].count
+    });
+  });
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg.value);
+  });
+  socket.on('chat message', (msg) => {
+    io.to(msg.room).emit('chat message', msg);
+  });
+  socket.on('client_to_server_personal', (data) => {
+    // io.to("room1").emit('client_to_server_personal', data.roomid);
+    io.socketsLeave("room1");
+    socket.join(data.roomid);
+    console.log(socket.rooms);
+  });
+  socket.on('submit Location', (location) => {
+    io.to(location.room).emit('submit Location', location);
+  });
+  socket.on('gameStart', (msg) => {
+
+    io.to(msg.room).emit('gameStart', msg);
+  });
+  socket.on('Start', (msg) => {
+    io.to(msg.room).emit('Start');
+  });
+  socket.on('disconnect', function () {
+    if (room != "") {
+      io.to(room).emit('breakRoom');
+    }
+    socket.broadcast.emit("member-quit", {
+      token: MEMBER[socket.id].count
+    });
+    delete MEMBER[socket.id];
+  });
+});
+
+
 
 const corsOptions = {
   origin: 'http://localhost:3000',
