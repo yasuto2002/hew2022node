@@ -192,7 +192,7 @@
 import axios from "axios";
 import axiosJsonpAdapter from "axios-jsonp";
 import { reactive } from "vue";
-let url = "http://localhost:8080/reg";
+let url = "http://52.197.166.43/reg";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
 export default {
