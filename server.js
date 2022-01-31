@@ -8,6 +8,7 @@ const axios = require('axios');
 const axiosJsonpAdapter = require("axios-jsonp");
 const fs = require("fs");
 const session = require('express-session');
+const cors = require('cors')
 var roomFile;
 var room;
 const crypto = require("crypto");
@@ -19,7 +20,7 @@ app.get('/match', (req, res) => {
     url: __dirname
   });
 });
-
+app.use(cors());
 
 //サーバーを起動
 const server = app.listen(3000, () => {
