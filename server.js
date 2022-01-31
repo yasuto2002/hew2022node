@@ -7,6 +7,7 @@ const cors = require('cors');
 const axios = require('axios');
 const axiosJsonpAdapter = require("axios-jsonp");
 const fs = require("fs");
+const session = require('express-session');
 var roomFile;
 var room;
 const crypto = require("crypto");
@@ -29,23 +30,38 @@ const server = app.listen(3000, () => {
 //   console.log('sucsess!!')
 // })
 
+//セッション
+app.use(session({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: false
+}));
 
 const {
   Server
 } = require("socket.io");
+const {
+  exit
+} = require('process');
 var io = new Server(server);
 app.get('/game', (req, res) => {
-  io.on('connection', (socket) => {
+  if (req.session.flg && req.session.flg != null) {
+    req.session.flg = null;
+    io.on('connection', (socket) => {
 
-    console.log('a user connected');
-    socket.join(req.query.roomid);
-    room = req.query.roomid;
-    console.log(socket.rooms);
-  });
-  return res.render("game", {
-    player_id: req.query.player_id,
-    roomid: req.query.roomid
-  });
+      console.log('a user connected');
+      socket.join(req.query.roomid);
+      room = req.query.roomid;
+      console.log(socket.rooms);
+    });
+    return res.render("game", {
+      player_id: req.query.player_id,
+      roomid: req.query.roomid
+    });
+  } else {
+    res.redirect('/');
+    return;
+  }
 });
 
 
@@ -113,6 +129,7 @@ app.get('/matchRequest', (req, res) => {
           if (err) throw err;
         });
         check = true;
+        req.session.flg = true;
         res.json(resData);
       } else if (roomFile[i].player2 == null) {
         resData = {
@@ -126,6 +143,7 @@ app.get('/matchRequest', (req, res) => {
           if (err) throw err;
         });
         check = true;
+        req.session.flg = true;
         res.json(resData);
       }
       i++;
