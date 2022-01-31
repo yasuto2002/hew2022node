@@ -16,7 +16,7 @@ interval_id = setInterval(() => {
       }
     }
   }
-  request.open('GET', 'http://localhost:3000/matchRequest', true);
+  request.open('GET', '/matchRequest', true);
   request.send();
 
 
@@ -24,5 +24,5 @@ interval_id = setInterval(() => {
 
 function stopInterval(urldata) {
   clearInterval(interval_id);
-  location.href = `http://localhost:3000/game?player_id=${urldata.playerid}&roomid=${urldata.roomid}`;
+  location.href = `/game?player_id=${urldata.playerid}&roomid=${urldata.roomid}`;
 }
