@@ -16,7 +16,7 @@ interval_id = setInterval(() => {
       }
     }
   }
-  request.open('GET', '/matchRequest', true);
+  request.open('GET', 'https://yasuto0101.com/matchRequest', true);
   request.send();
 
 
