@@ -37,4 +37,9 @@ export const router = createRouter({
       component: Test,
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      top: 0
+    }
+  }
 })

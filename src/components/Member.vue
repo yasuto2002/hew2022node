@@ -26,14 +26,22 @@
               性
             </p>
             <!-- <p class="membership-Form-Item-Label">お名前</p> -->
-            <input type="text" class="membership-Form-Item-Input-mini" />
+            <input
+              type="text"
+              class="membership-Form-Item-Input-mini"
+              v-model="data.ksName"
+            />
             <p
               class="membership-Form-Item-Label"
               style="width: 8%; text-align: center"
             >
               名
             </p>
-            <input type="text" class="membership-Form-Item-Input-mini" />
+            <input
+              type="text"
+              class="membership-Form-Item-Input-mini"
+              v-model="data.kfName"
+            />
           </div>
           <p class="membership-Form-Item-Label" style="text-align: left">
             フリガナ
@@ -45,14 +53,22 @@
             >
               セイ
             </p>
-            <input type="text" class="membership-Form-Item-Input-mini" />
+            <input
+              type="text"
+              class="membership-Form-Item-Input-mini"
+              v-model="data.hsName"
+            />
             <p
               class="membership-Form-Item-Label"
               style="width: 8%; text-align: center"
             >
               メイ
             </p>
-            <input type="text" class="membership-Form-Item-Input-mini" />
+            <input
+              type="text"
+              class="membership-Form-Item-Input-mini"
+              v-model="data.hfName"
+            />
           </div>
 
           <p
@@ -90,6 +106,8 @@
                   name="gender"
                   id="radio1"
                   style="margin: 0; padding-left: 90%"
+                  value="男"
+                  v-model="data.gender"
                 />
               </div>
               <div
@@ -107,6 +125,8 @@
                   name="gender"
                   id="radio2"
                   style="margin: 0; padding-left: 90%"
+                  value="女"
+                  v-model="data.gender"
                 />
               </div>
             </div>
@@ -116,7 +136,7 @@
           </p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
-              type="text"
+              type="date"
               class="membership-Form-Item-Input"
               style="
                 width: 70%;
@@ -125,15 +145,18 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
+              v-model="data.date"
             />
           </div>
           <p class="membership-Form-Item-Label" style="text-align: left">
             メールアドレス
           </p>
+          <p style="color: #ff0000; text-arign: center">{{ data.emsagge }}</p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
               type="text"
               class="membership-Form-Item-Input"
+              v-model="data.maile"
               style="
                 width: 70%;
                 padding: 0;
@@ -157,6 +180,7 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
+              v-model="data.password1"
             />
           </div>
           <p class="membership-Form-Item-Label" style="text-align: left">
@@ -173,6 +197,7 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
+              v-model="data.password2"
             />
           </div>
         </div>
@@ -192,6 +217,8 @@
 import axios from "axios";
 import axiosJsonpAdapter from "axios-jsonp";
 import { reactive } from "vue";
+import { useStore } from "vuex";
+import { useRoute, useRouter } from "vue-router";
 let url = "http://localhost:8080/reg";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
@@ -205,29 +232,58 @@ export default {
       title: "HelloWorld",
       msg: "This is HelloWorld component.",
       jso: null,
+      maile: "",
+      ksName: "",
+      kfName: "",
+      hsName: "",
+      hfName: "",
+      password1: "",
+      password2: "",
+      gender: "",
+      date: "",
+      emsagge: "",
     });
 
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
     const postData = async () => {
       let params = new URLSearchParams();
-      params.append("id", "テストだよー");
+      // params.append("id", data.password1);
+      params.append("kName", data.ksName + data.kfName);
+      params.append("hName", data.hsName + data.hfName);
+      params.append("sex", data.gender);
+      params.append("mail_address", data.maile);
+      params.append("password", data.password1);
+      params.append("birthday", data.date);
       try {
         data.jso = await axios.post(
           url,
           // adapter: axiosJsonpAdapter,
-          // callbackParamName: "cb",
           params
         );
-        console.log(data.jso.data.data);
-        this.$router.push("/");
+        console.log(data.jso.data.state);
+        console.log(data.gender);
       } catch (error) {
         console.log("post Error");
         // ダメなときはエラー
         console.error(error);
       }
+      if (data.jso.data.state == true) {
+        router.push("/");
+      } else if (data.jso.data.state == 23000) {
+        data.emsagge = "入力されたメールアドレスはすでに使用されています";
+      }
+      return;
+    };
+    const jumppage = () => {
+      // this.$router.push("/");
+      router.push("/");
     };
     return {
       data,
       postData,
+      jumppage,
     };
   },
 };
