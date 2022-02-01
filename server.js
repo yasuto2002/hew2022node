@@ -233,7 +233,8 @@ io.on('connection', (socket) => {
   MEMBER[socket.id] = {
     "token": token,
     "name": null,
-    "count": MEMBER_COUNT
+    "count": MEMBER_COUNT,
+    "id": null
   };
   MEMBER_COUNT++;
   io.on("connection", (socket) => {
@@ -246,7 +247,8 @@ io.on('connection', (socket) => {
     MEMBER[socket.id] = {
       token: token,
       name: null,
-      count: MEMBER_COUNT
+      count: MEMBER_COUNT,
+      "id": null
     };
     MEMBER_COUNT++;
     console.log(MEMBER);
@@ -259,7 +261,7 @@ io.on('connection', (socket) => {
     });
     // メンバー一覧に追加
     MEMBER[socket.id].name = data.name;
-
+    MEMBER[socket.id].id = data.id;
     // 入室通知
     io.to(socket.id).emit("member-join", data);
     socket.broadcast.emit("member-join", {
@@ -300,6 +302,7 @@ io.on('connection', (socket) => {
       token: MEMBER[socket.id].count,
       name: MEMBER[socket.id].name
     });
+    console.log(MEMBER[socket.id].id);
     delete MEMBER[socket.id];
   });
 });
