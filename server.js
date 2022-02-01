@@ -11,6 +11,9 @@ const cors = require('cors')
 var roomFile;
 var room;
 const crypto = require("crypto");
+const {
+  randomBytes
+} = require('crypto')
 
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'ejs');
@@ -121,6 +124,9 @@ app.get('/sql', (req, res) => {
   );
 });
 
+function generateRandomString(length) {
+  return randomBytes(length).reduce((p, i) => p + (i % 32).toString(32), '')
+}
 
 app.get('/matchRequest', (req, res) => {
   fs.readFile("room.json", {
@@ -132,46 +138,71 @@ app.get('/matchRequest', (req, res) => {
     let check = false;
     var resData;
     let i = 0;
-    while (i < 3 && !check) {
-      console.log(roomFile[i].player1);
-      if (roomFile[i].player1 == null) {
-        resData = {
-          "judg": true,
-          "roomid": roomFile[i].roomid,
-          "playerid": 1
-        };
-        roomFile[i].player1 = true;
-        roomFile = JSON.stringify(roomFile);
-        fs.writeFile("room.json", roomFile, (err) => {
-          if (err) throw err;
-        });
-        check = true;
-        req.session.flg = true;
-        res.json(resData);
-      } else if (roomFile[i].player2 == null) {
-        resData = {
-          "judg": true,
-          "roomid": roomFile[i].roomid,
-          "playerid": 2
-        };
-        roomFile[i].player2 = true;
-        roomFile = JSON.stringify(roomFile);
-        fs.writeFile("room.json", roomFile, (err) => {
-          if (err) throw err;
-        });
-        check = true;
-        req.session.flg = true;
-        res.json(resData);
+    console.log(roomFile);
+    if (roomFile.length != 0) {
+      while (i < roomFile.length && !check) {
+        if (roomFile[i].player1 == null) {
+          resData = {
+            "judg": true,
+            "roomid": roomFile[i].roomid,
+            "playerid": 1
+          };
+          roomFile[i].player1 = true;
+          roomFile = JSON.stringify(roomFile);
+          fs.writeFile("room.json", roomFile, (err) => {
+            if (err) throw err;
+          });
+          check = true;
+          req.session.flg = true;
+          res.json(resData);
+          return;
+        } else if (roomFile[i].player2 == null) {
+          resData = {
+            "judg": true,
+            "roomid": roomFile[i].roomid,
+            "playerid": 2
+          };
+          roomFile[i].player2 = true;
+          roomFile = JSON.stringify(roomFile);
+          fs.writeFile("room.json", roomFile, (err) => {
+            if (err) throw err;
+          });
+          check = true;
+          req.session.flg = true;
+          res.json(resData);
+          return;
+        }
+        i++;
       }
-      i++;
     }
     if (!check) {
+      let random = generateRandomString(32);
+      let roomjson = {
+        "roomid": random,
+        "player1": true,
+        "player2": null
+      }
+      roomFile[i] = roomjson;
       resData = {
-        "judg": false,
-        "roomid": null,
-        "playerid": null
+        "judg": true,
+        "roomid": random,
+        "playerid": 1
       };
+      roomFile = JSON.stringify(roomFile);
+      fs.writeFile("room.json", roomFile, (err) => {
+        if (err) return;
+      });
+      req.session.flg = true;
       res.json(resData);
+      console.log(roomjson);
+      return;
+      // resData = {
+      //   "judg": false,
+      //   "roomid": null,
+      //   "playerid": null
+      // };
+      // res.json(resData);
+      // return;
     }
     // else {
     //   roomFile = JSON.stringify(roomFile);
@@ -202,7 +233,8 @@ io.on('connection', (socket) => {
   MEMBER[socket.id] = {
     "token": token,
     "name": null,
-    "count": MEMBER_COUNT
+    "count": MEMBER_COUNT,
+    "id": null
   };
   MEMBER_COUNT++;
   io.on("connection", (socket) => {
@@ -215,7 +247,8 @@ io.on('connection', (socket) => {
     MEMBER[socket.id] = {
       token: token,
       name: null,
-      count: MEMBER_COUNT
+      count: MEMBER_COUNT,
+      "id": null
     };
     MEMBER_COUNT++;
     console.log(MEMBER);
@@ -228,7 +261,7 @@ io.on('connection', (socket) => {
     });
     // メンバー一覧に追加
     MEMBER[socket.id].name = data.name;
-
+    MEMBER[socket.id].id = data.id;
     // 入室通知
     io.to(socket.id).emit("member-join", data);
     socket.broadcast.emit("member-join", {
@@ -269,6 +302,7 @@ io.on('connection', (socket) => {
       token: MEMBER[socket.id].count,
       name: MEMBER[socket.id].name
     });
+    console.log(MEMBER[socket.id].id);
     delete MEMBER[socket.id];
   });
 });

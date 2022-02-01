@@ -82,7 +82,8 @@ socket.on("token", (data) => {
   IAM.token = data.token;
   socket.emit("join", {
     token: IAM.token,
-    name: room
+    name: room,
+    id: player_id
   });
 });
 
