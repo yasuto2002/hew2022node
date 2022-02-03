@@ -19,7 +19,7 @@ const config = {
   parent: 'game',
   width: 1600,
   heigth: 600,
-  backgroundColor: "#000000",
+  backgroundColor: "#da5789",
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
@@ -152,6 +152,10 @@ function preload() {
 }
 
 function create() {
+  for (let x = 0; x < 10; x++) {
+    let backgroundImage = this.add.image(1024 * x, 0, 'background').setOrigin(0, 0);
+    backgroundImage.setScale(2, 0.8);
+  }
   // for (let x = 0; x < 10; x++) {
   //     let backgroundImage = this.add.image(1024 * x, 0, 'background').setOrigin(0, 0);
   //     backgroundImage.setScale(2, 0.8);
@@ -907,6 +911,7 @@ socket.on('gameStart', function (msg) {
 
 socket.on('breakRoom', function (data) {
   if (room == data.name) {
-    console.log("相手が退出しました");
+    alert("相手が退出しました");
+    location.href = "/";
   }
 })
