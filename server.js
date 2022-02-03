@@ -93,7 +93,6 @@ function makeToken(id) {
 
 function getMemberList() {
   const list = [];
-  console.log();
   for (let key in MEMBER) {
     const cur = MEMBER[key];
     if (cur.name !== null) {
@@ -138,7 +137,6 @@ app.get('/matchRequest', (req, res) => {
     let check = false;
     var resData;
     let i = 0;
-    console.log(roomFile);
     if (roomFile.length != 0) {
       while (i < roomFile.length && !check) {
         if (roomFile[i].player1 == null) {
@@ -194,7 +192,6 @@ app.get('/matchRequest', (req, res) => {
       });
       req.session.flg = true;
       res.json(resData);
-      console.log(roomjson);
       return;
       // resData = {
       //   "judg": false,
@@ -242,7 +239,6 @@ io.on('connection', (socket) => {
     io.to(socket.id).emit("token", {
       token: token
     });
-    console.log(socket.id);
     // ユーザーリストに追加
     MEMBER[socket.id] = {
       token: token,
@@ -251,7 +247,6 @@ io.on('connection', (socket) => {
       "id": null
     };
     MEMBER_COUNT++;
-    console.log(MEMBER);
   });
   socket.on("join", (data) => {
     const memberlist = getMemberList();
@@ -259,6 +254,7 @@ io.on('connection', (socket) => {
       status: true,
       list: memberlist
     });
+    io.of(data.name).sockets.size += 1;
     // メンバー一覧に追加
     MEMBER[socket.id].name = data.name;
     MEMBER[socket.id].id = data.id;
@@ -279,12 +275,26 @@ io.on('connection', (socket) => {
     // io.to("room1").emit('client_to_server_personal', data.roomid);
     io.socketsLeave("room1");
     socket.join(data.roomid);
-    console.log(socket.rooms);
   });
   socket.on('submit Location', (location) => {
     io.to(location.room).emit('submit Location', location);
   });
   socket.on('gameStart', (msg) => {
+    let name = msg.room;
+    const count = io.of("/").to(msg.room).adapter.rooms;
+    // count.forEach(function (element) {
+    //   console.log(element);
+    // });
+    // console.log(count);
+    // let roomnum = 0;
+    // for (let props of count) {
+    //   console.log(props);
+    //   console.log();
+    // }
+    // console.log(roomnum);
+    if (msg.player_id == 2) {
+      console.log(count.get(name).size);
+    }
 
     io.to(msg.room).emit('gameStart', msg);
   });
@@ -296,16 +306,55 @@ io.on('connection', (socket) => {
       io.to(MEMBER[socket.id].name).emit('breakRoom', {
         name: MEMBER[socket.id].name
       });
-      console.log(MEMBER[socket.id].name);
     }
+    deleteroom(MEMBER[socket.id].name);
     socket.broadcast.emit("member-quit", {
       token: MEMBER[socket.id].count,
       name: MEMBER[socket.id].name
     });
-    console.log(MEMBER[socket.id].id);
+    io.socketsLeave(MEMBER[socket.id].name);
     delete MEMBER[socket.id];
   });
 });
+
+
+function judroom(id) {
+  fs.readFile("room.json", {
+    encoding: "utf-8",
+    flag: 'r+',
+  }, (err, data) => {
+    if (err) throw err;
+    roomFile = JSON.parse(data);
+    for (let i = 0; i < roomFile.length; i++) {
+      if (roomFile[i].roomid == id) {
+        if (roomFile[i].player1 && roomFile[i].player2) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  })
+}
+
+function deleteroom(id) {
+  fs.readFile("room.json", {
+    encoding: "utf-8",
+    flag: 'r+',
+  }, (err, data) => {
+    if (err) throw err;
+    roomFile = JSON.parse(data);
+    for (let i = 0; i < roomFile.length; i++) {
+      if (roomFile[i].roomid == id) {
+        roomFile.splice(i, 1);
+      }
+    }
+    roomFile = JSON.stringify(roomFile);
+    fs.writeFile("room.json", roomFile, (err) => {
+      if (err) throw err;
+    });
+  })
+}
 
 
 
