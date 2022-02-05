@@ -1,11 +1,17 @@
 
 @charset "utf-8";
 
+html{
+  color: #505050;
+  font-family: 'M PLUS Rounded 1c', 'M PLUS 1p', sans-serif;
+}
+
 body {
   /* background-color: #eabf2a; */
   /* font-size: 1.2vw; */
-  color: #545454;
+  color: #505050;
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.25rem;
 }
 
 img {
@@ -234,7 +240,7 @@ nav ul li a {
   margin: 10px;
   /*background-color: #f5f5f5;*/
   background-color: #fff;
-  border: 2px solid #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
   border-radius: 0.5rem; 
 }
 
@@ -247,7 +253,7 @@ nav ul li a {
   /* ↑削除 */
   text-align: center;
   background-color: #fff;
-  border: 2px solid #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
   border-radius: 0.5rem; 
 }
 
@@ -268,7 +274,7 @@ nav ul li a {
 検索画面
 ----------------------*/
 .searchform_head {
-  color: #808080;
+  color: #505050;
   margin: 20px 20px 5px 20px;
   font-size: 22px;
 }
@@ -278,13 +284,13 @@ nav ul li a {
 }
 
 .searchform_txt {
-  color: #808080;
+  color: #505050;
   font-size: 20px;
 }
 
 .searchform_border {
   width: 150px;
-  border-bottom: solid 1px #808080;
+  border-bottom: solid 1px #505050;
   margin: 30px 0px 0px 20px;
   padding-bottom: 1%;
 }
@@ -304,7 +310,7 @@ nav ul li a {
 .search_container input[type="submit"] {
   cursor: pointer;
   border: none;
-  background: #808080;
+  background: #505050;
   color: #fff;
   width: 50px;
   height: 35px;
@@ -312,7 +318,7 @@ nav ul li a {
 
 .search_line {
   margin: 10px 0px 0px 20px;
-  color: #808080;
+  color: #505050;
 }
 
 .rent {
@@ -320,7 +326,7 @@ nav ul li a {
 }
 
 .searchform_floor {
-  color: #808080;
+  color: #505050;
   margin: 10px 0px 0px 20px;
 }
 
@@ -387,6 +393,24 @@ a.btn_06:hover span {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+  position: relative;
+}
+
+.card:after{
+  content: "";
+  position: absolute;
+  top: 1em;
+  left: 0;
+  display: inline-block;
+  pointer-events: none;
+
+}
+
+.card:hover:after{
+  background: url(../images/ghost.png); /* 表示する画像 */
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center top;
 }
 
 
@@ -787,7 +811,7 @@ a.btn_06:hover span {
 
 .contact-btn {
   width: 250px;
-  background-color: #333;
+  background-color:  #da5789;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -839,7 +863,7 @@ a.btn_06:hover span {
 
 .signup-btn {
   width: 250px;
-  background-color: #333;
+  background-color:  #da5789;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -1011,7 +1035,7 @@ a.btn_06:hover span {
 
 .member-submiti-btn{
   width: 250px;
-  background-color: #333;
+  background-color:  #da5789;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -1045,7 +1069,8 @@ a.btn_06:hover span {
   border-radius: 0.5rem;
   text-align: center;
   line-height: 130%;
-  color: #333;
+  color: #505050;
+  font-size: 1.1rem;
 }
 
 .member-authentication-txtbox{
@@ -1061,11 +1086,12 @@ a.btn_06:hover span {
   background: #eaedf2;
   font-size: 18px;
   margin: 2% auto;
+  color: #505050;
 }
 
 .member-authentication-btn{
   width: 250px;
-  background-color: #333;
+  background-color:  #da5789;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -1095,7 +1121,8 @@ a.btn_06:hover span {
   border-radius: 0.5rem;
   text-align: center;
   line-height: 130%;
-  color: #333;
+  color: #505050;
+  font-size: 1.1rem;
 }
 
 .member-confirmation-box-txt{
@@ -1107,7 +1134,7 @@ a.btn_06:hover span {
 }
 
 .member-confirmation-box-title{
-  margin: 2%;
+  margin: 2% auto;
 }
 
 .member-confirmation-minibox{
@@ -1130,7 +1157,7 @@ a.btn_06:hover span {
 
 .member-confirmation-btn{
   width: 250px;
-  background-color: #333;
+  background-color:  #da5789;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -1252,7 +1279,7 @@ a.btn_06:hover span {
   height: 48px;
   flex: 1;
   width: 100%;
-  max-width: 410px;
+  max-width: 800px;
   background: #eaedf2;
   font-size: 18px;
 }
@@ -1290,7 +1317,7 @@ a.btn_06:hover span {
 
 .contact-btn {
   width: 250px;
-  background-color: #333;
+  background-color: #da5789;;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -1332,8 +1359,8 @@ a.btn_06:hover span {
   box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
   border-radius: 0.5rem;
   text-align: center;
-  line-height: 130%;
-  color: #333;
+  /* line-height: 130%; */
+  color: #505050;
   margin: 3% auto;
 }
 
@@ -1341,8 +1368,10 @@ a.btn_06:hover span {
   text-align: center;
   width: 80%;
   height: auto;
-  margin: 0 auto;
-  line-height: 170%;
+  margin: 3% auto;
+  line-height: 150%;
+  font-size: 1.1rem;
+  color: #505050;
 }
 
 .error-box-title{
@@ -1405,7 +1434,8 @@ a.btn_06:hover span {
   border-radius: 0.5rem;
   text-align: center;
   line-height: 130%;
-  color: #333;
+  color: #505050;
+  font-size: 1.1rem;
   margin: 3% auto;
 }
 
@@ -1415,6 +1445,7 @@ a.btn_06:hover span {
   height: auto;
   margin: 0 auto;
   line-height: 170%;
+
 }
 
 .member-withdrawal-box-title{
@@ -1514,7 +1545,7 @@ a.btn_06:hover span {
 }
 .withdrawal-btn {
   width: 250px;
-  background-color: #333;
+  background-color:  #da5789;
   color: #fff;
   font-weight: bold;
   display: block;
@@ -1536,6 +1567,8 @@ a.btn_06:hover span {
   width: 100%;
   height: auto;
   display: flex;
+  color: #505050;
+  font-size: 1.1rem;
 }
 .popupModal1 > input { /* ラジオボックス非表示 */
   display: none;
@@ -1564,11 +1597,13 @@ a.btn_06:hover span {
   padding: 10px 20px;
   overflow: hidden;
   text-align: center;
+  color: #505050;
+  font-size: 1.1rem;
 }
 @media (min-width: 768px) {/* PCのときはページの真ん中の600x600領域 */
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .modalPopup2{
        width: 600px;
-       height: 200px;
+       height: 250px;
        padding: 30px;
 
   }
@@ -1658,21 +1693,23 @@ max-width: 100%;
    font-weight: bold;
 }
 .popupModal1 .modalMain {
-   color:#222;
    text-align: left;
-   font-size: 14px;
    line-height: 1.8em;
    text-align: center;
+   color: #505050;
+   font-size: 1.1rem;
 }
 
 /* member-withdrawal-decision */
 .member-decision-box-link{
-  color: #000;
+  color: #505050;
   font-size: 14px;
 }
 
 .member-decision-box-txt{
   margin: 3% auto;
+  color: #505050;
+  font-size: 1.1rem;
 }
 
 /*----------------------
@@ -1700,21 +1737,25 @@ max-width: 100%;
   line-height: 130%;
   color: #333;
   margin: 0 auto 3% auto;
+  justify-content: center;
+  
 }
 
 .search-box-content-box{
   width: 90%;
   height:  auto;
   display: flex;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .search-box_left{
-  width: 50%;
+  width: 30%;
   height: auto;
 }
 
 .search-box_right{
-  width: 50%;
+  width: 30%;
   height: auto;
 }
 
@@ -1778,7 +1819,7 @@ max-width: 100%;
 
 .search-box_submit {
   width: 330px;
-  margin: 40px 0px 0px 20px;
+  margin: 3% auto;
 }
 
 a.btn_06 {

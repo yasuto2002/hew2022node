@@ -1,0 +1,133 @@
+@charset "utf-8";
+/*----------------------
+検索結果画面
+----------------------*/
+.left-sarch-column {
+    width: 30%;
+    height: 950px;
+    /* margin: 50px 10px 0 130px; */
+    /* ↑削除 */
+    margin: 10px;
+    /*background-color: #f5f5f5;*/
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+    border-radius: 0.5rem; 
+  }
+  
+  .right-sarch-column {
+    width: 70%;
+    height: auto;
+    margin: 10px;
+    /* ↑追加 */
+    /* margin: 50px 130px 0 10px; */
+    /* ↑削除 */
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+    border-radius: 0.5rem; 
+  }
+  
+  @media only screen and (max-width: 1284px) {
+    .left-sarch-column {
+      display: none;
+    }
+  
+    .right-sarch-column {
+      width: 100%;
+    }
+  }
+  
+  .sarch-section-link{
+      color: #505050;
+  }
+  .sarch-section-title{
+    font-size: 1.5em;
+    text-align: left;
+    letter-spacing: 1px;
+  }
+  .sarch-section{
+    width: 95%;
+    height: auto;
+    margin: 2% auto;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, .1);
+    /* background-color: #ccc; */
+  }
+
+  .sarch-section:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+  }
+
+  .sarch-section-box{
+    display: flex;
+    margin: 3% auto;
+  }
+  .sarch-section-box-txt{
+    width: 65%;
+    /* background-color: #ddd; */
+    letter-spacing: 2px;
+    margin: 2%;
+  }
+
+  dt {
+    /* 左に寄せる */
+    float: left ;
+    /* 後続の左寄せを解除 */
+    clear: left ;
+    margin-right: 0.5em ;
+    width: 120px ;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 1%;
+}
+
+dd {
+    float: left ;
+    margin-left: 1em ;
+    font-size: 1.05rem;
+    padding: 1%;
+}
+
+.pagination {
+    text-align: center;
+  }
+  .pagination a,
+  .pagination span {
+    display: inline-block;
+    margin: 8px 4px;
+    text-decoration: none;
+    border-radius: 6px;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    padding: 18px 0;
+    box-sizing: border-box;
+    color: #da5789;
+    line-height: 1;
+    font-size: 1.25rem;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all  0.3s ease;
+  }
+  .pagination a:active ,
+  .pagination a:hover {
+    color: #fff;
+    background: #da5789;
+    border-radius: 5px;
+    opacity: 0.7;
+  }
+  .pagination .current {
+    background: transparent;
+    font-weight: bold;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .pagination a,
+    .pagination span {
+      margin: 4px 2px;
+      width: 46px;
+      height: 46px;
+      padding: 16px 0;
+    }
+  }
+  

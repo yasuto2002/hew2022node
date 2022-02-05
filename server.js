@@ -10,6 +10,10 @@ const session = require('express-session');
 const cors = require('cors')
 var roomFile;
 var room;
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 const crypto = require("crypto");
 const {
   randomBytes
@@ -22,24 +26,24 @@ app.get('/match', (req, res) => {
     url: __dirname
   });
 });
-app.use(cors());
+// app.use(cors());
 
-const allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Content-Type, Authorization, access_token'
-  )
+// const allowCrossDomain = function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Content-Type, Authorization, access_token'
+//   )
 
-  // intercept OPTIONS method
-  if ('OPTIONS' === req.method) {
-    res.send(200)
-  } else {
-    next()
-  }
-}
-app.use(allowCrossDomain)
+// // intercept OPTIONS method
+// if ('OPTIONS' === req.method) {
+//   res.send(200)
+// } else {
+//   next()
+// }
+// }
+// app.use(allowCrossDomain)
 
 //サーバーを起動
 const server = app.listen(3000, () => {
@@ -358,12 +362,12 @@ function deleteroom(id) {
 
 
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200
-}
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'http://localhost:3000',
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200
+// }
+// app.use(cors(corsOptions));
 
 //publicディレクトリ以下は自動で返す
 app.use(express.static(path.join(__dirname, 'public')))
@@ -371,27 +375,27 @@ app.use(express.static(path.join(__dirname, 'public')))
 // app.get('/', (req, res) => {
 //   res.redirect(302, '/public')
 // })
-app.get("/rest", function (req, res) {
-  let url = "http://localhost:8080/rest";
-  let data;
-  let postData = async () => {
-    try {
-      data = await axios.get(url, {
-        adapter: axiosJsonpAdapter,
-        // callbackParamName: "cb",
-        // params: {
-        //   name: "foo",
-        // },
-      });
-      console.log("成成功");
-    } catch (error) {
-      console.log("post Error");
-      // ダメなときはエラー
-      console.error(error);
-    }
-    return data;
+
+
+
+
+app.post("/reqSession", function (req, res) {
+  try {
+    console.log(req.body.rmaile);
+    req.session.maile = req.body.rmaile;
+    let ob = {
+      status: true
+    };
+    res.json(ob);
+    return;
+  } catch (err) {
+    console.log(err);
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
   }
-  return postData();
 });
 
 app.get(/.*/, function (req, res) {

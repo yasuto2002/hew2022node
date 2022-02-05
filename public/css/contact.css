@@ -1,0 +1,469 @@
+@charset "utf-8";
+
+
+/*----------------------
+ヘルプ
+----------------------*/
+.help-box{
+    width: 80%;
+    height: auto;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 2%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
+    line-height: 130%;
+    color: #333;
+    margin: 0 auto 3% auto;
+    justify-content: center;
+    border-radius: 0.5rem;
+  }
+  
+  .help-accordion-box{
+    width: 100%;
+    height: 580px;
+    margin: 3% auto;
+    /* background-color: #bbb; */
+  }
+  
+  .help-accordion-category{
+    width: 100%;
+    height: 350px;
+    margin: 4% auto;
+    text-align: center;
+    /* background-color: #ddd; */
+  }
+  
+  .help-accordion-category-box{
+    width: 100%;
+    height: auto;
+    display: flex;
+  }
+  
+  .help-accordion-categorymini-box{
+    width: 25%;
+    height: 250px;
+    padding: 3%;
+    margin: 2% auto;
+    background-color: #f5f5f5;
+    color: #505050;
+    justify-content: space-between;
+    border-radius: 1.25rem;
+  }
+  
+  .help-accordion-categorymini-box:hover{
+    width: 25%;
+    height: 250px;
+    padding: 3%;
+    margin: 2% auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+    background-color: #f5f5f5;
+    color: #505050;
+    justify-content: space-between;
+    border-radius: 1.25rem;
+    transition: all 0.4s ease;
+  }
+  
+  .help-accordion-categorymini-txt{
+    color: #505050;
+    font-weight: bold;
+    font-size: 1.8em;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .accordion-area{
+    list-style: none;
+    width: 100%;
+    max-width: 900px;
+    margin:0 auto;
+    position: relative;
+    top: 3%;
+  }
+  
+  .accordion-area li{
+    margin: 10px 0;
+  }
+  
+  .accordion-area section {
+  border: 1px solid #ccc;
+  }
+  
+  /*アコーディオンタイトル*/
+  .title {
+    position: relative;/*+マークの位置基準とするためrelative指定*/
+    cursor: pointer;
+    font-size:1rem;
+    font-weight: normal;
+    padding: 3% 3% 3% 50px;
+    transition: all .5s ease;
+    font-size: 1.25rem;
+    background-color: #da5789;
+    color: #fff;
+  }
+  
+  /*アイコンの＋と×*/
+  .title::before,
+  .title::after{
+    position: absolute;
+    content:'';
+    width: 15px;
+    height: 2px;
+    background-color: #fff;
+    
+  }
+  .title::before{
+    top:48%;
+    left: 15px;
+    transform: rotate(0deg);
+    
+  }
+  .title::after{    
+    top:48%;
+    left: 15px;
+    transform: rotate(90deg);
+  
+  }
+  
+  /*　closeというクラスがついたら形状変化　*/
+  
+  .title.close::before{
+  transform: rotate(45deg);
+  }
+  
+  .title.close::after{
+  transform: rotate(-45deg);
+  }
+  
+  /*アコーディオンで現れるエリア*/
+  .box {
+    display: none;/*はじめは非表示*/
+    background: #fff;
+    margin:0 3%;
+    padding: 3%;
+    font-size: 1.2rem;
+    line-height: 150%;
+  }
+  
+  .link{
+    color: #da5789;
+  }
+  
+  .link:hover{
+    color: #d397af;
+  }
+  
+  .help-contact{
+    width: 100%;
+    height: auto;
+    /* background-color: #ddd; */
+    margin: 13% 0 3% 0;
+    text-align: center;
+  }
+  
+  .help-contact-txt{
+    font-size: 1.25em;
+  }
+  
+  .help-contact-btn{
+    background-color:  #da5789;
+    color: #fff;
+  }
+  
+  .help-contact-btn:hover{
+    color: #fff;
+    background-color:#d6779b;
+  }
+  
+  .help-contact-btn-c{
+    width: 300px;
+    background-color:  #da5789;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin: 3% auto;
+    font-size: 16px;
+    padding: 20px;
+    border-radius: 100vh;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.3em;
+  }
+  
+  .help-contact-btn-c i.far {
+    margin-right: 1.1rem;
+  }
+  
+  .help-contact-btn-c i.fas {
+    margin-left: 1.1rem;
+  }
+  
+  /*カテゴリー*/
+  .help-accordion-category-title {
+    position: relative;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .help-accordion-category-title :before {
+    position: absolute;
+    bottom: -10px;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 5px;
+    content: '';
+    border-radius: 3px;
+    background: #da5789;
+  }
+  
+  
+  /*初めてのお客さま*/
+  .help-first-accordion-box{
+    width: 100%;
+    height: 450px;
+    margin: 3% auto;
+    /* background-color: #bbb; */
+  }
+  
+  /*アカウント管理*/
+  .help-member-accordion-box{
+    width: 100%;
+    height: 380px;
+    margin: 3% auto;
+    /* background-color: #bbb; */
+  }
+  
+  /*お支払いについて*/
+  .help-pay-accordion-box{
+    width: 100%;
+    height: 250px;
+    margin: 3% auto;
+    /* background-color: #bbb; */
+  }
+  
+  /*----------------------
+  お問い合わせ
+  ----------------------*/
+  .contact-box{
+    width: 80%;
+    height: auto;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 2%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
+    line-height: 130%;
+    color: #333;
+    margin: 0 auto 3% auto;
+    justify-content: center;
+    border-radius: 0.5rem;
+  }
+  
+  /* .contact-form-name-box{
+    width: 100%;
+    height: auto;
+    display: flex;
+  }
+  .contact-form-name-txt{
+    font-size: 1.5em;
+    color: #505050;
+  }
+  
+  .contact-form-name-input{
+    border: 1px solid #f5f5f5;
+    border-radius: 1rem;
+    height: 48px;
+    width: 80%;
+    max-width: 480px;
+    background-color: #eaedf2;
+  }
+  
+  .contact-form-txt{
+    font-size: 1.5em;
+    color: #505050;
+  }
+  .contact-form-input{
+    border: 1px solid #f5f5f5;
+    border-radius: 1rem;
+    height: 48px;
+    width: 70%;
+    background-color: #eaedf2;
+  }
+  
+  .Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    background: #5bc8ac;
+    color: #fff;
+    font-size: 14px;
+  } */
+  
+  .Form {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+  }
+  @media screen and (max-width: 480px) {
+    .Form {
+      margin-top: 40px;
+    }
+  }
+  .Form-Item {
+    border-top: 1px solid #ddd;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Item {
+      padding-left: 14px;
+      padding-right: 14px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+    }
+  }
+  .Form-Item:nth-child(5) {
+    border-bottom: 1px solid #ddd;
+  }
+  .Form-Item-Label {
+    width: 100%;
+    max-width: 248px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Item-Label {
+      max-width: inherit;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+  }
+  .Form-Item-Label.isMsg {
+    margin-top: 8px;
+    margin-bottom: auto;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Item-Label.isMsg {
+      margin-top: 0;
+    }
+  }
+  .Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    background: #da5789;
+    color: #fff;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Item-Label-Required {
+      border-radius: 4px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      width: 32px;
+      font-size: 10px;
+    }
+  }
+  .Form-Item-Input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 48px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Item-Input {
+      margin-left: 0;
+      margin-top: 18px;
+      height: 40px;
+      flex: inherit;
+      font-size: 15px;
+    }
+  }
+  .Form-Item-Textarea {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 216px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Item-Textarea {
+      margin-top: 18px;
+      margin-left: 0;
+      height: 200px;
+      flex: inherit;
+      font-size: 15px;
+    }
+  }
+  
+  .Form-Item-Label-attention{
+    color: #505050;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 32px;
+  }
+  
+  .Form-Btn {
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 280px;
+    display: block;
+    letter-spacing: 0.05em;
+    background: #da5789;
+    border: 1px solid #da5789;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 100vh;
+  }
+  
+  .Form-Btn:hover{
+    background-color: #d6779b;
+  }
+  @media screen and (max-width: 480px) {
+    .Form-Btn {
+      margin-top: 24px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      width: 160px;
+      font-size: 16px;
+    }
+  }
+  

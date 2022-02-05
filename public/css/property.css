@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+.property-detail-title-box{
+    width: 80%;
+    margin: 2% auto;
+    padding: 1%;
+    border: solid 1px rgb(236, 236, 236);
+    border-top: solid 6px #da5789;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+.property-detail-title{
+    color: #505050;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: bold;    
+}
+
+.property-detail-sidebar{
+    display: flex;
+    width: 80%;
+    height: auto;
+    color: #505050;
+}
+
+.property-detail-sidebar-price-txt{
+    color: red;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+
+.property-detail-box{
+    width: 80%;
+    height: auto;
+    margin: 2% auto;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
+}
+
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+
+/*画像の横幅を100%にしてレスポンシブ化*/
+img{
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;/*画像の下にできる余白を削除*/
+  }
+  
+  /*メイン画像下に余白をつける*/
+  .gallery{
+    margin:0 0 5px 0;
+  }
+  
+  /*矢印の設定*/
+  
+  /*戻る、次へ矢印の位置*/
+  .slick-prev, 
+  .slick-next {
+      position: absolute;/*絶対配置にする*/
+    z-index: 3;
+      top: 42%;
+      cursor: pointer;/*マウスカーソルを指マークに*/
+      outline: none;/*クリックをしたら出てくる枠線を消す*/
+      border-top: 2px solid #ccc;/*矢印の色*/
+      border-right: 2px solid #ccc;/*矢印の色*/
+      height: 25px;
+      width: 25px;
+  }
+  
+  .slick-prev {/*戻る矢印の位置と形状*/
+      left:2.5%;
+      transform: rotate(-135deg);
+  }
+  
+  .slick-next {/*次へ矢印の位置と形状*/
+      right:2.5%;
+      transform: rotate(45deg);
+  }
+  
+  /*選択するサムネイル画像の設定*/
+  
+  .choice-btn li{
+    cursor: pointer;
+    outline: none;
+    background:#333;
+  }
+  
+  .choice-btn li img{
+    opacity: 0.4;/*選択されていないものは透過40%*/
+  }
+  
+  .choice-btn li.slick-current img{
+    opacity: 1;/*選択されているものは透過しない*/
+  }

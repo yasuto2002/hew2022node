@@ -13,11 +13,13 @@
       <p class="membership-box-toptxt">
         お客様の情報をご入力後、利用規約をお読みになり、「下記の利用規約に同意して確認画面へ」ボタンを押してください。<br />※印は必須入力項目です。
       </p>
-      <form style="margin-top: 50px; width: 90%">
+      <form style="margin-top: 50px; width: 90%" @submit="onSubmit">
         <div class="form-wrapp" style="margin-left: 10%">
           <p class="membership-Form-Item-Label" style="text-align: left">
             お名前
           </p>
+          <p class="em">{{ errors.ksName }}</p>
+          <p class="em">{{ errors.kfName }}</p>
           <div class="membership-Form-Item">
             <p
               class="membership-Form-Item-Label"
@@ -29,7 +31,7 @@
             <input
               type="text"
               class="membership-Form-Item-Input-mini"
-              v-model="data.ksName"
+              v-model="ksName"
             />
             <p
               class="membership-Form-Item-Label"
@@ -40,12 +42,14 @@
             <input
               type="text"
               class="membership-Form-Item-Input-mini"
-              v-model="data.kfName"
+              v-model="kfName"
             />
           </div>
           <p class="membership-Form-Item-Label" style="text-align: left">
             フリガナ
           </p>
+          <p class="em">{{ errors.hsName }}</p>
+          <p class="em">{{ errors.hfName }}</p>
           <div class="membership-Form-Item">
             <p
               class="membership-Form-Item-Label"
@@ -56,7 +60,7 @@
             <input
               type="text"
               class="membership-Form-Item-Input-mini"
-              v-model="data.hsName"
+              v-model="hsName"
             />
             <p
               class="membership-Form-Item-Label"
@@ -67,7 +71,7 @@
             <input
               type="text"
               class="membership-Form-Item-Input-mini"
-              v-model="data.hfName"
+              v-model="hfName"
             />
           </div>
 
@@ -77,6 +81,7 @@
           >
             性別
           </p>
+          <p class="em">{{ errors.gender }}</p>
           <div class="membership-Form-Item" style="width: 100%">
             <div
               class="membership-Form-Item-Label-radios"
@@ -107,7 +112,7 @@
                   id="radio1"
                   style="margin: 0; padding-left: 90%"
                   value="男"
-                  v-model="data.gender"
+                  v-model="gender"
                 />
               </div>
               <div
@@ -126,7 +131,7 @@
                   id="radio2"
                   style="margin: 0; padding-left: 90%"
                   value="女"
-                  v-model="data.gender"
+                  v-model="gender"
                 />
               </div>
             </div>
@@ -134,6 +139,7 @@
           <p class="membership-Form-Item-Label" style="text-align: left">
             生年月日
           </p>
+          <p class="em">{{ errors.date }}</p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
               type="date"
@@ -145,18 +151,19 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
-              v-model="data.date"
+              v-model="date"
             />
           </div>
           <p class="membership-Form-Item-Label" style="text-align: left">
             メールアドレス
           </p>
+          <p class="em">{{ errors.email }}</p>
           <p style="color: #ff0000; text-arign: center">{{ data.emsagge }}</p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
               type="text"
               class="membership-Form-Item-Input"
-              v-model="data.maile"
+              v-model="email"
               style="
                 width: 70%;
                 padding: 0;
@@ -169,6 +176,7 @@
           <p class="membership-Form-Item-Label" style="text-align: left">
             パスワード
           </p>
+          <p class="em">{{ errors.password1 }}</p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
               type="password"
@@ -180,12 +188,13 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
-              v-model="data.password1"
+              v-model="password1"
             />
           </div>
           <p class="membership-Form-Item-Label" style="text-align: left">
             パスワード<br />（確認用）
           </p>
+          <p class="em">{{ errors.password2 }}</p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
               type="password"
@@ -197,15 +206,15 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
-              v-model="data.password2"
+              v-model="password2"
             />
           </div>
         </div>
         <button
           class="member-submiti-btn"
-          type="button"
+          type="submit"
           value="登録する"
-          @click="postData"
+          :disabled="!meta.valid"
         >
           登録する
         </button>
@@ -219,6 +228,8 @@ import axiosJsonpAdapter from "axios-jsonp";
 import { reactive } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
+import { useField, useForm } from "vee-validate";
+import * as yup from "yup";
 let url = "http://localhost:8080/reg";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
@@ -232,30 +243,62 @@ export default {
       title: "HelloWorld",
       msg: "This is HelloWorld component.",
       jso: null,
-      maile: "",
-      ksName: "",
-      kfName: "",
-      hsName: "",
-      hfName: "",
-      password1: "",
-      password2: "",
-      gender: "",
-      date: "",
       emsagge: "",
     });
-
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
-    const postData = async () => {
+    const em = store.state.em;
+    const schema = yup.object({
+      email: yup.string(em.String).required(em.Quired).email(em.Maile),
+      ksName: yup
+        .string(em.String)
+        .min(5, "5文字以上入力してください")
+        .required(em.Quired),
+      kfName: yup.string(em.String).required(em.Quired),
+      hsName: yup.string(em.String).required(em.Quired),
+      hfName: yup.string(em.String).required(em.Quired),
+      password1: yup.string(em.String).required(em.Quired),
+      password2: yup.string(em.String).required(em.Quired),
+      gender: yup.string(em.String).required(em.Quired),
+      date: yup.date(em.Date).typeError(em.Date).required(em.Quired),
+    });
+    useForm({
+      validationSchema: schema,
+    });
+    const { errors, meta, handleSubmit } = useForm({
+      validationSchema: schema,
+      initialValues: {
+        email: "",
+        ksName: "",
+        kfName: "",
+        hsName: "",
+        hfName: "",
+        password1: "",
+        password2: "",
+        gender: "",
+        date: "",
+      },
+    });
+    const { value: email } = useField("email");
+    const { value: ksName } = useField("ksName");
+    const { value: kfName } = useField("kfName");
+    const { value: hsName } = useField("hsName");
+    const { value: hfName } = useField("hfName");
+    const { value: password1 } = useField("password1");
+    const { value: password2 } = useField("password2");
+    const { value: gender } = useField("gender");
+    const { value: date } = useField("date");
+
+    const onSubmit = handleSubmit(async (values) => {
       let params = new URLSearchParams();
       // params.append("id", data.password1);
-      params.append("kName", data.ksName + data.kfName);
-      params.append("hName", data.hsName + data.hfName);
-      params.append("sex", data.gender);
-      params.append("mail_address", data.maile);
-      params.append("password", data.password1);
-      params.append("birthday", data.date);
+      params.append("kName", values.ksName + values.kfName);
+      params.append("hName", values.hsName + values.hfName);
+      params.append("sex", values.gender);
+      params.append("mail_address", values.email);
+      params.append("password", values.password1);
+      params.append("birthday", values.date);
       try {
         data.jso = await axios.post(
           url,
@@ -263,28 +306,91 @@ export default {
           params
         );
         console.log(data.jso.data.state);
-        console.log(data.gender);
       } catch (error) {
-        console.log("post Error");
-        // ダメなときはエラー
-        console.error(error);
+        router.push("/Error");
       }
       if (data.jso.data.state == true) {
-        router.push("/");
+        reqSession(values.email);
       } else if (data.jso.data.state == 23000) {
         data.emsagge = "入力されたメールアドレスはすでに使用されています";
+        return;
+      } else {
+        router.push("/Error");
       }
       return;
+    });
+
+    const reqSession = async (maile) => {
+      let reqstatus;
+      let surl = "/reqSession";
+      let params = new URLSearchParams();
+      params.append("rmaile", maile);
+      try {
+        reqstatus = await axios.post(surl, params);
+      } catch (error) {
+        router.push("/Error");
+      }
+      if (reqstatus.data.status) {
+        router.push("/memberauthentication");
+      }
     };
+    // const postData = async () => {
+    //   let params = new URLSearchParams();
+    //   // params.append("id", data.password1);
+    //   params.append("kName", data.ksName + data.kfName);
+    //   params.append("hName", data.hsName + data.hfName);
+    //   params.append("sex", data.gender);
+    //   params.append("mail_address", data.maile);
+    //   params.append("password", data.password1);
+    //   params.append("birthday", data.date);
+    //   try {
+    //     data.jso = await axios.post(
+    //       url,
+    //       // adapter: axiosJsonpAdapter,
+    //       params
+    //     );
+    //     console.log(data.jso.data.state);
+    //     console.log(data.gender);
+    //   } catch (error) {
+    //     console.log("post Error");
+    //     // ダメなときはエラー
+    //     console.error(error);
+    //   }
+    //   if (data.jso.data.state == true) {
+    //     router.push("/");
+    //   } else if (data.jso.data.state == 23000) {
+    //     data.emsagge = "入力されたメールアドレスはすでに使用されています";
+    //   }
+    //   return;
+    // };
     const jumppage = () => {
       // this.$router.push("/");
       router.push("/");
     };
     return {
       data,
-      postData,
       jumppage,
+      errors,
+      email,
+      meta,
+      onSubmit,
+      ksName,
+      kfName,
+      hsName,
+      hfName,
+      password1,
+      password2,
+      gender,
+      date,
+      reqSession,
     };
   },
 };
 </script>
+<style>
+.em {
+  margin-top: 5px;
+  text-align: left;
+  color: crimson;
+}
+</style>

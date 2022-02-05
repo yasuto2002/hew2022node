@@ -12,63 +12,84 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+    }
+
+    #Lscore {
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #Wscore {
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .score-text {
+      height: 35vw;
+      width: 50vw;
+      background-color: #fff;
+      border: solid palevioletred;
+      border-radius: 5%;
+      text-align: center;
+    }
+
+    .score-text .score-title {
+      color: #b6b4b4;
+      font-size: 12vw;
+    }
+
+    .score-text .textwrap p {
+      font-size: 1.5vw;
+      color: #eeebeb;
+    }
+
+    .viw {
+      display: block;
+    }
+
+    .none {
+      display: none !important;
+    }
+
+    .textwrap {
+      height: 33%;
+      margin-top: 20%;
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="headerNavOuter flexBox">
-      <!-- ロゴ -->
-      <!-- <h1 class="siteIcon">
-              <a href="#">
-                  <img src="https://drive.google.com/uc?export=view&id=1mu_N2iTeoQCeUiuWRgJ0xwjR4AZ-29bL" alt="">
-              </a>
-          </h1> -->
-      <!-- ナビゲーション -->
-      <nav class="headerNav">
-        <ul class="navList flexBox">
-          <li class="navItem navItemHome">
-            <!-- <a href="member.html"> 会員登録 </a> -->
-            <a to="/Member"> 会員登録 </a>
-          </li>
-          <li class="navItem navItemIntroduce">
-            <!-- <a href="login-member.html"> ログイン </a> -->
-            <a to="/Login"> ログイン </a>
-          </li>
-          <li class="navItem navItemAbout">
-            <a href="#"> 購入検索 </a>
-          </li>
-          <li class="logo"><img src="images/hew-logo.png" alt="" /></li>
-          <li class="navItem navItemAccess">
-            <a href="#"> 物件検索 </a>
-          </li>
-          <li class="navItem navItemContact">
-            <a href="./login.html"> ゲーム </a>
-          </li>
-          <li class="navItem navItemContact">
-            <a href="./login.html"> ヘルプ </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <div id="game"></div>
-  <footer id="footer" class="footer-outer-block">
-    <div class="footer-inner-block">
-      <div class="footer-wrap">
-        <div class="footer-logo">
-          <a href="index.html"><img src="images/hew-logo.png" alt="" /></a>
-        </div>
-        <ul class="footer-nav">
-          <li><a href="index.html">TOP</a></li>
-          <li><a href=".html">よくある質問</a></li>
-          <li><a href=".html">お問い合わせ</a></li>
-        </ul>
+  <div id="Wscore" class="none">
+    <div class="score-text">
+      <div class="textwrap">
+        <h5 class="score-title">Winner</h5><br>
+        <p>獲得したポイント:<span>50p</span></p>
+        <p><span id="time"></span>秒後にTOPページにリダイレクトします</p>
       </div>
     </div>
-
-    <div class="copyright">
-      COPYRIGHT &copy; TROUBLEHOUSE Inc. All rights Reserved.
+  </div>
+  <div id="Lscore" class="none">
+    <div class="score-text">
+      <div class="textwrap">
+        <h5 class="score-title">Losser</h5><br>
+        <p><span id="time"></span>秒後にTOPページにリダイレクトします</p>
+      </div>
     </div>
-  </footer>
+  </div>
+  <div id="game">
+  </div>
   <script>
     var player_id = "<%= player_id  %>";
     var room = "<%= roomid  %>";

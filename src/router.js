@@ -8,6 +8,8 @@ import Member from './components/Member.vue'
 import Top from './components/Top.vue'
 import Login from './components/Login.vue'
 import Test from './components/Test.vue'
+import Error from './components/Error.vue'
+import memberauthentication from './components/memberauthentication.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -35,6 +37,21 @@ export const router = createRouter({
       path: '/Test',
       name: 'Test',
       component: Test,
+    },
+    {
+      path: '/Error',
+      name: 'Error',
+      component: Error,
+    },
+    {
+      path: '/Error',
+      name: 'Error',
+      component: Error,
+    },
+    {
+      path: '/memberauthentication',
+      name: 'member-authentication',
+      component: memberauthentication,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

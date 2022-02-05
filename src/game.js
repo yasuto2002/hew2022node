@@ -4,6 +4,8 @@ var socket = io();
 var messages = document.getElementById('messages');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
+
+// var game = document.getElementById('game');
 var isEnter = false;
 // var room = "room1";
 
@@ -11,7 +13,6 @@ var isEnter = false;
 //   socket.emit('client_to_server_personal', {
 //     roomid: input.value
 //   });
-
 
 
 const config = {
@@ -35,7 +36,7 @@ const config = {
       gravity: {
         y: 300
       },
-      debug: false,
+      debug: true,
     },
   }
 };
@@ -63,6 +64,10 @@ var interval_id;
 var over_text;
 var Timetext;
 var over;
+var clear;
+var startCount;
+var doownId;
+var countNum;
 const IAM = {
   token: null, // トークン
   name: null, // 名前
@@ -359,7 +364,7 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(200, 32).setScrollFactor(0).setFontSize(32);
+  this.button1 = this.add.text(190, 32).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
   this.button1.setPadding(10)
@@ -381,15 +386,17 @@ function create() {
     });
   });
   this.button1.on('pointerout', () => {
-    this.player.setVelocityX(0);
-    this.player.play('idle', true);
-    numflg = 0;
-    socket.emit('chat message', {
-      room: room,
-      value: 3,
-      player_id: player_id,
-      location: this.player.x
-    });
+    if (this.player.body.onFloor()) {
+      this.player.setVelocityX(0);
+      this.player.play('idle', true);
+      numflg = 0;
+      socket.emit('chat message', {
+        room: room,
+        value: 3,
+        player_id: player_id,
+        location: this.player.x
+      });
+    }
   });
 
 
@@ -452,7 +459,7 @@ function create() {
           this.player.setVelocity(0, 0);
           this.player.play('idle', true);
         }
-      }, 1375);
+      }, 1670);
       socket.emit('chat message', {
         room: room,
         value: 4,
@@ -460,18 +467,18 @@ function create() {
       });
     }
   });
-  this.button3.on('pointerout', () => {
-    this.player.setVelocityX(0);
-    this.player.play('idle', true);
-    numflg = 0;
-    socket.emit('chat message', {
-      room: room,
-      value: 3,
-      player_id: player_id,
-      location: this.player.x
-    });
+  // this.button3.on('pointerout', () => {
+  //   this.player.setVelocityX(0);
+  //   this.player.play('idle', true);
+  //   numflg = 0;
+  //   socket.emit('chat message', {
+  //     room: room,
+  //     value: 3,
+  //     player_id: player_id,
+  //     location: this.player.x
+  //   });
 
-  });
+  // });
 
   this.button4 = this.add.text(84, 38).setScrollFactor(0).setFontSize(20);
   this.button4.setText("↖");
@@ -549,14 +556,16 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(750, 32).setScrollFactor(0).setFontSize(32);
+  this.text = this.add.text(700, 32).setScrollFactor(0).setFontSize(32);
   this.text.setText('SCORE:' + 0);
-  over_text = this.add.text(650, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  over_text = this.add.text(670, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // this.over_text.setText('START');
   // timedstart = this.time.delayedCall(6000, textChange, [], this);
 
   Timetext = this.add.text(1400, 32).setScrollFactor(0).setFontSize(32);
   Timetext.setText(60);
+
+  startCount = this.over = this.add.text(800, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // timeSubtraction = this.time.addEvent({
   //   delay: 1000,
   //   startAt: 0,
@@ -570,13 +579,56 @@ function create() {
     this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME OVER!');
     clearInterval(interval_id);
+    setTimeout(function () {
+      let scoreBord = document.getElementById('Lscore');
+      scoreBord.classList.remove('none');
+      let game = document.getElementById('game');
+      game.classList.add('none');
+    }, 5000);
+    countNum = 10;
+    doownId = window.setInterval(timecount, 1000);
+    // countNum = 6;
+    // doownId = setTimeout(function () {
+    //   countNum--;
+    //   if (countNum != 0) {
+    //     ele.innerText = countNum;
+    //   } else {
+    //     clearTimeout(doownId);
+    //     location.href = "/";
+    //   }
+    // }, 1000);
+  }
+  clear = () => {
+    this.physics.pause();
+    gameOver = true;
+    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over.setText('GAME CLEAR!');
+    clearInterval(interval_id);
+    setTimeout(function () {
+      let scoreBord = document.getElementById('Wscore');
+      scoreBord.classList.remove('none');
+      let game = document.getElementById('game');
+      game.classList.add('none');
+    }, 5000);
+    countNum = 10;
+    doownId = window.setInterval(timecount, 1000);
   }
 
 }
 
+function timecount() {
+  countNum--;
+  console.log(countNum);
+  if (countNum == 0) {
+    clearInterval(doownId);
+    location.href = "/";
+  } else {
+    document.getElementById("time").innerHTML = countNum;
+  }
+}
 
 function textChange() {
-  over_text.setText('');
+  over_text.destroy();
 }
 
 
@@ -620,19 +672,11 @@ function npcStar(gonpc, star) {
 }
 
 function npcgoal(npc, goal) {
-  this.physics.pause();
-  gameOver = true;
-  this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
-  this.over.setText('GAME OVER!');
-  timeSubtraction.destroy();
+  over();
 }
 
 function gameClear() {
-  this.physics.pause();
-  gameOver = true;
-  this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
-  this.over.setText('GAME CLEAR');
-  timeSubtraction.destroy();
+  clear();
 }
 
 function collectStar(player, star) {
@@ -791,15 +835,17 @@ function stop() {
 }
 
 function rightJump() {
-  npc.setVelocityX(300);
-  npc.setVelocityY(-540);
-  npc.play('jump', true);
+  if (npc.body.onFloor()) {
+    npc.setVelocityX(300);
+    npc.setVelocityY(-540);
+    npc.play('jump', true);
+  }
   timeid = window.setTimeout(() => {
     if (!npc.body.onFloor()) {
       npc.setVelocity(0, 0);
       npc.play('idle', true);
     }
-  }, 1375);
+  }, 1670);
   return;
 }
 
@@ -858,12 +904,13 @@ function Subtraction() {
   timeScore -= 1;
   if (timeScore == 60) {
     over_text.setText('START');
+    startCount.destroy();
     deletewall();
   }
   if (timeScore <= 60) {
     Timetext.setText(timeScore);
   } else {
-    Timetext.setText(timeScore - 60);
+    startCount.setText(timeScore - 60);
   }
   if (timeScore == 59) {
     textChange();
