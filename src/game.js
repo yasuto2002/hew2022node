@@ -140,7 +140,7 @@ function getRandam(n, m) {
 
 
 function preload() {
-  this.load.image('background', 'game/assets/images/background.png');
+  this.load.image('background', 'game/assets/images/background.jpg');
   this.load.image('spike', 'game/assets/images/spike.png');
   this.load.image('Goal', 'game/assets/images/Goal.png');
   this.load.image('Wall', 'game/assets/images/wall.png');
@@ -158,8 +158,8 @@ function preload() {
 
 function create() {
   for (let x = 0; x < 10; x++) {
-    let backgroundImage = this.add.image(1024 * x, 0, 'background').setOrigin(0, 0);
-    backgroundImage.setScale(2, 0.8);
+    let backgroundImage = this.add.image(1275 * x, 0, 'background').setOrigin(0, 0);
+    // backgroundImage.setScale(0.5, 1);
   }
   // for (let x = 0; x < 10; x++) {
   //     let backgroundImage = this.add.image(1024 * x, 0, 'background').setOrigin(0, 0);
@@ -177,7 +177,8 @@ function create() {
   this.player = this.physics.add.sprite(50, 300, 'player');
   this.player.setBounce(0.1);
   this.physics.world.setBounds(0, 0, 3100 * 2, 380 * 2);
-  this.cameras.main.setBounds(0, 0, 3100 * 2, 380 * 2);
+  this.cameras.main.setBounds(0, 0, 3100 * 2, 100 * 2);
+  this.cameras.main.setZoom(1.1);
   this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
   this.player.setCollideWorldBounds(true);
   this.physics.add.collider(this.player, platforms);
@@ -364,7 +365,7 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(190, 32).setScrollFactor(0).setFontSize(32);
+  this.button1 = this.add.text(190, 42).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
   this.button1.setPadding(10)
@@ -400,7 +401,7 @@ function create() {
   });
 
 
-  this.button2 = this.add.text(126, 34).setScrollFactor(0).setFontSize(32);
+  this.button2 = this.add.text(126, 44).setScrollFactor(0).setFontSize(32);
   this.button2.setText("↑");
   this.button2.setOrigin(0.5)
   this.button2.setPadding(10)
@@ -437,7 +438,7 @@ function create() {
 
 
 
-  this.button3 = this.add.text(160, 38).setScrollFactor(0).setFontSize(20);
+  this.button3 = this.add.text(160, 48).setScrollFactor(0).setFontSize(20);
   this.button3.setText("↗");
   this.button3.setOrigin(0.5)
   this.button3.setPadding(10)
@@ -480,7 +481,7 @@ function create() {
 
   // });
 
-  this.button4 = this.add.text(84, 38).setScrollFactor(0).setFontSize(20);
+  this.button4 = this.add.text(84, 48).setScrollFactor(0).setFontSize(20);
   this.button4.setText("↖");
   this.button4.setOrigin(0.5)
   this.button4.setPadding(10)
@@ -516,7 +517,7 @@ function create() {
     });
   });
 
-  this.button5 = this.add.text(32, 32).setScrollFactor(0).setFontSize(32);
+  this.button5 = this.add.text(32, 42).setScrollFactor(0).setFontSize(32);
   this.button5.setText("←");
   this.button5.setOrigin(0.5)
   this.button5.setPadding(10)
@@ -556,13 +557,13 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(700, 32).setScrollFactor(0).setFontSize(32);
+  this.text = this.add.text(700, 42).setScrollFactor(0).setFontSize(32);
   this.text.setText('SCORE:' + 0);
   over_text = this.add.text(670, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // this.over_text.setText('START');
   // timedstart = this.time.delayedCall(6000, textChange, [], this);
 
-  Timetext = this.add.text(1400, 32).setScrollFactor(0).setFontSize(32);
+  Timetext = this.add.text(1400, 42).setScrollFactor(0).setFontSize(32);
   Timetext.setText(60);
 
   startCount = this.over = this.add.text(800, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');

@@ -10,6 +10,7 @@ import Login from './components/Login.vue'
 import Test from './components/Test.vue'
 import Error from './components/Error.vue'
 import memberauthentication from './components/memberauthentication.vue'
+import memberconfirmation from './components/member-confirmation.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -44,14 +45,14 @@ export const router = createRouter({
       component: Error,
     },
     {
-      path: '/Error',
-      name: 'Error',
-      component: Error,
-    },
-    {
       path: '/memberauthentication',
       name: 'member-authentication',
       component: memberauthentication,
+    },
+    {
+      path: '/member-confirmation',
+      name: 'member-confirmation',
+      component: memberconfirmation,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

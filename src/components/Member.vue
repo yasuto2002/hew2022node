@@ -194,6 +194,7 @@
           <p class="membership-Form-Item-Label" style="text-align: left">
             パスワード<br />（確認用）
           </p>
+          <p class="em">{{ data.psemessage }}</p>
           <p class="em">{{ errors.password2 }}</p>
           <div class="membership-Form-Item" style="justify-content: flex-end">
             <input
@@ -230,7 +231,7 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
-let url = "http://localhost:8080/reg";
+let url = "http://localhost:8080/checkmaile";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
 export default {
@@ -244,22 +245,33 @@ export default {
       msg: "This is HelloWorld component.",
       jso: null,
       emsagge: "",
+      psemessage: "",
     });
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
     const em = store.state.em;
     const schema = yup.object({
-      email: yup.string(em.String).required(em.Quired).email(em.Maile),
-      ksName: yup
+      email: yup
         .string(em.String)
-        .min(5, "5文字以上入力してください")
+        .max(254, em.Smax)
+        .required(em.Quired)
+        .email(em.Maile),
+      ksName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
+      kfName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
+      hsName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
+      hfName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
+      password1: yup
+        .string(em.String)
+        .min(10, em.Pasmin)
+        .max(20, em.Pasmax)
         .required(em.Quired),
-      kfName: yup.string(em.String).required(em.Quired),
-      hsName: yup.string(em.String).required(em.Quired),
-      hfName: yup.string(em.String).required(em.Quired),
-      password1: yup.string(em.String).required(em.Quired),
-      password2: yup.string(em.String).required(em.Quired),
+      password2: yup
+        .string(em.String)
+        .required(em.Quired)
+        .oneOf([yup.ref("password1")], em.OneOf)
+        .min(10, em.Pasmin)
+        .max(20, em.Pasmax),
       gender: yup.string(em.String).required(em.Quired),
       date: yup.date(em.Date).typeError(em.Date).required(em.Quired),
     });
@@ -289,49 +301,72 @@ export default {
     const { value: password2 } = useField("password2");
     const { value: gender } = useField("gender");
     const { value: date } = useField("date");
-
     const onSubmit = handleSubmit(async (values) => {
-      let params = new URLSearchParams();
-      // params.append("id", data.password1);
-      params.append("kName", values.ksName + values.kfName);
-      params.append("hName", values.hsName + values.hfName);
-      params.append("sex", values.gender);
-      params.append("mail_address", values.email);
-      params.append("password", values.password1);
-      params.append("birthday", values.date);
-      try {
-        data.jso = await axios.post(
-          url,
-          // adapter: axiosJsonpAdapter,
-          params
-        );
-        console.log(data.jso.data.state);
-      } catch (error) {
-        router.push("/Error");
-      }
-      if (data.jso.data.state == true) {
-        reqSession(values.email);
-      } else if (data.jso.data.state == 23000) {
-        data.emsagge = "入力されたメールアドレスはすでに使用されています";
-        return;
-      } else {
-        router.push("/Error");
+      if (values.password1 == values.password2) {
+        let params = new URLSearchParams();
+        // params.append("id", data.password1);
+        // params.append("kName", values.ksName + values.kfName);
+        // params.append("hName", values.hsName + values.hfName);
+        // params.append("sex", values.gender);
+        params.append("mail_address", values.email);
+        // params.append("password", values.password1);
+        // params.append("birthday", values.date);
+        try {
+          data.jso = await axios.post(
+            url,
+            // adapter: axiosJsonpAdapter,
+            params
+          );
+          console.log(data.jso.data.state);
+        } catch (error) {
+          router.push("/Error");
+        }
+        if (data.jso.data.state === true) {
+          let pName = values.ksName + values.kfName;
+          let lName = values.hsName + values.hfName;
+          if (
+            reqSession(
+              pName,
+              lName,
+              values.email,
+              values.gender,
+              values.password1,
+              values.date
+            )
+          ) {
+            router.push("/member-confirmation");
+          } else {
+            router.push("/Error");
+          }
+        } else if (data.jso.data.state == 23000) {
+          data.emsagge = "入力されたメールアドレスはすでに使用されています";
+        } else {
+          router.push("/Error");
+        }
       }
       return;
     });
 
-    const reqSession = async (maile) => {
+    const reqSession = async (pName, lName, maile, gender, password, date) => {
       let reqstatus;
       let surl = "/reqSession";
       let params = new URLSearchParams();
       params.append("rmaile", maile);
+      params.append("pName", pName);
+      params.append("lName", lName);
+      params.append("gender", gender);
+      params.append("password", password);
+      params.append("date", date);
       try {
         reqstatus = await axios.post(surl, params);
       } catch (error) {
         router.push("/Error");
       }
       if (reqstatus.data.status) {
-        router.push("/memberauthentication");
+        return true;
+        // router.push("/memberauthentication");
+      } else {
+        return false;
       }
     };
     // const postData = async () => {
@@ -392,5 +427,6 @@ export default {
   margin-top: 5px;
   text-align: left;
   color: crimson;
+  padding-left: 1%;
 }
 </style>

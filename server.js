@@ -57,8 +57,11 @@ const server = app.listen(3000, () => {
 //セッション
 app.use(session({
   secret: 'secret_key',
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 60 * 60 * 1000
+  }
 }));
 
 const {
@@ -380,13 +383,25 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 
 app.post("/reqSession", function (req, res) {
+  // req.session.destroy()
   try {
-    console.log(req.body.rmaile);
-    req.session.maile = req.body.rmaile;
+    let Udata = {
+      maile: req.body.rmaile,
+      pName: req.body.pName,
+      lName: req.body.lName,
+      gender: req.body.gender,
+      password: req.body.password,
+      date: req.body.date
+    }
+    req.session.Udata = Udata;
+    // req.session.pName = req.body.pName;
+    // req.session.lName = req.body.lName;
     let ob = {
       status: true
     };
     res.json(ob);
+    console.log(req.session.Udata);
+    req.session.save();
     return;
   } catch (err) {
     console.log(err);
@@ -397,6 +412,40 @@ app.post("/reqSession", function (req, res) {
     return;
   }
 });
+
+app.post("/getUdata", function (req, res) {
+  try {
+    let Udata = req.session.Udata;
+    console.log(req.session.Udata);
+    res.json(Udata);
+    return Udata;
+  } catch (err) {
+    console.log(err)
+    let Udata = {
+      status: false
+    };
+    return;
+  }
+})
+
+app.post("/authSession", function (req, res) {
+  try {
+    req.session.Auth = req.body.maile;
+    req.session.save();
+    let ob = {
+      status: true
+    };
+    res.json(ob);
+    return;
+  } catch (err) {
+    console.log(err)
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
 
 app.get(/.*/, function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
