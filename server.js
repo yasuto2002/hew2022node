@@ -308,6 +308,22 @@ io.on('connection', (socket) => {
   socket.on('Start', (msg) => {
     io.to(msg.room).emit('Start');
   });
+  socket.on('gameClea', (msg) => {
+    io.to(msg.room).emit('gameClea', msg);
+    deleteroom(msg.room);
+    io.socketsLeave(msg.room);
+    delete MEMBER[msg.room];
+  });
+  socket.on('numCheck', (msg) => {
+    let name = msg.room;
+    const count = io.of("/").to(msg.room).adapter.rooms;
+    let num = count.get(name).size;
+    io.to(msg.room).emit('numCheck', {
+      room: msg.room,
+      player_id: msg.player_id,
+      num: count.get(name).size
+    });
+  });
   socket.on('disconnect', function () {
     if (room != "") {
       io.to(MEMBER[socket.id].name).emit('breakRoom', {
@@ -400,7 +416,6 @@ app.post("/reqSession", function (req, res) {
       status: true
     };
     res.json(ob);
-    console.log(req.session.Udata);
     req.session.save();
     return;
   } catch (err) {
@@ -416,7 +431,6 @@ app.post("/reqSession", function (req, res) {
 app.post("/getUdata", function (req, res) {
   try {
     let Udata = req.session.Udata;
-    console.log(req.session.Udata);
     res.json(Udata);
     return Udata;
   } catch (err) {
@@ -434,6 +448,42 @@ app.post("/authSession", function (req, res) {
     req.session.save();
     let ob = {
       status: true
+    };
+    res.json(ob);
+    return;
+  } catch (err) {
+    console.log(err)
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
+
+app.post("/LogSession", function (req, res) {
+  try {
+    req.session.Log = req.body.mail_address;
+    req.session.save();
+    let ob = {
+      status: true
+    };
+    res.json(ob);
+    return;
+  } catch (err) {
+    console.log(err)
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
+
+app.post("/AuthLog", function (req, res) {
+  try {
+    let ob = {
+      status: req.session.Log
     };
     res.json(ob);
     return;

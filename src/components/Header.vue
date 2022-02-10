@@ -21,7 +21,11 @@
           <li class="navItem navItemAbout">
             <a href="#"> 購入検索 </a>
           </li>
-          <li class="logo"><img src="images/hew-logo.png" alt="" /></li>
+          <li class="logo">
+            <router-link to="/"
+              ><img src="images/hew-logo.png" alt=""
+            /></router-link>
+          </li>
           <li class="navItem navItemAccess">
             <a href="#"> 物件検索 </a>
           </li>

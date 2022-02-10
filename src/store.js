@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   createStore
 } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 export const store = createStore({
   state() {
     return {
@@ -15,12 +16,20 @@ export const store = createStore({
         OneOf: 'パスワードが一致しません',
         Smax: '255文字以下で入力してください',
         Pasmax: '20文字以下で入力してください',
-        Pasmin: '10文字以上入力してください'
+        Pasmin: '10文字以上入力してください',
+        Matches: "使用できない文字列が含まれています"
       },
       provisFlg: "",
+      apiUrl: "http://localhost:8080",
+      regex: /[^!"#$%&'()\*\+\-\,\/:;<=>?\[\\\]^_`{|}~]+/,
+      properties: "",
+      word: ""
     }
   },
   mutations: {
+    addproperties: (state, ob) => {
+      state.properties = ob;
+    },
     getProvisional: async (state) => {
       let reqstatus;
       let surl = "/getUdata";
@@ -36,5 +45,10 @@ export const store = createStore({
         return false;
       }
     }
-  }
+  },
+  plugins: [
+    createPersistedState({
+      storage: window.localStrage
+    }),
+  ],
 })

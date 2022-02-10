@@ -151,6 +151,8 @@
                 margin-right: 20%;
                 padding-left: 1%;
               "
+              min="1922-01-01"
+              max="2002-03-31"
               v-model="date"
             />
           </div>
@@ -257,22 +259,42 @@ export default {
         .max(254, em.Smax)
         .required(em.Quired)
         .email(em.Maile),
-      ksName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
-      kfName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
-      hsName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
-      hfName: yup.string(em.String).max(254, em.Smax).required(em.Quired),
+      ksName: yup
+        .string(em.String)
+        .max(254, em.Smax)
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
+      kfName: yup
+        .string(em.String)
+        .max(254, em.Smax)
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
+      hsName: yup
+        .string(em.String)
+        .max(254, em.Smax)
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
+      hfName: yup
+        .string(em.String)
+        .max(254, em.Smax)
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
       password1: yup
         .string(em.String)
         .min(10, em.Pasmin)
         .max(20, em.Pasmax)
-        .required(em.Quired),
+        .matches(store.state.regex, em.Matches),
       password2: yup
         .string(em.String)
         .required(em.Quired)
         .oneOf([yup.ref("password1")], em.OneOf)
         .min(10, em.Pasmin)
-        .max(20, em.Pasmax),
-      gender: yup.string(em.String).required(em.Quired),
+        .max(20, em.Pasmax)
+        .matches(store.state.regex, em.Matches),
+      gender: yup
+        .string(em.String)
+        .required(em.Quired)
+        .matches(store.state.regex, em.Matches),
       date: yup.date(em.Date).typeError(em.Date).required(em.Quired),
     });
     useForm({

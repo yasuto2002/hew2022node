@@ -57,7 +57,7 @@ var timedEvent;
 var wallSprite;
 var walls;
 var timewall;
-var timeScore = 65;
+var timeScore = 66;
 var timeSubtraction;
 var timedstart;
 var interval_id;
@@ -68,6 +68,7 @@ var clear;
 var startCount;
 var doownId;
 var countNum;
+var Pflg = true;
 const IAM = {
   token: null, // トークン
   name: null, // 名前
@@ -112,6 +113,21 @@ socket.on("join-result", (data) => {
 
 });
 
+if (player_id == 2) {
+  setTimeout(function () {
+    if (Pflg) {
+      socket.emit('numCheck', {
+        room: room,
+        player_id: player_id
+      });
+    }
+  }, 15000);
+}
+socket.on("numCheck", (msg) => {
+  if (msg.num == 1) {
+    location.href = "/";
+  }
+});
 socket.on("member-join", (data) => {
   console.log(`${data.name}さんが入室しました`);
   addMemberList(data.token, data.name);
@@ -365,7 +381,7 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(190, 42).setScrollFactor(0).setFontSize(32);
+  this.button1 = this.add.text(255, 42).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
   this.button1.setPadding(10)
@@ -401,7 +417,7 @@ function create() {
   });
 
 
-  this.button2 = this.add.text(126, 44).setScrollFactor(0).setFontSize(32);
+  this.button2 = this.add.text(186, 44).setScrollFactor(0).setFontSize(32);
   this.button2.setText("↑");
   this.button2.setOrigin(0.5)
   this.button2.setPadding(10)
@@ -438,7 +454,7 @@ function create() {
 
 
 
-  this.button3 = this.add.text(160, 48).setScrollFactor(0).setFontSize(20);
+  this.button3 = this.add.text(225, 48).setScrollFactor(0).setFontSize(20);
   this.button3.setText("↗");
   this.button3.setOrigin(0.5)
   this.button3.setPadding(10)
@@ -456,10 +472,8 @@ function create() {
       this.player.setVelocityX(300);
       numflg = 1;
       timeid = window.setTimeout(() => {
-        if (!this.player.body.onFloor()) {
-          this.player.setVelocity(0, 0);
-          this.player.play('idle', true);
-        }
+        this.player.setVelocity(0, 0);
+        this.player.play('idle', true);
       }, 1670);
       socket.emit('chat message', {
         room: room,
@@ -481,7 +495,7 @@ function create() {
 
   // });
 
-  this.button4 = this.add.text(84, 48).setScrollFactor(0).setFontSize(20);
+  this.button4 = this.add.text(149, 48).setScrollFactor(0).setFontSize(20);
   this.button4.setText("↖");
   this.button4.setOrigin(0.5)
   this.button4.setPadding(10)
@@ -517,7 +531,7 @@ function create() {
     });
   });
 
-  this.button5 = this.add.text(32, 42).setScrollFactor(0).setFontSize(32);
+  this.button5 = this.add.text(112, 42).setScrollFactor(0).setFontSize(32);
   this.button5.setText("←");
   this.button5.setOrigin(0.5)
   this.button5.setPadding(10)
@@ -557,7 +571,7 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(700, 42).setScrollFactor(0).setFontSize(32);
+  this.text = this.add.text(730, 42).setScrollFactor(0).setFontSize(32);
   this.text.setText('SCORE:' + 0);
   over_text = this.add.text(670, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // this.over_text.setText('START');
@@ -566,7 +580,7 @@ function create() {
   Timetext = this.add.text(1400, 42).setScrollFactor(0).setFontSize(32);
   Timetext.setText(60);
 
-  startCount = this.over = this.add.text(800, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  startCount = this.over = this.add.text(700, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // timeSubtraction = this.time.addEvent({
   //   delay: 1000,
   //   startAt: 0,
@@ -605,6 +619,10 @@ function create() {
     this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME CLEAR!');
     clearInterval(interval_id);
+    socket.emit('gameClea', {
+      room: room,
+      player_id: player_id
+    });
     setTimeout(function () {
       let scoreBord = document.getElementById('Wscore');
       scoreBord.classList.remove('none');
@@ -620,11 +638,10 @@ function create() {
 function timecount() {
   countNum--;
   console.log(countNum);
+  document.getElementById("time").innerHTML = countNum;
   if (countNum == 0) {
     clearInterval(doownId);
     location.href = "/";
-  } else {
-    document.getElementById("time").innerHTML = countNum;
   }
 }
 
@@ -804,6 +821,12 @@ socket.on('chat message', function (msg) {
   }
 })
 
+socket.on('gameClea', function (msg) {
+  if (msg.room == room && msg.player_id != player_id) {
+    over();
+  }
+});
+
 function gojump() {
   if (npc.body.onFloor()) {
     npc.setVelocityY(-440);
@@ -842,10 +865,8 @@ function rightJump() {
     npc.play('jump', true);
   }
   timeid = window.setTimeout(() => {
-    if (!npc.body.onFloor()) {
-      npc.setVelocity(0, 0);
-      npc.play('idle', true);
-    }
+    npc.setVelocity(0, 0);
+    npc.play('idle', true);
   }, 1670);
   return;
 }
@@ -855,10 +876,8 @@ function leftJump() {
   npc.setVelocityY(-440);
   npc.play('jump', true);
   timeid = window.setTimeout(() => {
-    if (!npc.body.onFloor()) {
-      npc.setVelocity(0, 0);
-      npc.play('idle', true);
-    }
+    npc.setVelocity(0, 0);
+    npc.play('idle', true);
   }, 1375);
   return;
 }
@@ -894,6 +913,7 @@ function npcHit(npc, spike) {
 }
 socket.on('Start', function () {
   console.log("Start");
+  Pflg = false;
   console.log(socket.id);
   interval_id = setInterval(() => {
     Subtraction();

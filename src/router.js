@@ -11,7 +11,8 @@ import Test from './components/Test.vue'
 import Error from './components/Error.vue'
 import memberauthentication from './components/memberauthentication.vue'
 import memberconfirmation from './components/member-confirmation.vue'
-
+import MemberComp from './components/MemberComp.vue'
+import Wsearchresult from './components/Wsearch-result.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -53,6 +54,17 @@ export const router = createRouter({
       path: '/member-confirmation',
       name: 'member-confirmation',
       component: memberconfirmation,
+    },
+    {
+      path: '/MemberComp',
+      name: 'MemberComp',
+      component: MemberComp,
+    },
+    {
+      path: '/Wsearch-result',
+      name: 'Wsearch-result',
+      component: Wsearchresult,
+      props: true
     },
   ],
   scrollBehavior(to, from, savedPosition) {

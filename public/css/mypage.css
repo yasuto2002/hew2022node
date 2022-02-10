@@ -1,0 +1,707 @@
+@charset "utf-8";
+
+.mypage-title-box{
+    width: 80%;
+    margin: 2% auto;
+    padding: 1%;
+    border: solid 1px rgb(236, 236, 236);
+    border-top: solid 6px #da5789;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.mypage-title{
+    color: #505050;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: bold;    
+}
+
+.mypage-box{
+    width: 80%;
+    height: auto;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.mypage-info-box{
+    width: 95%;
+    height: 200px;
+    margin: 1% auto;
+    border: 1px solid #ccc;
+    padding: 2% 0% 2% 5%;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-info-minibox{
+    width: 40%;
+    height: auto;
+    display: flex;
+}
+
+.mypage-info-title{
+    color: #505050;
+    font-size: 1.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.mypage-info-txt{
+    color: #505050;
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+.mypage-info-pass-box{
+    width: 95%;
+    height: 50px;
+    margin: 1% auto;
+    border: 1px solid #ccc;
+    padding: 2% 0% 2% 5%;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-info-point-box{
+    width: 95%;
+    height: 50px;
+    margin: 1% auto;
+    border: 1px solid #ccc;
+    padding: 2% 0% 2% 5%;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-minibox-btn{
+    width: 200px;
+    padding: 1%;
+    border: 1px solid #da5789;
+    background-color: #da5789;
+    border-radius: 25px;
+    margin: 0 auto;
+    margin-right: 5%;
+    margin-left: auto;
+    color: #fff;
+}
+
+/*購入物件*/
+.mypage-confirmation-box{
+    width: 95%;
+    height: auto;
+    margin: 1% auto;
+    border: 1px solid #ccc;
+    padding: 2% 0% 2% 5%;
+    display: flex;
+    align-items: center;
+}
+.mypage-confirmation-info-minibox{
+    width: 95%;
+    height: auto;
+    display: flex;
+}
+.mypage-sarch-section-link{
+    color: #505050;
+}
+.mypage-sarch-section-title{
+  font-size: 1.5em;
+  text-align: left;
+  letter-spacing: 1px;
+}
+.mypage-sarch-section{
+  width: 100%;
+  height: auto;
+  margin: 2% auto;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, .1);
+  /* background-color: #ccc; */
+}
+
+.mypage-sarch-section:hover{
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+}
+
+.mypage-sarch-section-box{
+  display: flex;
+  margin: 3% auto;
+}
+.mypage-sarch-section-box-txt{
+  width: 65%;
+  /* background-color: #ddd; */
+  letter-spacing: 2px;
+  margin: 2%;
+}
+
+dt {
+  /* 左に寄せる */
+  float: left ;
+  /* 後続の左寄せを解除 */
+  clear: left ;
+  margin-right: 0.5em ;
+  width: 120px ;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1%;
+}
+
+dd {
+  float: left ;
+  margin-left: 1em ;
+  font-size: 1.05rem;
+  padding: 1%;
+}
+
+/*お気に入り物件*/
+
+.mypage-favo-box{
+    width: 95%;
+    height: auto;
+    margin: 1% auto;
+    border: 1px solid #ccc;
+    padding: 2% 0% 2% 5%;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-info-favo-minibox{
+    width: 95%;
+    height: auto;
+    display: flex;
+}
+
+.mypage-info-favo-title{
+    color: #505050;
+    font-size: 1.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+}
+
+/*基本情報の変更*/
+
+.mypage-title-change-box{
+    width: 80%;
+    margin: 2% auto;
+    padding: 1%;
+    border: solid 1px rgb(236, 236, 236);
+    border-top: solid 6px #da5789;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.mypage-change-title{
+    color: #505050;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: bold;    
+}
+
+.mypage-change-box{
+    width: 80%;
+    height: auto;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+/*基本情報変更フォーム*/
+.mypage-change-Form-Item {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item {
+      padding-left: 18px;
+      padding-right: 18px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+    }
+  }
+  /* .Form-Item:nth-child(5) {
+  
+  } */
+  .mypage-change-Form-Item-Label {
+    width: 30%;
+    max-width: 150px;
+    letter-spacing: 0.05em;
+    padding-left: 1%;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Label {
+      max-width: inherit;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+  }
+  .mypage-change-Form-Item-Label.isMsg {
+    margin-top: 8px;
+    margin-bottom: auto;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Label.isMsg {
+      margin-top: 0;
+    }
+  }
+  .mypage-change-Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 35px;
+    display: inline-block;
+    text-align: center;
+    background: #545454;
+    color: #fff;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Label-Required {
+      border-radius: 4px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      width: 32px;
+      font-size: 10px;
+    }
+  }
+  .mypage-change-Form-Item-Input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 5%;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 35px;
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Input {
+      margin-left: 0;
+      margin-top: 18px;
+      height: 40px;
+      flex: inherit;
+      font-size: 15px;
+    }
+  }
+  .mypage-change-Form-Item-Input-mini{
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-left: 10px;
+      padding-left: 1em;
+      padding-right: 1em;
+      height: 35px;
+      flex: 1;
+      width: 100%;
+      max-width: 400px;
+      background: #eaedf2;
+      font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Input-mini {
+      margin-left: 0;
+      margin-top: 18px;
+      height: 40px;
+      flex: inherit;
+      font-size: 15px;
+    }
+  }
+  .mypage-change-Form-Item-Label-mini {
+    letter-spacing: 0.05em;
+    padding-left: 2.5%;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Label-mini {
+      max-width: inherit;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+  }
+  .mypage-change-Form-Item-Label-name-mini {
+    letter-spacing: 0.05em;
+    padding-left: 1%;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Label-name-mini {
+      max-width: inherit;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+  }
+  .mypage-change-birth-Form-Item-Input-mini{
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 5%;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 35px;
+    flex: 1;
+    width: 100%;
+    max-width: 300px;
+    background: #eaedf2;
+    font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .mypage-change-birth-Form-Item-Input-mini {
+    margin-left: 0;
+    margin-top: 18px;
+    height: 40px;
+    flex: inherit;
+    font-size: 15px;
+  }
+}
+.mypage-change-birth-Form-Item-Input-mini-mini{
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 1%;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 35px;
+    flex: 1;
+    width: 100%;
+    max-width: 200px;
+    background: #eaedf2;
+    font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .mypage-change-birth-Form-Item-Input-mini-mini{
+    margin-left: 0;
+    margin-top: 18px;
+    height: 40px;
+    flex: inherit;
+    font-size: 15px;
+  }
+}
+  .mypage-change-birth-Form-Item-Label-mini {
+    letter-spacing: 0.05em;
+    padding-left: 1%;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-birth-Form-Item-Label-mini {
+      max-width: inherit;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+  }
+  .mypage-change-Form-Item-Textarea {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 216px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .mypage-change-Form-Item-Textarea {
+      margin-top: 18px;
+      margin-left: 0;
+      height: 200px;
+      flex: inherit;
+      font-size: 15px;
+    }
+  }
+
+
+
+  .mypage-change_RadioInput {
+    padding: 12px 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 5%;
+  }
+  .mypage-change_RadioInput-Input {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+  }
+  .mypage-change_RadioInput:hover > .mypage-change_RadioInput-DummyInput{
+      background: #BBBBBB;
+  }
+  .mypage-change_RadioInput-Input:focus + .mypage-change_RadioInput-DummyInput {
+    background: #BBBBBB;
+  }
+  .mypage-change_RadioInput-Input:checked + .mypage-change_RadioInput-DummyInput {
+    background: #da5789;
+  }
+  .mypage-change_RadioInput-Input:checked + .mypage-change_RadioInput-DummyInput::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FFFFFF;
+  }
+  .mypage-change_RadioInput-DummyInput {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #EEEEEE;
+    box-shadow: 0 1px 4px rgba(0,0,0, .4) inset;
+  }
+  .mypage-change_RadioInput-LabelText {
+    margin-left: 12px;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  /*マイページ変更ボタン*/
+  .mypage-change-minibox-btn{
+    width: 250px;
+    padding: 2%;
+    border: 1px solid #da5789;
+    background-color: #da5789;
+    border-radius: 15px;
+    margin: 4% auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mypage-change-comp-box{
+    width: 80%;
+    height: auto;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.mypage-change-comp-box-title{
+    margin: 2%;
+    text-align: center;
+}
+
+.mypage-change-comp-box-txt{
+    text-align: center;
+    width: 80%;
+    height: auto;
+    margin: 3% auto;
+    line-height: 150%;
+    font-size: 1.1rem;
+    color: #505050;
+  }
+
+  .mypage-change-comp-box-txt:hover{
+    text-align: center;
+    width: 80%;
+    height: auto;
+    margin: 3% auto;
+    line-height: 150%;
+    font-size: 1.1rem;
+    color: #da5789;
+  }
+  
+/*パスワード変更*/
+/*パスワード変更ボタン*/
+.pass-change-box-btn{
+  width: 250px;
+  padding: 2%;
+  border: 1px solid #da5789;
+  background-color: #da5789;
+  border-radius: 15px;
+  margin: 4% auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pass-change-change-box{
+    width: 80%;
+    margin: 2% auto;
+    padding: 1%;
+    border: solid 1px rgb(236, 236, 236);
+    border-top: solid 6px #da5789;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.pass-change-title-box{
+    width: 80%;
+    margin: 2% auto;
+    padding: 1%;
+    border: solid 1px rgb(236, 236, 236);
+    border-top: solid 6px #da5789;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.pass-change-title{
+    color: #505050;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: bold;    
+}
+
+.pass-change-box{
+    width: 80%;
+    height: auto;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+.pass-change-minibox{
+    width: 80%;
+    padding-top: 2%;
+    height: auto;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/*基本情報変更フォーム*/
+.pass-change-Form-Item {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    .pass-change-Form-Item {
+      padding-left: 18px;
+      padding-right: 18px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+    }
+  }
+  /* .Form-Item:nth-child(5) {
+  
+  } */
+  .pass-change-Form-Item-Label {
+    width: 30%;
+    max-width: 200px;
+    letter-spacing: 0.05em;
+    padding-left: 1%;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .pass-change-Form-Item-Label {
+      max-width: inherit;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+  }
+  .pass-change-Form-Item-Label.isMsg {
+    margin-top: 8px;
+    margin-bottom: auto;
+  }
+  @media screen and (max-width: 480px) {
+    .pass-change-Form-Item-Label.isMsg {
+      margin-top: 0;
+    }
+  }
+  .pass-hange-Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 35px;
+    display: inline-block;
+    text-align: center;
+    background: #545454;
+    color: #fff;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    .pass-change-Form-Item-Label-Required {
+      border-radius: 4px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      width: 32px;
+      font-size: 10px;
+    }
+  }
+  .pass-change-Form-Item-Input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 5%;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 35px;
+    flex: 1;
+    width: 100%;
+    max-width: 700px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 480px) {
+    .pass-change-Form-Item-Input {
+      margin-left: 0;
+      margin-top: 18px;
+      height: 40px;
+      flex: inherit;
+      font-size: 15px;
+    }
+  }
+
+/*パスワード変更確認*/
+
+.pass-change-Confirmation-box{
+    width: 80%;
+    height: auto;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+.pass-change-Confirmation-minibox{
+    width: 80%;
+    padding-top: 2%;
+    height: auto;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.pass-change-Confirmation-txt{
+    color: #505050;
+    font-size: 1.1rem;
+    line-height: 2;
+}

@@ -8,14 +8,20 @@
       <!--左側　新着物件-->
       <div class="left-column">
         <p class="searchform_head">駅名・エリア名で一発検索</p>
-        <form method="get" action="#" class="search_container">
+        <form
+          method="get"
+          action="#"
+          class="search_container"
+          @submit="getWord"
+        >
           <input
             type="text"
             class="searchform_text-form"
             size="30"
             placeholder="お探しの駅またはエリア名を入力"
+            v-model="word"
           />
-          <input type="submit" value="検索" />
+          <input type="submit" value="検索" :disabled="!meta.valid" />
         </form>
 
         <div class="searchform_border">
@@ -302,16 +308,56 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+import axiosJsonpAdapter from "axios-jsonp";
+import { ref, reactive } from "vue";
+import { useStore } from "vuex";
+import { useRoute, useRouter } from "vue-router";
+import { useField, useForm } from "vee-validate";
+import * as yup from "yup";
 export default {
   name: "Top",
-  // setup(props, context) {
-  //   const data = reactive({
-  //     title: "HelloWorld",
-  //     msg: "This is HelloWorld component.",
-  //   });
-  //   return {
-  //     data,
-  //   };
-  // },
+  setup(props, context) {
+    const data = reactive({
+      title: "HelloWorld",
+      msg: "This is HelloWorld component.",
+    });
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+    const em = store.state.em;
+    const schema = yup.object({
+      word: yup.string().required(),
+    });
+    useForm({
+      validationSchema: schema,
+    });
+    const { errors, meta, handleSubmit } = useForm({
+      validationSchema: schema,
+      initialValues: {
+        word: "",
+      },
+    });
+    const { value: word } = useField("word");
+
+    const getWord = handleSubmit(async (values) => {
+      store.state.word = values.word;
+      router.push({
+        name: "Wsearch-result",
+        query: { word: values.word, page: 1 },
+      });
+    });
+    return {
+      data,
+      word,
+      getWord,
+      meta,
+    };
+  },
 };
 </script>
+<style>
+.head_img {
+  object-fit: cover;
+}
+</style>

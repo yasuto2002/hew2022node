@@ -61,7 +61,7 @@ export default {
 
     const getvulue = handleSubmit(async (values) => {
       let reqstatus;
-      let surl = "http://localhost:8080/auth";
+      let surl = store.state.apiUrl + "/auth";
       let params = new URLSearchParams();
       params.append("maile", data.maile);
       params.append("security_code", values.password);
@@ -101,7 +101,7 @@ export default {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.status) {
           console.log("新規登録成功");
-          router.push("/");
+          router.push("/MemberComp");
         } else {
           router.push("/Error");
         }

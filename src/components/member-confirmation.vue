@@ -72,7 +72,6 @@ import { onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
-let url = "http://localhost:8080/reg";
 export default {
   name: "memberauthentication",
   setup() {
@@ -88,6 +87,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
+    const url = store.state.apiUrl + "/reg";
     const getUdata = async () => {
       let reqstatus;
       let surl = "/getUdata";

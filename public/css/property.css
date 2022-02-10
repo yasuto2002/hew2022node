@@ -2,7 +2,7 @@
 
 .property-detail-title-box{
     width: 80%;
-    margin: 2% auto;
+    margin: 1% auto;
     padding: 1%;
     border: solid 1px rgb(236, 236, 236);
     border-top: solid 6px #da5789;
@@ -18,81 +18,743 @@
 }
 
 .property-detail-sidebar{
-    display: flex;
     width: 80%;
     height: auto;
     color: #505050;
+    margin: 1% auto;
+}
+
+.property-detail-sidebar-box{
+  display: flex;
+  justify-content: space-between;
+}
+
+.property-detail-sidebar-minibox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .property-detail-sidebar-price-txt{
     color: red;
     font-weight: bold;
     font-size: 1.4rem;
+    margin-right: 15px;
+}
+
+.property-detail-sidebar-favo-txt{
+  margin-right: 5px;
+}
+
+.property-detail-sidebar-favo-txt-num-sub{
+  margin-right: 15px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+label {
+  position: relative;
+  cursor: pointer;
+}
+label svg {
+  width: 50px;
+}
+input[type="checkbox"] + label svg {
+  fill: #FAE2E2;
+  transition: all .3s;
+}
+input[type="checkbox"]:checked + label svg {
+  fill: #da5789;
+  animation: like .8s ease-out;
+  transition: all .3s;
+}
+@keyframes like {
+  0% {
+    transform: scale(1,1);
+  }
+  50% {
+    transform: scale(.5,.5);
+  }
+  100% {
+    transform: scale(1,1);
+  }
+}
+input[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border: 5px solid #da5789;
+  border-radius: 50%;
+  animation: circle .8s ease-out;
+  opacity: 0;
+  top: -60px;
+  left: -60px;
+  z-index: 80;
+}
+@keyframes circle {
+  0% {
+    transform: scale(.2,.2);
+  }
+  50% {
+    transform: scale(.5,.5);
+  }
+  80% {
+    transform: scale(1,1);
+    opacity: .8;
+  }
+  100% {
+    transform: scale(1.3,1.3);
+    opacity: 0;
+  }
 }
 
 
 .property-detail-box{
     width: 80%;
-    height: auto;
+    height: 600px;
     margin: 2% auto;
     box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
 }
 
+.property-detail-table-title{
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 5%;
+}
+
+
+.property-img{
+  width: 35%;
+  display: flex;
+  margin: 0 auto;
+}
+
+.img-column{
+  width: 80%;
+  height: auto;
+  display: flex;
+  margin: 2% auto;
+}
+
+.img-column-box{
+  width: 25%;
+  margin: 0 auto;
+}
+
+.property-detail-table{
+  width: 60%;
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+
+.property-detail-tr{
+  border: 1px solid #333;
+}
+
+.property-detail-th{
+  width: 130px;
+  background-color: #da5789;
+  color: #fff;
+  padding: 1.5%;
+}
+
+.property-detail-td{
+  padding-left: 5px;
+  border: 1px solid rgb(223, 223, 223);
+}
+
+.property-detail-table-box{
+  display: flex;
+  justify-content: center;
+}
+.property-detail-table-second{
+  width: 30%;
+  font-size: 1.15rem;
+}
+
+.property-detail-td-second{
+  padding-left: 5px;
+  border: 1px solid rgb(223, 223, 223);
+}
+
+.property-detail-th-second{
+  width: 130px;
+  background-color: #da5789;
+  color: #fff;
+  padding: 3%;
+}
+
+.property-detail-table-third{
+  width: 30%;
+  font-size: 1.15rem;
+}
+
+.property-detail-td-third{
+  padding-left: 5px;
+  border: 1px solid rgb(223, 223, 223);
+}
+
+.property-detail-th-third{
+  width: 130px;
+  background-color: #da5789;
+  color: #fff;
+  padding: 3%;
+}
+
+.property-detail-buy-btn{
+  background-color:  #da5789;
+  color: #fff;
+}
+
+.property-detail-buy-btn:hover{
+  color: #fff;
+  background-color:#d6779b;
+}
+
+.property-detail-buy-btn-c{
+  width: 300px;
+  background-color:  #da5789;
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  margin: 5% auto;
+  font-size: 16px;
+  padding: 20px;
+  border-radius: 100vh;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.property-detail-buy-btn-c i.far {
+  margin-right: 1.1rem;
+}
+
+.property-detail-buy-btn-c i.fas {
+  margin-left: 1.1rem;
+}
+
 
 /*==================================================
-スライダーのためのcss
+お支払い方法
 ===================================*/
+.buy-page-main{
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 1%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  line-height: 130%;
+  color: #333;
+  margin: 0 auto 3% auto;
+  justify-content: center;
+}
 
-/*画像の横幅を100%にしてレスポンシブ化*/
-img{
+/*タイトル*/
+.buy-page-box-title-box{
+  width: 80%;
+  margin: 1% auto;
+  padding: 1%;
+  border: solid 1px rgb(236, 236, 236);
+  border-top: solid 6px #da5789;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+.buy-page-box-title{
+  color: #505050;
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: bold;    
+}
+
+/*2カラム*/
+.buy-page-box{
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.buy-page-box-left{
+  width: 70%;
+  height: auto;
+  position: -webkit-sticky;/*Safari用*/
+  position: sticky;
+  flex-wrap: wrap;
+}
+
+.buy-page-box-right{
+  width: 30%;
+  height: auto;
+}
+@media screen and (max-width:768px){
+.buy-page-box{
+    display: block;/*display:flex;を解除*/
+  }
+.buy-page-box-left{
+     position:relative!important;/*position stickyを解除*/
+    width:100%;/*横幅を100%にして1列に見せる*/
+    height: 40vh;/*縦幅を100vh⇒40vh　※任意の高さに設定可能*/
+  }
+  .buy-page-box-right{
+    width:100%;/*横幅を100%にして1列に見せる*/
+  }
+  }
+  
+
+/*左カラム　個人情報*/
+.buy_page-Form-Item {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+  }
+}
+/* .Form-Item:nth-child(5) {
+
+} */
+.buy_page-Form-Item-Label {
+  width: 30%;
+  max-width: 150px;
+  letter-spacing: 0.05em;
+  padding-left: 1%;
+  font-weight: bold;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Label {
+    max-width: inherit;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+}
+.buy_page-Form-Item-Label.isMsg {
+  margin-top: 8px;
+  margin-bottom: auto;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Label.isMsg {
+    margin-top: 0;
+  }
+}
+.buy_page-Form-Item-Label-Required {
+  border-radius: 6px;
+  margin-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 35px;
+  display: inline-block;
+  text-align: center;
+  background: #545454;
+  color: #fff;
+  font-size: 14px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Label-Required {
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 32px;
+    font-size: 10px;
+  }
+}
+.buy_page-Form-Item-Input {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Input {
+    margin-left: 0;
+    margin-top: 18px;
+    height: 40px;
+    flex: inherit;
+    font-size: 15px;
+  }
+}
+.buy_page-Form-Item-Input-mini{
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 10px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 35px;
+    flex: 1;
     width: 100%;
-    height: auto;
-    vertical-align: bottom;/*画像の下にできる余白を削除*/
+    max-width: 400px;
+    background: #eaedf2;
+    font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Input-mini {
+    margin-left: 0;
+    margin-top: 18px;
+    height: 40px;
+    flex: inherit;
+    font-size: 15px;
   }
-  
-  /*メイン画像下に余白をつける*/
-  .gallery{
-    margin:0 0 5px 0;
+}
+.buy_page-Form-Item-Label-mini {
+  letter-spacing: 0.05em;
+  padding-left: 1%;
+  font-weight: bold;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Label-mini {
+    max-width: inherit;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
   }
-  
-  /*矢印の設定*/
-  
-  /*戻る、次へ矢印の位置*/
-  .slick-prev, 
-  .slick-next {
-      position: absolute;/*絶対配置にする*/
-    z-index: 3;
-      top: 42%;
-      cursor: pointer;/*マウスカーソルを指マークに*/
-      outline: none;/*クリックをしたら出てくる枠線を消す*/
-      border-top: 2px solid #ccc;/*矢印の色*/
-      border-right: 2px solid #ccc;/*矢印の色*/
-      height: 25px;
-      width: 25px;
+}
+.buy_page-Form-Item-Textarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 216px;
+  flex: 1;
+  width: 100%;
+  max-width: 410px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-Item-Textarea {
+    margin-top: 18px;
+    margin-left: 0;
+    height: 200px;
+    flex: inherit;
+    font-size: 15px;
   }
-  
-  .slick-prev {/*戻る矢印の位置と形状*/
-      left:2.5%;
-      transform: rotate(-135deg);
+}
+
+/*住所*/
+#search{
+  width: 15%;
+  height: auto;
+  padding: 2%;
+  background-color: #da5789;
+  border: 1px solid #da5789;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.zipcode{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+
+#address1{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+
+#address2{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+
+#address3{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+
+/*ポイント*/
+.ECM_RadioInput {
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 40px;
+}
+.ECM_RadioInput-Input {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+}
+.ECM_RadioInput:hover > .ECM_RadioInput-DummyInput{
+    background: #BBBBBB;
+}
+.ECM_RadioInput-Input:focus + .ECM_RadioInput-DummyInput {
+  background: #BBBBBB;
+}
+.ECM_RadioInput-Input:checked + .ECM_RadioInput-DummyInput {
+  background: #da5789;
+}
+.ECM_RadioInput-Input:checked + .ECM_RadioInput-DummyInput::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+.ECM_RadioInput-DummyInput {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #EEEEEE;
+  box-shadow: 0 1px 4px rgba(0,0,0, .4) inset;
+}
+.ECM_RadioInput-LabelText {
+  margin-left: 12px;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+.buy_page_point_label{
+  color: #505050;
+  font-size: 1.2rem;
+  padding-left: 20px;
+}
+.buy_page_point_possible_label{
+  color: #505050;
+  font-size: 1.1rem;
+}
+
+.buy_page_point_possible-Form-Item-Input{
+  border: 1px solid #fff;
+  border-bottom: 4px solid #da5789;
+  margin-left: 5px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 200px;
+  background: none;
+  font-size: 18px;
+}
+
+
+
+/* カード */
+/**/
+.buy_page-Form-card-Item {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-card-Item {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
   }
-  
-  .slick-next {/*次へ矢印の位置と形状*/
-      right:2.5%;
-      transform: rotate(45deg);
+}
+/* .Form-Item:nth-child(5) {
+
+} */
+.buy_page-Form-card-Item-Label {
+  width: 30%;
+  max-width: 290px;
+  letter-spacing: 0.05em;
+  padding-left: 1%;
+  font-weight: bold;
+  font-size: 14px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-card-Item-Label {
+    max-width: inherit;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
   }
-  
-  /*選択するサムネイル画像の設定*/
-  
-  .choice-btn li{
-    cursor: pointer;
-    outline: none;
-    background:#333;
+}
+.buy_page-Form-card-Item-title{
+  width: 30%;
+  max-width: 290px;
+  letter-spacing: 0.05em;
+  padding-left: 1%;
+  font-weight: bold;
+  font-size: 18px;
+}
+.buy_page-Form-card-Item-Label.isMsg {
+  margin-top: 8px;
+  margin-bottom: auto;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-card-Item-Label.isMsg {
+    margin-top: 0;
   }
-  
-  .choice-btn li img{
-    opacity: 0.4;/*選択されていないものは透過40%*/
+}
+.buy_page-Form-card-Item-Label-Required {
+  border-radius: 6px;
+  margin-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 35px;
+  display: inline-block;
+  text-align: center;
+  background: #545454;
+  color: #fff;
+  font-size: 14px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-card-Item-Label-Required {
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 32px;
+    font-size: 10px;
   }
-  
-  .choice-btn li.slick-current img{
-    opacity: 1;/*選択されているものは透過しない*/
+}
+.buy_page-Form-card-Item-Input {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 35px;
+  flex: 1;
+  width: 100%;
+  max-width: 300px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-card-Item-Input {
+    margin-left: 0;
+    margin-top: 18px;
+    height: 40px;
+    flex: inherit;
+    font-size: 15px;
   }
+}
+.buy_page-Form-card-Item-Textarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-left: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 216px;
+  flex: 1;
+  width: 100%;
+  max-width: 300px;
+  background: #eaedf2;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  .buy_page-Form-card-Item-Textarea {
+    margin-top: 18px;
+    margin-left: 0;
+    height: 200px;
+    flex: inherit;
+    font-size: 15px;
+  }
+}
+
+.buy-page-box-box{
+  display: flex;
+  margin: 10% auto;
+}
+
+
+
+/*右カラムbox*/
+.buy-page-box-right-minibox{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+.buy-page-minibox-btn{
+  width: 200px;
+  padding: 10%;
+  border: 1px solid #da5789;
+  background-color: #da5789;
+  border-radius: 5px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-page-box-box-txt{
+  color: #505050;
+  margin-left: 10px;
+  font-size: 1.1rem;
+}
