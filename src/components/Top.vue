@@ -36,19 +36,19 @@
           <p class="searchform_txt">賃料</p>
         </div>
         <div class="rent">
-          <select name="rent_low">
-            <option value="low">下限なし</option>
-            <option value="aa">1000万円~</option>
-            <option value="bb">2000万円~</option>
-            <option value="cc">3000万円~</option>
-            <option value="dd">4000万円~</option>
+          <select name="rent_low" v-model="data.lower">
+            <option value="" selected>下限なし</option>
+            <option value="1000">1000万円~</option>
+            <option value="2000">2000万円~</option>
+            <option value="3000">3000万円~</option>
+            <option value="4000">4000万円~</option>
           </select>
-          <select name="Rent_hight">
-            <option value="hight">上限なし</option>
-            <option value="ee">~1000万円</option>
-            <option value="ff">~2000万円</option>
-            <option value="gg">~3000万円</option>
-            <option value="hh">~4000万円</option>
+          <select name="Rent_hight" v-model="data.upper">
+            <option value="" selected>上限なし</option>
+            <option value="1000">~1000万円</option>
+            <option value="2000">~2000万円</option>
+            <option value="3000">~3000万円</option>
+            <option value="4000">~4000万円</option>
           </select>
         </div>
 
@@ -56,65 +56,232 @@
           <p class="searchform_txt">間取りタイプ</p>
         </div>
         <div class="searchform_floor">
-          <label><input type="radio" name="floor" />1R</label>
-          <label><input type="radio" name="floor" />1K</label>
-          <label><input type="radio" name="floor" />1DK</label>
-          <label><input type="radio" name="floor" />1LDK</label><br />
-          <label><input type="radio" name="floor" />2K</label>
-          <label><input type="radio" name="floor" />2DK</label>
-          <label><input type="radio" name="floor" />2LDK</label><br />
-          <label><input type="radio" name="floor" />3K</label>
-          <label><input type="radio" name="floor" />3DK</label>
-          <label><input type="radio" name="floor" />3LDK</label><br />
-          <label><input type="radio" name="floor" />4K</label>
-          <label><input type="radio" name="floor" />4DK</label>
-          <label><input type="radio" name="floor" />4LDK</label><br />
-          <label><input type="radio" name="floor" />5K以上</label>
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="1"
+            />1R</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="2"
+            />1K</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="3"
+            />1DK</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="4"
+            />1LDK</label
+          ><br />
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="5"
+            />2K</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="6"
+            />2DK</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="7"
+            />2LDK</label
+          ><br />
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="8"
+            />3K</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="9"
+            />3DK</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="10"
+            />3LDK</label
+          ><br />
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="11"
+            />4K</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="12"
+            />4DK</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="13"
+            />4LDK</label
+          ><br />
+          <label
+            ><input
+              type="radio"
+              name="floor"
+              v-model="data.floor_plan"
+              value="14"
+            />5K以上</label
+          >
         </div>
 
         <div class="searchform_border">
           <p class="searchform_txt">建物の種類</p>
         </div>
         <div class="searchform_floor">
-          <label><input type="radio" name="floor" />マンション</label>
-          <label><input type="radio" name="floor" />アパート</label>
-          <label><input type="radio" name="floor" />一戸建て</label>
+          <label
+            ><input
+              type="radio"
+              name="building_type"
+              value="1"
+              v-model="data.building_type"
+            />マンション</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="building_type"
+              value="2"
+              v-model="data.building_type"
+            />アパート</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="building_type"
+              value="3"
+              v-model="data.building_type"
+            />一戸建て</label
+          >
         </div>
 
         <div class="searchform_border">
           <p class="searchform_txt">部屋階数</p>
         </div>
         <div class="searchform_floor">
-          <label><input type="radio" name="floor" />1階</label>
-          <label><input type="radio" name="floor" />2階</label>
-          <label><input type="radio" name="floor" />3階</label>
-          <label><input type="radio" name="floor" />それ以上</label>
+          <label
+            ><input
+              type="radio"
+              name="floor_plan"
+              value="1"
+              v-model="data.room_floor"
+            />1階</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor_plan"
+              value="2"
+              v-model="data.room_floor"
+            />2階</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor_plan"
+              value="3"
+              v-model="data.room_floor"
+            />3階</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="floor_plan"
+              value="4"
+              v-model="data.room_floor"
+            />それ以上</label
+          >
         </div>
 
         <div class="searchform_border">
           <p class="searchform_txt">構造</p>
         </div>
         <div class="searchform_floor">
-          <label><input type="radio" name="floor" />木造</label>
-          <label><input type="radio" name="floor" />鉄筋</label>
-          <label><input type="radio" name="floor" />鉄骨</label><br />
-          <label><input type="radio" name="floor" />ブロック・それ以外</label>
+          <label
+            ><input
+              type="radio"
+              name="construction"
+              value="1"
+              v-model="data.construction"
+            />鉄筋</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="construction"
+              value="2"
+              v-model="data.construction"
+            />木造</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="construction"
+              value="3"
+              v-model="data.construction"
+            />ブロック・それ以外</label
+          >
         </div>
 
         <div class="searchform_border">
           <p class="searchform_txt">築年数</p>
         </div>
         <div class="rent">
-          <select name="rent_low">
-            <option value="zero">指定しない</option>
-            <option value="ii">1年以内</option>
-            <option value="jj">3年以内</option>
-            <option value="kk">5年以内</option>
-            <option value="ll">7年以内</option>
-            <option value="nn">10年以内</option>
-            <option value="mm">15年以内</option>
-            <option value="oo">20年以内</option>
-            <option value="pp">25年以内</option>
+          <select name="rent_low" v-model="data.construction_date">
+            <option value="">指定しない</option>
+            <option value="-1">1年以内</option>
+            <option value="-3">3年以内</option>
+            <option value="-5">5年以内</option>
+            <option value="-7">7年以内</option>
+            <option value="-10">10年以内</option>
+            <option value="-15">15年以内</option>
+            <option value="-20">20年以内</option>
+            <option value="-25">25年以内</option>
           </select>
         </div>
 
@@ -122,18 +289,18 @@
           <p class="searchform_txt">駅徒歩</p>
         </div>
         <div class="rent">
-          <select name="rent_low">
-            <option value="zeroo">指定しない</option>
-            <option value="qq">5分以内</option>
-            <option value="rr">10分以内</option>
-            <option value="ss">15分以内</option>
-            <option value="tt">15分以上</option>
+          <select name="rent_low" v-model="data.station_walk">
+            <option value="">指定しない</option>
+            <option value="5">5分以内</option>
+            <option value="10">10分以内</option>
+            <option value="15">15分以内</option>
+            <option value="20">15分以上</option>
           </select>
         </div>
 
         <div class="searchform_submit">
           <section>
-            <a href="#" class="btn_06"><span>BUTTON</span></a>
+            <a class="btn_06" @click="getConditions()"><span>BUTTON</span></a>
           </section>
         </div>
       </div>
@@ -319,8 +486,14 @@ export default {
   name: "Top",
   setup(props, context) {
     const data = reactive({
-      title: "HelloWorld",
-      msg: "This is HelloWorld component.",
+      lower: null,
+      upper: null,
+      floor_plan: null,
+      building_type: null,
+      room_floor: null,
+      construction: null,
+      construction_date: null,
+      station_walk: null,
     });
     const store = useStore();
     const router = useRouter();
@@ -347,11 +520,28 @@ export default {
         query: { word: values.word, page: 1 },
       });
     });
+    const getConditions = () => {
+      router.push({
+        name: "Csearch-result",
+        query: {
+          lower: data.lower,
+          upper: data.upper,
+          floor_plan: data.floor_plan,
+          building_type: data.building_type,
+          room_floor: data.room_floor,
+          construction: data.construction,
+          construction_date: data.construction_date,
+          station_walk: data.station_walk,
+          page: 1,
+        },
+      });
+    };
     return {
       data,
       word,
       getWord,
       meta,
+      getConditions,
     };
   },
 };

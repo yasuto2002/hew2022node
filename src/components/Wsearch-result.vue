@@ -200,7 +200,7 @@
                   v-if="n == 3"
                   :to="{
                     path: '/Wsearch-result',
-                    query: { word: data.word, page: n },
+                    query: { word: $route.query.word, page: n },
                   }"
                   class="page-numbers"
                   >{{ n }}</router-link
@@ -210,22 +210,75 @@
                   <router-link
                     :to="{
                       path: '/Wsearch-result',
-                      query: { word: data.word, page: data.count },
+                      query: { word: $route.query.word, page: data.count },
                     }"
                     class="page-numbers"
                     >{{ data.count }}</router-link
                   >
                 </template>
               </template>
+            </template>
+
+            <template v-else>
               <router-link
                 :to="{
                   path: '/Wsearch-result',
-                  query: { word: data.word, page: 2 },
+                  query: { word: $route.query.word, page: data.page - 1 },
                 }"
                 class="last page-numbers"
-                >&raquo;</router-link
+                >&laquo;</router-link
               >
+              <template v-for="n in data.count" :key="n">
+                <router-link
+                  v-if="n == data.page - 1"
+                  :to="{
+                    path: '/Wsearch-result',
+                    query: { word: $route.query.word, page: n },
+                  }"
+                  class="page-numbers"
+                  >{{ n }}</router-link
+                >
+                <span
+                  v-if="n == data.page"
+                  aria-current="page"
+                  class="page-numbers current"
+                  >{{ n }}</span
+                >
+                <router-link
+                  v-if="n == data.page + 1"
+                  :to="{
+                    path: '/Wsearch-result',
+                    query: { word: $route.query.word, page: n },
+                  }"
+                  class="page-numbers"
+                  >{{ n }}</router-link
+                >
+                <template v-if="data.page + 1 < data.count">
+                  <span class="page-numbers dots">…</span>
+                  <router-link
+                    :to="{
+                      path: '/Wsearch-result',
+                      query: { word: $route.query.word, page: data.count },
+                    }"
+                    class="page-numbers"
+                    >{{ data.count }}</router-link
+                  >
+                </template>
+              </template>
             </template>
+
+            <router-link
+              :to="{
+                path: '/Wsearch-result',
+                query: {
+                  word: $route.query.word,
+                  page: data.next,
+                },
+              }"
+              class="last page-numbers"
+              v-if="data.page < data.count"
+              >&raquo;</router-link
+            >
             <!-- <a class="next page-numbers" href="">&rsaquo;</a> -->
             <!-- <a class="last page-numbers" href="">&raquo;</a> -->
           </div>
@@ -253,6 +306,7 @@ export default {
       properties: "",
       count: null,
       page: null,
+      next: null,
     });
     const store = useStore();
     const router = useRouter();
@@ -271,6 +325,7 @@ export default {
           data.properties = reqstatus.data.properties;
           data.count = Math.ceil(reqstatus.data.count / 4);
           data.page = route.query.page;
+          data.next = parseInt(data.page) + 1;
         }
       } catch (error) {
         console.log(error);
@@ -290,6 +345,7 @@ export default {
           data.properties = reqstatus.data.properties;
           data.count = Math.ceil(reqstatus.data.count / 4);
           data.page = page;
+          data.next = parseInt(data.page) + 1;
         }
       } catch (error) {
         console.log(error);

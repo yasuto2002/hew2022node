@@ -13,6 +13,7 @@ import memberauthentication from './components/memberauthentication.vue'
 import memberconfirmation from './components/member-confirmation.vue'
 import MemberComp from './components/MemberComp.vue'
 import Wsearchresult from './components/Wsearch-result.vue'
+import Csearchresult from './components/Csearch-result.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -66,6 +67,12 @@ export const router = createRouter({
       component: Wsearchresult,
       props: true
     },
+    {
+      path: '/Csearch-result',
+      name: 'Csearch-result',
+      component: Csearchresult,
+      props: true,
+    }
   ],
   scrollBehavior(to, from, savedPosition) {
     return {

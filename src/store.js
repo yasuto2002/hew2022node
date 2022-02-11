@@ -23,7 +23,17 @@ export const store = createStore({
       apiUrl: "http://localhost:8080",
       regex: /[^!"#$%&'()\*\+\-\,\/:;<=>?\[\\\]^_`{|}~]+/,
       properties: "",
-      word: ""
+      word: "",
+      serch: {
+        lower: null,
+        upper: null,
+        floor_plan: null,
+        building_type: null,
+        room_floor: null,
+        construction: null,
+        construction_date: null,
+        station_walk: null
+      }
     }
   },
   mutations: {

@@ -156,7 +156,7 @@ function getRandam(n, m) {
 
 
 function preload() {
-  this.load.image('background', 'game/assets/images/background.jpg');
+  this.load.image('background', 'game/assets/images/backgroung1.png');
   this.load.image('spike', 'game/assets/images/spike.png');
   this.load.image('Goal', 'game/assets/images/Goal.png');
   this.load.image('Wall', 'game/assets/images/wall.png');
@@ -174,7 +174,7 @@ function preload() {
 
 function create() {
   for (let x = 0; x < 10; x++) {
-    let backgroundImage = this.add.image(1275 * x, 0, 'background').setOrigin(0, 0);
+    let backgroundImage = this.add.image(2048 * x, 0, 'background').setOrigin(0, 0);
     // backgroundImage.setScale(0.5, 1);
   }
   // for (let x = 0; x < 10; x++) {
