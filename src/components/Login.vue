@@ -100,6 +100,7 @@ export default {
       params.append("password", values.password);
       try {
         reqstatus = await axios.post(surl, params);
+        store.state.Umaile = values.maile;
         if (reqstatus.data.state) {
           LogSession(values.maile);
         } else {
@@ -138,6 +139,7 @@ export default {
       let surl = "/AuthLog";
       try {
         reqstatus = await axios.post(surl);
+
         if (reqstatus.data.status) {
           router.push("/");
         }

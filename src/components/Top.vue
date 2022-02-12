@@ -37,14 +37,14 @@
         </div>
         <div class="rent">
           <select name="rent_low" v-model="data.lower">
-            <option value="" selected>下限なし</option>
+            <option value="null">下限なし</option>
             <option value="1000">1000万円~</option>
             <option value="2000">2000万円~</option>
             <option value="3000">3000万円~</option>
             <option value="4000">4000万円~</option>
           </select>
           <select name="Rent_hight" v-model="data.upper">
-            <option value="" selected>上限なし</option>
+            <option value="null">上限なし</option>
             <option value="1000">~1000万円</option>
             <option value="2000">~2000万円</option>
             <option value="3000">~3000万円</option>
@@ -273,7 +273,7 @@
         </div>
         <div class="rent">
           <select name="rent_low" v-model="data.construction_date">
-            <option value="">指定しない</option>
+            <option value="null">指定しない</option>
             <option value="-1">1年以内</option>
             <option value="-3">3年以内</option>
             <option value="-5">5年以内</option>
@@ -290,7 +290,7 @@
         </div>
         <div class="rent">
           <select name="rent_low" v-model="data.station_walk">
-            <option value="">指定しない</option>
+            <option value="null">指定しない</option>
             <option value="5">5分以内</option>
             <option value="10">10分以内</option>
             <option value="15">15分以内</option>

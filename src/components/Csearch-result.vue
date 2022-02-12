@@ -389,7 +389,6 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const getProperties = async () => {
-      console.log(route.query);
       let reqstatus;
       let surl = store.state.apiUrl + "/Condiserch";
       let params = new URLSearchParams();
@@ -440,7 +439,6 @@ export default {
       params.append("skip", (page - 1) * 4);
       try {
         reqstatus = await axios.post(surl, params);
-        console.log(reqstatus.data);
         if (reqstatus.data.property[0] != null) {
           data.properties = reqstatus.data.property;
           data.count = Math.ceil(reqstatus.data.count / 4);
@@ -460,7 +458,10 @@ export default {
     //   router.go(0);
     // };
     const say = (st) => {
-      console.log(st);
+      router.push({
+        path: "/Property-detail",
+        query: { number: st },
+      });
     };
     onMounted(() => {
       getProperties();
@@ -496,5 +497,8 @@ export default {
 .searchform_submit {
   width: 19vw;
   margin: 2vw 0px 0px 20px;
+}
+.sarch-section:hover {
+  cursor: pointer;
 }
 </style>

@@ -140,7 +140,7 @@
       <!--右側　新着物件-->
       <div class="right-sarch-column">
         <template v-for="(item, key) in data.properties" :key="key">
-          <div class="sarch-section" v-if="key < 4">
+          <div class="sarch-section" v-if="key < 4" @click="say(item.id)">
             <h1 class="sarch-section-title">{{ item.name }}</h1>
             <div class="sarch-section-box">
               <img
@@ -359,6 +359,12 @@ export default {
       });
       router.go(0);
     };
+    const say = (st) => {
+      router.push({
+        path: "/Property-detail",
+        query: { number: st },
+      });
+    };
     onMounted(() => {
       getProperties();
       console.log("mount");
@@ -370,6 +376,7 @@ export default {
     return {
       serch,
       data,
+      say,
     };
   },
 };
@@ -381,5 +388,8 @@ export default {
 .searchform_submit {
   width: 19vw;
   margin: 2vw 0px 0px 20px;
+}
+.sarch-section:hover {
+  cursor: pointer;
 }
 </style>

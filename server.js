@@ -482,8 +482,34 @@ app.post("/LogSession", function (req, res) {
 
 app.post("/AuthLog", function (req, res) {
   try {
+    if (typeof req.session.Log != 'undefined') {
+      let ob = {
+        status: req.session.Log
+      };
+      res.json(ob);
+      return;
+    } else {
+      let ob = {
+        status: false
+      };
+      res.json(ob);
+      return;
+    }
+  } catch (err) {
+    console.log(err)
     let ob = {
-      status: req.session.Log
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
+
+app.post("/Logout", function (req, res) {
+  try {
+    delete req.session.Log;
+    let ob = {
+      status: true
     };
     res.json(ob);
     return;

@@ -14,6 +14,8 @@ import memberconfirmation from './components/member-confirmation.vue'
 import MemberComp from './components/MemberComp.vue'
 import Wsearchresult from './components/Wsearch-result.vue'
 import Csearchresult from './components/Csearch-result.vue'
+import Propertydetail from './components/Property-detail.vue'
+import Logreg from './components/Logreg.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -71,6 +73,18 @@ export const router = createRouter({
       path: '/Csearch-result',
       name: 'Csearch-result',
       component: Csearchresult,
+      props: true,
+    },
+    {
+      path: '/Property-detail',
+      name: 'Property-detail',
+      component: Propertydetail,
+      props: true,
+    },
+    {
+      path: '/Logreg',
+      name: 'Logreg',
+      component: Logreg,
       props: true,
     }
   ],

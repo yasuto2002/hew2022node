@@ -14,9 +14,16 @@
             <!-- <a href="member.html"> 会員登録 </a> -->
             <router-link to="/Member"> 会員登録 </router-link>
           </li>
-          <li class="navItem navItemIntroduce">
+          <li
+            class="navItem navItemIntroduce"
+            v-if="$store.state.Umaile == null"
+          >
             <!-- <a href="login-member.html"> ログイン </a> -->
             <router-link to="/Login"> ログイン </router-link>
+          </li>
+          <li class="navItem navItemIntroduce" v-else>
+            <!-- <a href="login-member.html"> ログイン </a> -->
+            <a @click="Logout"> ログアウト </a>
           </li>
           <li class="navItem navItemAbout">
             <a href="#"> 購入検索 </a>
@@ -42,9 +49,52 @@
 </template>
 
 <script>
-// import { ref, reactive } from "vue";
+import axios from "axios";
+import axiosJsonpAdapter from "axios-jsonp";
+import { reactive } from "vue";
+import { onMounted } from "vue";
+import { watch } from "vue";
+import { useStore } from "vuex";
+import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
+import { useField, useForm } from "vee-validate";
 
 export default {
   name: "Hello",
+  setup(props, context) {
+    const data = reactive({
+      title: "HelloWorld",
+      msg: "This is HelloWorld component.",
+    });
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+    const Logout = async () => {
+      let proFlg;
+      let reqstatus;
+      let surl = "/Logout";
+      try {
+        reqstatus = await axios.post(surl);
+        if (reqstatus.data.status) {
+          console.log(reqstatus.data.status);
+          store.state.Umaile = null;
+          router.push("/");
+        } else {
+          router.push("/Error");
+        }
+      } catch (error) {
+        console.log(error);
+        router.push("/Error");
+      }
+    };
+    return {
+      data,
+      Logout,
+    };
+  },
 };
 </script>
+<style scoped>
+.navItemIntroduce a:hover {
+  cursor: pointer;
+}
+</style>
