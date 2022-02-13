@@ -124,7 +124,7 @@ export default {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.status) {
           console.log("ログイン成功");
-          router.push("/");
+          router.go({ path: "/", force: true });
         } else {
           router.push("/Error");
         }

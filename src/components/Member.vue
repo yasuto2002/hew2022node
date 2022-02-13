@@ -344,8 +344,8 @@ export default {
           router.push("/Error");
         }
         if (data.jso.data.state === true) {
-          let pName = values.ksName + values.kfName;
-          let lName = values.hsName + values.hfName;
+          let pName = values.ksName + "." + values.kfName;
+          let lName = values.hsName + "." + values.hfName;
           if (
             reqSession(
               pName,

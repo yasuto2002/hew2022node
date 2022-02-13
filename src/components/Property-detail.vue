@@ -156,6 +156,8 @@ import { watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useField, useForm } from "vee-validate";
+import UserHelper from "../functons/userHelper";
+
 export default {
   name: "property-detail",
   props: {
@@ -172,19 +174,20 @@ export default {
       checked: false,
       viewFlg: false,
       procesFlg: false,
+      maile: null,
     });
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
+    const { LogCheck } = UserHelper();
     const getDetail = async () => {
       let reqstatus;
       let surl = store.state.apiUrl + "/Detail";
       try {
         let params = new URLSearchParams();
         params.append("number", route.query.number);
-        params.append("umaile", store.state.Umaile);
+        params.append("umaile", data.maile);
         reqstatus = await axios.post(surl, params);
-        console.log(reqstatus.data);
         if (reqstatus.data.state) {
           data.datail = reqstatus.data.detail;
           data.images = reqstatus.data.images;
@@ -214,26 +217,12 @@ export default {
       }
     };
     const good = async () => {
-      let proFlg;
-      let reqstatus;
-      let surl = "/AuthLog";
-      try {
-        reqstatus = await axios.post(surl);
-        if (reqstatus.data.status) {
-          console.log(reqstatus.data.status);
-          proFlg = true;
-        } else {
-          proFlg = false;
-        }
-      } catch (error) {
-        console.log(error);
-        router.push("/Error");
-      }
+      let surl;
       if (!data.procesFlg) {
-        if (proFlg) {
+        if (data.maile != null) {
           surl = store.state.apiUrl + "/Good";
           let params = new URLSearchParams();
-          params.append("mail_address", reqstatus.data.status);
+          params.append("mail_address", data.maile);
           params.append("id", route.query.number);
           let status;
           try {
@@ -252,10 +241,10 @@ export default {
         }
         data.procesFlg = true;
       } else {
-        if (proFlg) {
+        if (data.maile != null) {
           surl = store.state.apiUrl + "/Bad";
           let params = new URLSearchParams();
-          params.append("mail_address", reqstatus.data.status);
+          params.append("mail_address", data.maile);
           params.append("id", route.query.number);
           let status;
           try {
@@ -278,7 +267,12 @@ export default {
     const imgClick = (num) => {
       data.imgCount = num;
     };
-    onMounted(() => {
+    onMounted(async () => {
+      let flg = await LogCheck();
+      if (flg) {
+        data.maile = flg;
+        getDetail();
+      }
       getDetail();
     });
     watch(data.checked, () => {

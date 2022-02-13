@@ -10,14 +10,15 @@
       <!-- ナビゲーション -->
       <nav class="headerNav">
         <ul class="navList flexBox">
-          <li class="navItem navItemHome">
+          <li class="navItem navItemHome" v-if="data.viewflg">
             <!-- <a href="member.html"> 会員登録 </a> -->
             <router-link to="/Member"> 会員登録 </router-link>
           </li>
-          <li
-            class="navItem navItemIntroduce"
-            v-if="$store.state.Umaile == null"
-          >
+          <li class="navItem navItemHome" v-else>
+            <!-- <a href="member.html"> 会員登録 </a> -->
+            <router-link to="/Mypage"> マイページ </router-link>
+          </li>
+          <li class="navItem navItemIntroduce" v-if="data.viewflg">
             <!-- <a href="login-member.html"> ログイン </a> -->
             <router-link to="/Login"> ログイン </router-link>
           </li>
@@ -57,6 +58,7 @@ import { watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useField, useForm } from "vee-validate";
+import UserHelper from "../functons/userHelper";
 
 export default {
   name: "Hello",
@@ -64,10 +66,12 @@ export default {
     const data = reactive({
       title: "HelloWorld",
       msg: "This is HelloWorld component.",
+      viewflg: true,
     });
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
+    const { LogCheck } = UserHelper();
     const Logout = async () => {
       let proFlg;
       let reqstatus;
@@ -76,7 +80,7 @@ export default {
         reqstatus = await axios.post(surl);
         if (reqstatus.data.status) {
           console.log(reqstatus.data.status);
-          store.state.Umaile = null;
+          data.viewflg = true;
           router.push("/");
         } else {
           router.push("/Error");
@@ -86,6 +90,12 @@ export default {
         router.push("/Error");
       }
     };
+    onMounted(async () => {
+      let flg = await LogCheck();
+      if (flg) {
+        data.viewflg = false;
+      }
+    });
     return {
       data,
       Logout,

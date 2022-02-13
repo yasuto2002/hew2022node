@@ -16,6 +16,9 @@ import Wsearchresult from './components/Wsearch-result.vue'
 import Csearchresult from './components/Csearch-result.vue'
 import Propertydetail from './components/Property-detail.vue'
 import Logreg from './components/Logreg.vue'
+import Mypage from './components/Mypage.vue'
+import passchange from './components/pass-change.vue'
+import Passchangecomp from './components/Pass-change-comp.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -85,6 +88,24 @@ export const router = createRouter({
       path: '/Logreg',
       name: 'Logreg',
       component: Logreg,
+      props: true,
+    },
+    {
+      path: '/Mypage',
+      name: 'Mypage',
+      component: Mypage,
+      props: true,
+    },
+    {
+      path: '/pass-change',
+      name: 'pass-change',
+      component: passchange,
+      props: true,
+    },
+    {
+      path: '/Pass-change-comp',
+      name: 'Pass-change-comp',
+      component: Passchangecomp,
       props: true,
     }
   ],
