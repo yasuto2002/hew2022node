@@ -41,7 +41,7 @@
             <a href="./login.html"> ゲーム </a>
           </li>
           <li class="navItem navItemContact">
-            <a href="./login.html"> ヘルプ </a>
+            <a href="/help"> ヘルプ </a>
           </li>
         </ul>
       </nav>

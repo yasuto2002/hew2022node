@@ -22,8 +22,8 @@
           {{ data.mail_address }}
         </p>
       </div>
-      <button class="mypage-minibox-btn" type="button">
-        <a href="mypage-change.html">変更する</a>
+      <button class="mypage-minibox-btn" type="button" @click="jump">
+        <a>変更する</a>
       </button>
     </div>
     <div class="mypage-info-pass-box">
@@ -134,6 +134,9 @@ export default {
       birthday: "",
       mail_address: "",
       point: "",
+      date: "",
+      assumedName: "",
+      assumedKName: "",
     });
     const store = useStore();
     const router = useRouter();
@@ -161,9 +164,13 @@ export default {
         status = await axios.post(surl, params);
         console.log(status.data);
         if (status.data.status) {
+          data.user = status.data.user;
           data.name = status.data.user.name.replace(".", "");
           data.kname = status.data.user.kname.replace(".", "");
+          data.assumedName = status.data.user.name;
+          data.assumedKName = status.data.user.kname;
           data.gender = status.data.user.sex;
+          data.date = status.data.user.birthday;
           let birthday = status.data.user.birthday.split("-");
           data.birthday = `${birthday[0]} 年${birthday[1]} 月 ${birthday[2]} 日`;
           data.mail_address = status.data.user.mail_address;
@@ -175,11 +182,28 @@ export default {
         router.push("/Error");
       }
     };
+    const jump = () => {
+      let assumedName = data.assumedKName.split(".");
+      let assumedKName = data.assumedName.split(".");
+      router.push({
+        name: "Mypage-change",
+        params: {
+          Umaile: data.mail_address,
+          birthday: data.date,
+          gender: data.gender,
+          hsName: assumedName[0],
+          hfName: assumedName[1],
+          kfName: assumedKName[1],
+          ksName: assumedKName[0],
+        },
+      });
+    };
     onMounted(() => {
       getMypage();
     });
     return {
       data,
+      jump,
     };
   },
 };

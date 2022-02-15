@@ -19,6 +19,9 @@ import Logreg from './components/Logreg.vue'
 import Mypage from './components/Mypage.vue'
 import passchange from './components/pass-change.vue'
 import Passchangecomp from './components/Pass-change-comp.vue'
+import Mypagechange from './components/Mypage-change.vue'
+import Memberwithdrawal from './components/Member-withdrawal.vue'
+import Memberwithdrawaldecision from './components/Member-withdrawal-decision.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -106,6 +109,21 @@ export const router = createRouter({
       path: '/Pass-change-comp',
       name: 'Pass-change-comp',
       component: Passchangecomp,
+      props: true,
+    }, {
+      path: '/Mypage-change',
+      name: 'Mypage-change',
+      component: Mypagechange,
+      props: true,
+    }, {
+      path: '/Member-withdrawal',
+      name: 'Member-withdrawal',
+      component: Memberwithdrawal,
+      props: true,
+    }, {
+      path: '/Member-withdrawal-decision',
+      name: 'Member-withdrawal-decision',
+      component: Memberwithdrawaldecision,
       props: true,
     }
   ],

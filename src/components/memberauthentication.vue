@@ -100,7 +100,6 @@ export default {
       try {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.status) {
-          console.log("新規登録成功");
           router.push("/MemberComp");
         } else {
           router.push("/Error");

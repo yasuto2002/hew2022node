@@ -9,6 +9,10 @@
 // var app = createApp(App)
 //#appの中に組み込み
 // app.mount('#app')
+import jQuery from "jquery";
+global.jquery = jQuery;
+global.$ = jQuery;
+window.$ = window.jQuery = require("jquery");
 import {
   createApp
 } from 'vue'

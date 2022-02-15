@@ -391,35 +391,6 @@ export default {
         return false;
       }
     };
-    // const postData = async () => {
-    //   let params = new URLSearchParams();
-    //   // params.append("id", data.password1);
-    //   params.append("kName", data.ksName + data.kfName);
-    //   params.append("hName", data.hsName + data.hfName);
-    //   params.append("sex", data.gender);
-    //   params.append("mail_address", data.maile);
-    //   params.append("password", data.password1);
-    //   params.append("birthday", data.date);
-    //   try {
-    //     data.jso = await axios.post(
-    //       url,
-    //       // adapter: axiosJsonpAdapter,
-    //       params
-    //     );
-    //     console.log(data.jso.data.state);
-    //     console.log(data.gender);
-    //   } catch (error) {
-    //     console.log("post Error");
-    //     // ダメなときはエラー
-    //     console.error(error);
-    //   }
-    //   if (data.jso.data.state == true) {
-    //     router.push("/");
-    //   } else if (data.jso.data.state == 23000) {
-    //     data.emsagge = "入力されたメールアドレスはすでに使用されています";
-    //   }
-    //   return;
-    // };
     const jumppage = () => {
       // this.$router.push("/");
       router.push("/");
