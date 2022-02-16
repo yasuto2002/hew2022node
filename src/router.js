@@ -22,6 +22,8 @@ import Passchangecomp from './components/Pass-change-comp.vue'
 import Mypagechange from './components/Mypage-change.vue'
 import Memberwithdrawal from './components/Member-withdrawal.vue'
 import Memberwithdrawaldecision from './components/Member-withdrawal-decision.vue'
+import Contact from './components/Contact.vue'
+import Contactdecision from './components/Contact-decision.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -124,6 +126,16 @@ export const router = createRouter({
       path: '/Member-withdrawal-decision',
       name: 'Member-withdrawal-decision',
       component: Memberwithdrawaldecision,
+      props: true,
+    }, {
+      path: '/Contact',
+      name: 'Contact',
+      component: Contact,
+      props: true,
+    }, {
+      path: '/Contact-decision',
+      name: 'Contact-decision',
+      component: Contactdecision,
       props: true,
     }
   ],

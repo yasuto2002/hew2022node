@@ -227,7 +227,7 @@
 </template>
 <script>
 import axios from "axios";
-import axiosJsonpAdapter from "axios-jsonp";
+import axiosJsonpAdapter from "vue-jsonp";
 import { reactive } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";

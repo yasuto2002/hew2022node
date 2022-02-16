@@ -100,7 +100,8 @@ export default {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.state) {
           await Logout();
-          router.push("/Member-withdrawal-decision");
+          // router.go({ path: "/Member-withdrawal-decision", force: true });
+          window.location.href = "/Member-withdrawal-decision";
         } else {
           data.em = true;
         }

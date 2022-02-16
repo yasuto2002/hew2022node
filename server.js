@@ -461,7 +461,7 @@ app.post("/getUdata", function (req, res) {
 
 app.post("/authSession", function (req, res) {
   try {
-    req.session.Auth = req.body.maile;
+    req.session.Log = req.body.maile;
     req.session.save();
     let ob = {
       status: true

@@ -68,7 +68,8 @@ export default {
       try {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.state) {
-          authSession();
+          await authSession();
+          // router.go({ path: "/MemberComp", force: true });
           // router.push("/");
         } else {
           data.em = "認証コードが誤っています";
@@ -100,7 +101,25 @@ export default {
       try {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.status) {
-          router.push("/MemberComp");
+          // router.go({ path: "/MemberComp", force: true });
+          window.location.href = "/MemberComp";
+        } else {
+          router.push("/Error");
+        }
+      } catch (error) {
+        console.log(error);
+        router.push("/Error");
+      }
+    };
+    const LogSession = async () => {
+      let reqstatus;
+      let surl = "/LogSession";
+      let params = new URLSearchParams();
+      params.append("mail_address", data.maile);
+      try {
+        reqstatus = await axios.post(surl, params);
+        if (reqstatus.data.status) {
+          return;
         } else {
           router.push("/Error");
         }

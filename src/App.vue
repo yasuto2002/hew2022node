@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header ref="child" />
     <router-view></router-view>
     <Footer />
   </div>
@@ -20,6 +20,12 @@ export default {
   },
   mounted() {
     console.log("----- App Mounted! -----");
+  },
+  methods: {
+    updateHed() {
+      this.$refs.child[0].update();
+      console.log("update");
+    },
   },
   data() {
     return {

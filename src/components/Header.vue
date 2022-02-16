@@ -90,6 +90,12 @@ export default {
         router.push("/Error");
       }
     };
+    const update = async () => {
+      let flg = await LogCheck();
+      if (flg) {
+        data.viewflg = false;
+      }
+    };
     onMounted(async () => {
       let flg = await LogCheck();
       if (flg) {
@@ -99,6 +105,7 @@ export default {
     return {
       data,
       Logout,
+      update,
     };
   },
 };

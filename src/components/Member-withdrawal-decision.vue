@@ -6,7 +6,7 @@
       <br />
       ご利用ありがとうございました。<br />
     </p>
-    <a href="/" class="member-decision-box-link">TOPへ戻る</a>
+    <router-link to="/" class="member-decision-box-link">TOPへ戻る</router-link>
   </div>
 </template>
 
