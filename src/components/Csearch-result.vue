@@ -179,7 +179,7 @@
             <a class="page-numbers" href="">3</a>
             <span class="page-numbers dots">…</span>
             <a class="page-numbers" href="">10</a> -->
-            <template v-if="data.page == 1">
+            <template v-if="data.page <= 1">
               <template v-for="n in data.count" :key="n">
                 <span
                   v-if="n == 1"
@@ -295,7 +295,7 @@
                   >{{ n }}</span
                 >
                 <router-link
-                  v-if="n == data.page + 1"
+                  v-if="n == data.next"
                   :to="{
                     path: '/Csearch-result',
                     query: {
@@ -313,7 +313,7 @@
                   class="page-numbers"
                   >{{ n }}</router-link
                 >
-                <template v-if="data.page + 1 < data.count">
+                <template v-if="data.next < data.count">
                   <span class="page-numbers dots">…</span>
                   <router-link
                     :to="{

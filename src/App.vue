@@ -9,6 +9,7 @@
 <script>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
+import $ from "jquery";
 export default {
   name: "app",
   components: {
@@ -18,9 +19,7 @@ export default {
   created() {
     console.log("***** App Created! *****");
   },
-  mounted() {
-    console.log("----- App Mounted! -----");
-  },
+  mounted() {},
   methods: {
     updateHed() {
       this.$refs.child[0].update();

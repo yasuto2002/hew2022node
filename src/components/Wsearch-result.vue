@@ -179,7 +179,7 @@
             <a class="page-numbers" href="">3</a>
             <span class="page-numbers dots">…</span>
             <a class="page-numbers" href="">10</a> -->
-            <template v-if="data.page == 1">
+            <template v-if="data.page <= 1">
               <template v-for="n in data.count" :key="n">
                 <span
                   v-if="n == 1"
@@ -217,6 +217,18 @@
                   >
                 </template>
               </template>
+              <router-link
+                :to="{
+                  path: '/Wsearch-result',
+                  query: {
+                    word: $route.query.word,
+                    page: data.next,
+                  },
+                }"
+                class="last page-numbers"
+                v-if="data.page < data.count"
+                >&raquo;</router-link
+              >
             </template>
 
             <template v-else>
@@ -245,7 +257,7 @@
                   >{{ n }}</span
                 >
                 <router-link
-                  v-if="n == data.page + 1"
+                  v-if="n == data.next"
                   :to="{
                     path: '/Wsearch-result',
                     query: { word: $route.query.word, page: n },
@@ -253,7 +265,7 @@
                   class="page-numbers"
                   >{{ n }}</router-link
                 >
-                <template v-if="data.page + 1 < data.count">
+                <template v-if="data.next < data.count">
                   <span class="page-numbers dots">…</span>
                   <router-link
                     :to="{
@@ -265,20 +277,20 @@
                   >
                 </template>
               </template>
+              <router-link
+                :to="{
+                  path: '/Wsearch-result',
+                  query: {
+                    word: $route.query.word,
+                    page: data.next,
+                  },
+                }"
+                class="last page-numbers"
+                v-if="data.page < data.count"
+                >&raquo;</router-link
+              >
             </template>
 
-            <router-link
-              :to="{
-                path: '/Wsearch-result',
-                query: {
-                  word: $route.query.word,
-                  page: data.next,
-                },
-              }"
-              class="last page-numbers"
-              v-if="data.page < data.count"
-              >&raquo;</router-link
-            >
             <!-- <a class="next page-numbers" href="">&rsaquo;</a> -->
             <!-- <a class="last page-numbers" href="">&raquo;</a> -->
           </div>

@@ -27,7 +27,7 @@
             <a @click="Logout"> ログアウト </a>
           </li>
           <li class="navItem navItemAbout">
-            <a href="#"> 購入検索 </a>
+            <a id="serch"> 購入検索 </a>
           </li>
           <li class="logo">
             <router-link to="/"
@@ -59,6 +59,7 @@ import { useStore } from "vuex";
 import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import UserHelper from "../functons/userHelper";
+import $ from "jquery";
 
 export default {
   name: "Hello",
@@ -101,6 +102,9 @@ export default {
       if (flg) {
         data.viewflg = false;
       }
+      $("#serch").click(function () {
+        console.log("333");
+      });
     });
     return {
       data,
