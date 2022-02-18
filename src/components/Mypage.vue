@@ -174,7 +174,7 @@ export default {
           let birthday = status.data.user.birthday.split("-");
           data.birthday = `${birthday[0]} 年${birthday[1]} 月 ${birthday[2]} 日`;
           data.mail_address = status.data.user.mail_address;
-          data.point = status.data.user.point;
+          data.point = status.data.point;
         } else {
           router.push("/Error");
         }

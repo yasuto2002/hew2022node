@@ -76,10 +76,7 @@ import * as yup from "yup";
 export default {
   name: "Contact",
   setup(props, context) {
-    const data = reactive({
-      title: "HelloWorld",
-      msg: "This is HelloWorld component.",
-    });
+    const data = reactive({});
     const store = useStore();
     const router = useRouter();
     const route = useRoute();

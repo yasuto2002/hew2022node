@@ -24,6 +24,8 @@ import Memberwithdrawal from './components/Member-withdrawal.vue'
 import Memberwithdrawaldecision from './components/Member-withdrawal-decision.vue'
 import Contact from './components/Contact.vue'
 import Contactdecision from './components/Contact-decision.vue'
+import Buypage from './components/Buy-page.vue'
+import BuypageConfirmation from './components/Buy-page-Confirmation.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -136,6 +138,16 @@ export const router = createRouter({
       path: '/Contact-decision',
       name: 'Contact-decision',
       component: Contactdecision,
+      props: true,
+    }, {
+      path: '/Buy-page',
+      name: 'Buy-page',
+      component: Buypage,
+      props: true,
+    }, {
+      path: '/Buy-page-Confirmation',
+      name: 'Buy-page-Confirmation',
+      component: BuypageConfirmation,
       props: true,
     }
   ],

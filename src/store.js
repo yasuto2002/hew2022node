@@ -17,7 +17,8 @@ export const store = createStore({
         Smax: '255文字以下で入力してください',
         Pasmax: '20文字以下で入力してください',
         Pasmin: '10文字以上入力してください',
-        Matches: "使用できない文字列が含まれています"
+        Matches: "使用できない文字列が含まれています",
+        Fraud: "不正な値です"
       },
       provisFlg: "",
       apiUrl: "http://localhost:8080",

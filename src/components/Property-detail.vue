@@ -137,13 +137,16 @@
     </div>
 
     <div class="property-detail-buy">
-      <a
-        href="buy-page.html"
+      <router-link
+        :to="{
+          name: 'Buy-page',
+          query: { number: data.number },
+        }"
         class="property-detail-buy-btn property-detail-buy-btn-c"
         ><i class="fas fa-shopping-cart"></i>購入する<i
           class="fas fa-chevron-right"
         ></i
-      ></a>
+      ></router-link>
     </div>
   </div>
 </template>
@@ -175,6 +178,7 @@ export default {
       viewFlg: false,
       procesFlg: false,
       maile: null,
+      number: "",
     });
     const store = useStore();
     const router = useRouter();
@@ -200,6 +204,7 @@ export default {
           }
           data.viewFlg = reqstatus.data.flg;
           data.procesFlg = reqstatus.data.flg;
+          data.number = route.query.number;
         }
       } catch (error) {
         console.log(error);
