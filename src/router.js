@@ -26,6 +26,10 @@ import Contact from './components/Contact.vue'
 import Contactdecision from './components/Contact-decision.vue'
 import Buypage from './components/Buy-page.vue'
 import BuypageConfirmation from './components/Buy-page-Confirmation.vue'
+import Help from './components/Help.vue'
+import Helpfirst from './components/Help-first.vue'
+import Helpmember from './components/Help-member.vue'
+import Helppay from './components/Help-pay.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -149,11 +153,40 @@ export const router = createRouter({
       name: 'Buy-page-Confirmation',
       component: BuypageConfirmation,
       props: true,
+    }, {
+      path: '/Help',
+      name: 'Help',
+      component: Help,
+      props: true,
+    }, {
+      path: '/Help-first',
+      name: 'Help-first',
+      component: Helpfirst,
+      props: true,
+    }, {
+      path: '/Help-member',
+      name: 'Help-member',
+      component: Helpmember,
+      props: true,
+    }, {
+      path: '/Help-pay',
+      name: 'Help-pay',
+      component: Helppay,
+      props: true,
     }
   ],
+  // scrollBehavior(to, from, savedPosition) {
+  //   return {
+  //     top: 0
+  //   }
+  // }
   scrollBehavior(to, from, savedPosition) {
-    return {
-      top: 0
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {
+        top: 0
+      }
     }
   }
 })

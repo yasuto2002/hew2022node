@@ -65,21 +65,21 @@ app.use(session({
   }
 }));
 
-app.get('/help', (req, res) => {
-  let maile = req.session.Log;
-  return res.render("help", {
-    maile: maile
-  });
-});
-app.get('/help-first', (req, res) => {
-  return res.render("help-first");
-});
-app.get('/help-member', (req, res) => {
-  return res.render("help-member");
-});
-app.get('/help-pay', (req, res) => {
-  return res.render("help-pay");
-});
+// app.get('/help', (req, res) => {
+//   let maile = req.session.Log;
+//   return res.render("help", {
+//     maile: maile
+//   });
+// });
+// app.get('/help-first', (req, res) => {
+//   return res.render("help-first");
+// });
+// app.get('/help-member', (req, res) => {
+//   return res.render("help-member");
+// });
+// app.get('/help-pay', (req, res) => {
+//   return res.render("help-pay");
+// });
 
 const {
   Server

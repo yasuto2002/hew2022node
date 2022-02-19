@@ -78,6 +78,7 @@
               name="zipcode"
               placeholder="8120012"
               v-model="postal"
+              maxlength="8"
             />
             <button id="search" type="button" @click="serch">住所検索</button>
             <p id="error">{{ data.error }}</p>
@@ -167,6 +168,7 @@
                   class="buy_page-cardForm-Item-Input"
                   placeholder="&#9679;&#9679;&#9679;"
                   v-model="cardCsv"
+                  maxlength="4"
                 />
               </div>
             </div>
@@ -229,9 +231,14 @@
       </div>
       <div class="buy-page-box-right">
         <div class="buy-page-box-right-minibox">
-          <a type="button" class="buy-page-minibox-btn" @click="onSubmit">
+          <button
+            type="button"
+            class="buy-page-minibox-btn"
+            @click="onSubmit"
+            :disabled="!meta.valid"
+          >
             次へ進む
-          </a>
+          </button>
           <div class="buy-page-box-box">
             <p class="buy-page-box-box-txt">物件詳細</p>
             <p class="buy-page-box-box-txt">{{ data.propertyName }}</p>
@@ -289,7 +296,7 @@ export default {
       propertyName: null,
       propertyPrice: null,
       sum: 0,
-      point: "",
+      point: 0,
     });
     const { getUserPoint } = UserHelper();
     const { LogCheck } = UserHelper();
@@ -300,9 +307,9 @@ export default {
     const em = store.state.em;
     const schema = yup.object({
       postal: yup
-        .number(em.Fraud)
+        .string(em.Fraud)
         .min(7, em.Fraud)
-        .max(7, em.Fraud)
+        .max(8, em.Fraud)
         .required(em.Quired),
       address1: yup
         .string(em.String)
@@ -350,7 +357,7 @@ export default {
         .required(em.Quired)
         .email(em.Maile),
       cardNumber: yup
-        .number(em.Fraud)
+        .string(em.Fraud)
         .min(14, em.Fraud)
         .max(16, em.Fraud)
         .required(em.Quired),
@@ -360,22 +367,22 @@ export default {
         .matches(store.state.regex, em.Matches)
         .required(em.Quired),
       cardMonth: yup
-        .number(em.Fraud)
+        .string(em.Fraud)
         .min(2, em.Fraud)
         .max(2, em.Fraud)
         .required(em.Quired),
       cardYear: yup
-        .number(em.Fraud)
+        .string(em.Fraud)
         .min(2, em.Fraud)
         .max(2, em.Fraud)
         .required(em.Quired),
       cardCsv: yup
-        .number(em.Fraud)
+        .string(em.Fraud)
         .min(3, em.Fraud)
-        .max(3, em.Fraud)
+        .max(4, em.Fraud)
         .required(em.Quired),
       collNumber: yup
-        .number(em.Fraud)
+        .string(em.Fraud)
         .min(10, em.Fraud)
         .max(11, em.Fraud)
         .required(em.Quired),
@@ -515,6 +522,8 @@ export default {
       cardYear,
       cardCsv,
       collNumber,
+      meta,
+      errors,
     };
   },
 };
@@ -525,5 +534,8 @@ export default {
 }
 .buy-page-box-right-minibox {
   height: 290px;
+}
+.buy-page-minibox-btn {
+  color: #fff;
 }
 </style>

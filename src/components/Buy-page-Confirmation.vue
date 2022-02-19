@@ -132,7 +132,7 @@
 
       <div class="buy-page-conmain-right">
         <div class="buy-page-box-comright-minibox">
-          <a href="buy-page-com.html" class="buy-page-minibox-btn">購入する</a>
+          <a class="buy-page-minibox-btn">購入する</a>
           <div class="buy-page-box-box">
             <p class="buy-page-box-box-txt">物件価格</p>
             <p class="buy-page-box-box-txt">¥{{ data.propertyPrice }}0000</p>
@@ -208,7 +208,7 @@ export default {
       imgPath: null,
       number: props.number,
       poinnt: props.point,
-      conpoint: props.point,
+      conpoint: 0,
       sum: 0,
     });
     const store = useStore();
@@ -245,7 +245,12 @@ export default {
       } else {
         router.push("/Error");
       }
-      data.sum = parseInt(1000 + data.propertyPrice * 10000 - data.poinnt);
+      try {
+        data.conpoint = data.poinnt;
+        data.sum = parseInt(1000 + data.propertyPrice * 10000 - data.poinnt);
+      } catch (error) {
+        router.push("/Error");
+      }
     });
     return {
       data,

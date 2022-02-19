@@ -41,7 +41,7 @@
             <a href="./login.html"> ゲーム </a>
           </li>
           <li class="navItem navItemContact">
-            <a href="/help"> ヘルプ </a>
+            <router-link to="/Help"> ヘルプ </router-link>
           </li>
         </ul>
       </nav>
@@ -65,8 +65,6 @@ export default {
   name: "Hello",
   setup(props, context) {
     const data = reactive({
-      title: "HelloWorld",
-      msg: "This is HelloWorld component.",
       viewflg: true,
     });
     const store = useStore();
