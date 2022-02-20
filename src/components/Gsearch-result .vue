@@ -1,4 +1,4 @@
-<template>
+ <template>
   <!-- パンくずリスト -->
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
@@ -43,7 +43,6 @@
             </div>
           </div>
         </template>
-
         <nav class="pagination">
           <div class="nav-links">
             <!-- <a class="first page-numbers" href="">&laquo;</a> -->
@@ -65,16 +64,10 @@
                 <router-link
                   v-if="n == 2"
                   :to="{
-                    name: 'Csearch-result',
-                    query: {
-                      lower: $route.query.lower,
-                      upper: $route.query.upper,
-                      floor_plan: $route.query.floor_plan,
-                      building_type: $route.query.building_type,
-                      room_floor: $route.query.room_floor,
-                      construction: $route.query.construction,
-                      construction_date: $route.query.construction_date,
-                      station_walk: $route.query.station_walk,
+                    path: '/Gsearch-result',
+                    params: {
+                      latitude: data.latitude,
+                      longitude: data.longitude,
                       page: n,
                     },
                   }"
@@ -84,16 +77,10 @@
                 <router-link
                   v-if="n == 3"
                   :to="{
-                    path: '/Csearch-result',
-                    query: {
-                      lower: $route.query.lower,
-                      upper: $route.query.upper,
-                      floor_plan: $route.query.floor_plan,
-                      building_type: $route.query.building_type,
-                      room_floor: $route.query.room_floor,
-                      construction: $route.query.construction,
-                      construction_date: $route.query.construction_date,
-                      station_walk: $route.query.station_walk,
+                    path: '/Gsearch-result',
+                    params: {
+                      latitude: data.latitude,
+                      longitude: data.longitude,
                       page: n,
                     },
                   }"
@@ -104,16 +91,10 @@
                   <span class="page-numbers dots">…</span>
                   <router-link
                     :to="{
-                      path: '/Csearch-result',
-                      query: {
-                        lower: $route.query.lower,
-                        upper: $route.query.upper,
-                        floor_plan: $route.query.floor_plan,
-                        building_type: $route.query.building_type,
-                        room_floor: $route.query.room_floor,
-                        construction: $route.query.construction,
-                        construction_date: $route.query.construction_date,
-                        station_walk: $route.query.station_walk,
+                      path: '/Gsearch-result',
+                      params: {
+                        latitude: data.latitude,
+                        longitude: data.longitude,
                         page: data.count,
                       },
                     }"
@@ -122,21 +103,28 @@
                   >
                 </template>
               </template>
+              <router-link
+                :to="{
+                  path: '/Gsearch-result',
+                  params: {
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    page: data.next,
+                  },
+                }"
+                class="last page-numbers"
+                v-if="data.page < data.count"
+                >&raquo;</router-link
+              >
             </template>
 
             <template v-else>
               <router-link
                 :to="{
-                  path: '/Csearch-result',
-                  query: {
-                    lower: $route.query.lower,
-                    upper: $route.query.upper,
-                    floor_plan: $route.query.floor_plan,
-                    building_type: $route.query.building_type,
-                    room_floor: $route.query.room_floor,
-                    construction: $route.query.construction,
-                    construction_date: $route.query.construction_date,
-                    station_walk: $route.query.station_walk,
+                  path: '/Gsearch-result',
+                  params: {
+                    latitude: data.latitude,
+                    longitude: data.longitude,
                     page: data.page - 1,
                   },
                 }"
@@ -147,16 +135,10 @@
                 <router-link
                   v-if="n == data.page - 1"
                   :to="{
-                    path: '/Csearch-result',
-                    query: {
-                      lower: $route.query.lower,
-                      upper: $route.query.upper,
-                      floor_plan: $route.query.floor_plan,
-                      building_type: $route.query.building_type,
-                      room_floor: $route.query.room_floor,
-                      construction: $route.query.construction,
-                      construction_date: $route.query.construction_date,
-                      station_walk: $route.query.station_walk,
+                    path: '/Gsearch-result',
+                    params: {
+                      latitude: data.latitude,
+                      longitude: data.longitude,
                       page: n,
                     },
                   }"
@@ -172,16 +154,10 @@
                 <router-link
                   v-if="n == data.next"
                   :to="{
-                    path: '/Csearch-result',
-                    query: {
-                      lower: $route.query.lower,
-                      upper: $route.query.upper,
-                      floor_plan: $route.query.floor_plan,
-                      building_type: $route.query.building_type,
-                      room_floor: $route.query.room_floor,
-                      construction: $route.query.construction,
-                      construction_date: $route.query.construction_date,
-                      station_walk: $route.query.station_walk,
+                    path: '/Gsearch-result',
+                    params: {
+                      latitude: data.latitude,
+                      longitude: data.longitude,
                       page: n,
                     },
                   }"
@@ -192,16 +168,10 @@
                   <span class="page-numbers dots">…</span>
                   <router-link
                     :to="{
-                      path: '/Csearch-result',
-                      query: {
-                        lower: $route.query.lower,
-                        upper: $route.query.upper,
-                        floor_plan: $route.query.floor_plan,
-                        building_type: $route.query.building_type,
-                        room_floor: $route.query.room_floor,
-                        construction: $route.query.construction,
-                        construction_date: $route.query.construction_date,
-                        station_walk: $route.query.station_walk,
+                      path: '/Gsearch-result',
+                      params: {
+                        latitude: data.latitude,
+                        longitude: data.longitude,
                         page: data.count,
                       },
                     }"
@@ -210,27 +180,21 @@
                   >
                 </template>
               </template>
+              <router-link
+                :to="{
+                  path: '/Gsearch-result',
+                  params: {
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    page: data.next,
+                  },
+                }"
+                class="last page-numbers"
+                v-if="data.page < data.count"
+                >&raquo;</router-link
+              >
             </template>
 
-            <router-link
-              :to="{
-                path: '/Csearch-result',
-                query: {
-                  lower: $route.query.lower,
-                  upper: $route.query.upper,
-                  floor_plan: $route.query.floor_plan,
-                  building_type: $route.query.building_type,
-                  room_floor: $route.query.room_floor,
-                  construction: $route.query.construction,
-                  construction_date: $route.query.construction_date,
-                  station_walk: $route.query.station_walk,
-                  page: data.next,
-                },
-              }"
-              class="last page-numbers"
-              v-if="data.page < data.count"
-              >&raquo;</router-link
-            >
             <!-- <a class="next page-numbers" href="">&rsaquo;</a> -->
             <!-- <a class="last page-numbers" href="">&raquo;</a> -->
           </div>
@@ -249,81 +213,66 @@ import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import LeftSerch from "./LeftSerch.vue";
 export default {
-  name: "Csearch-result.vue",
+  name: "Gsearch-result",
   components: {
     LeftSerch,
   },
   props: {
-    word: String,
+    latitude: String,
+    longitude: String,
+    page: String,
   },
   setup(props) {
-    const data = reactive({
-      word: props.word,
-      properties: "",
-      count: null,
-      page: null,
-      next: 0,
-    });
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
-    const getProperties = async () => {
+    const data = reactive({
+      properties: "",
+      count: null,
+      page: route.query.page,
+      next: null,
+      latitude: route.query.latitude,
+      longitude: route.query.longitude,
+    });
+    const GpsSerch = async () => {
       let reqstatus;
-      let surl = store.state.apiUrl + "/Condiserch";
+      let surl = store.state.apiUrl + "/GpsSerch";
       let params = new URLSearchParams();
-      params.append("lower", route.query.lower);
-      params.append("upper", route.query.upper);
-      params.append("floor_plan", route.query.floor_plan);
-      params.append("building_type", route.query.building_type);
-      params.append("room_floor", route.query.room_floor);
-      params.append("construction", route.query.construction);
-      params.append("construction_date", route.query.construction_date);
-      params.append("station_walk", route.query.station_walk);
-      params.append("skip", (route.query.page - 1) * 4);
+      params.append("latitude", data.latitude);
+      params.append("longitude", data.longitude);
+      params.append("page", 1);
       try {
         reqstatus = await axios.post(surl, params);
-        if (reqstatus.data.property[0] != null) {
-          data.properties = reqstatus.data.property;
-          data.count = Math.ceil(reqstatus.data.count / 4);
-          data.page = route.query.page;
+        if (reqstatus.data.state) {
+          data.properties = reqstatus.data.properties;
+          data.count = Math.ceil(reqstatus.data.count[0].count / 4);
           data.next = parseInt(data.page) + 1;
+        } else {
+          router.push("/Error");
         }
       } catch (error) {
         console.log(error);
         router.push("/Error");
       }
     };
-    const updateProperties = async (
-      page,
-      lower,
-      upper,
-      floor_plan,
-      building_type,
-      room_floor,
-      construction,
-      construction_date,
-      station_walk
-    ) => {
+    const updateProperties = async (page, latitude, longitude) => {
       let reqstatus;
-      let surl = store.state.apiUrl + "/Condiserch";
+      let surl = store.state.apiUrl + "/GpsSerch";
       let params = new URLSearchParams();
-      params.append("lower", lower);
-      params.append("upper", upper);
-      params.append("floor_plan", floor_plan);
-      params.append("building_type", building_type);
-      params.append("room_floor", room_floor);
-      params.append("construction", construction);
-      params.append("construction_date", construction_date);
-      params.append("station_walk", station_walk);
-      params.append("skip", (page - 1) * 4);
+      params.append("latitude", latitude);
+      params.append("longitude", longitude);
+      params.append("page", page);
       try {
         reqstatus = await axios.post(surl, params);
-        if (reqstatus.data.property[0] != null) {
-          data.properties = reqstatus.data.property;
-          data.count = Math.ceil(reqstatus.data.count / 4);
-          data.page = route.query.page;
+        if (reqstatus.data.state) {
+          data.properties = reqstatus.data.properties;
+          data.count = Math.ceil(reqstatus.data.count[0].count / 4);
+          data.page = page;
           data.next = parseInt(data.page) + 1;
+        } else {
+          router.push("/Error");
         }
+        console.log(reqstatus);
       } catch (error) {
         console.log(error);
         router.push("/Error");
@@ -343,21 +292,23 @@ export default {
       });
     };
     onMounted(() => {
-      getProperties();
-      data.page = route.query.page;
-      // console.log("mount");
+      if (
+        route.query.latitude == undefined ||
+        route.query.latitude == null ||
+        route.query.longitude == undefined ||
+        route.query.longitude == null ||
+        route.query.page == undefined ||
+        route.query.page == null
+      ) {
+        router.push("/Error");
+      }
+      GpsSerch();
     });
     onBeforeRouteUpdate((to, from, next) => {
       updateProperties(
-        to.query.page,
-        to.query.lower,
-        to.query.upper,
-        to.query.floor_plan,
-        to.query.building_type,
-        to.query.room_floor,
-        to.query.construction,
-        to.query.construction_date,
-        to.query.station_walk
+        route.query.latitude,
+        route.query.longitude,
+        route.query.page
       );
       next();
     });
@@ -365,6 +316,7 @@ export default {
       // serch,
       data,
       say,
+      GpsSerch,
     };
   },
 };

@@ -66,6 +66,7 @@ export const store = createStore({
         26: "目白",
         27: "高田馬場",
         28: "新大久保",
+        29: "田町",
       },
       floor_plan: {
         1: "ワンルーム",

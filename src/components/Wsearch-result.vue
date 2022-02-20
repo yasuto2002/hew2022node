@@ -11,132 +11,7 @@
   <div class="main_box">
     <div class="main">
       <!--左側　新着物件-->
-      <div class="left-sarch-column">
-        <p class="searchform_head">駅名・エリア名で一発検索</p>
-        <form method="get" action="#" class="search_container">
-          <input
-            type="text"
-            class="searchform_text-form"
-            size="30"
-            placeholder="お探しの駅またはエリア名を入力"
-          />
-          <input type="submit" value="検索" />
-        </form>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">絞り込み条件</p>
-        </div>
-        <form class="search_line">
-          <label><input type="radio" name="line" />山手線</label>
-          <label><input type="radio" name="line" />中央線</label>
-        </form>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">賃料</p>
-        </div>
-        <div class="rent">
-          <select name="rent_low">
-            <option value="low">下限なし</option>
-            <option value="aa">1000万円~</option>
-            <option value="bb">2000万円~</option>
-            <option value="cc">3000万円~</option>
-            <option value="dd">4000万円~</option>
-          </select>
-          <select name="Rent_hight">
-            <option value="hight">上限なし</option>
-            <option value="ee">~1000万円</option>
-            <option value="ff">~2000万円</option>
-            <option value="gg">~3000万円</option>
-            <option value="hh">~4000万円</option>
-          </select>
-        </div>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">間取りタイプ</p>
-        </div>
-        <div class="searchform_floor">
-          <label><input type="radio" name="floor" />1R</label>
-          <label><input type="radio" name="floor" />1K</label>
-          <label><input type="radio" name="floor" />1DK</label>
-          <label><input type="radio" name="floor" />1LDK</label><br />
-          <label><input type="radio" name="floor" />2K</label>
-          <label><input type="radio" name="floor" />2DK</label>
-          <label><input type="radio" name="floor" />2LDK</label><br />
-          <label><input type="radio" name="floor" />3K</label>
-          <label><input type="radio" name="floor" />3DK</label>
-          <label><input type="radio" name="floor" />3LDK</label><br />
-          <label><input type="radio" name="floor" />4K</label>
-          <label><input type="radio" name="floor" />4DK</label>
-          <label><input type="radio" name="floor" />4LDK</label><br />
-          <label><input type="radio" name="floor" />5K以上</label>
-        </div>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">建物の種類</p>
-        </div>
-        <div class="searchform_floor">
-          <label><input type="radio" name="floor" />マンション</label>
-          <label><input type="radio" name="floor" />アパート</label>
-          <label><input type="radio" name="floor" />一戸建て</label>
-        </div>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">部屋階数</p>
-        </div>
-        <div class="searchform_floor">
-          <label><input type="radio" name="floor" />1階</label>
-          <label><input type="radio" name="floor" />2階</label>
-          <label><input type="radio" name="floor" />3階</label>
-          <label><input type="radio" name="floor" />それ以上</label>
-        </div>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">構造</p>
-        </div>
-        <div class="searchform_floor">
-          <label><input type="radio" name="floor" />木造</label>
-          <label><input type="radio" name="floor" />鉄筋</label>
-          <label><input type="radio" name="floor" />鉄骨</label><br />
-          <label><input type="radio" name="floor" />ブロック・それ以外</label>
-        </div>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">築年数</p>
-        </div>
-        <div class="rent">
-          <select name="rent_low">
-            <option value="zero">指定しない</option>
-            <option value="ii">1年以内</option>
-            <option value="jj">3年以内</option>
-            <option value="kk">5年以内</option>
-            <option value="ll">7年以内</option>
-            <option value="nn">10年以内</option>
-            <option value="mm">15年以内</option>
-            <option value="oo">20年以内</option>
-            <option value="pp">25年以内</option>
-          </select>
-        </div>
-
-        <div class="searchform_border">
-          <p class="searchform_txt">駅徒歩</p>
-        </div>
-        <div class="rent">
-          <select name="rent_low">
-            <option value="zeroo">指定しない</option>
-            <option value="qq">5分以内</option>
-            <option value="rr">10分以内</option>
-            <option value="ss">15分以内</option>
-            <option value="tt">15分以上</option>
-          </select>
-        </div>
-
-        <div class="searchform_submit">
-          <section>
-            <a href="#" class="btn_06"><span>BUTTON</span></a>
-          </section>
-        </div>
-      </div>
-
+      <LeftSerch />
       <!--右側　新着物件-->
       <div class="right-sarch-column">
         <template v-for="(item, key) in data.properties" :key="key">
@@ -307,8 +182,12 @@ import { onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useField, useForm } from "vee-validate";
+import LeftSerch from "./LeftSerch.vue";
 export default {
   name: "Search-result",
+  components: {
+    LeftSerch,
+  },
   props: {
     word: String,
   },

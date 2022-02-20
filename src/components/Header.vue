@@ -27,7 +27,7 @@
             <a @click="Logout"> ログアウト </a>
           </li>
           <li class="navItem navItemAbout">
-            <a id="serch"> 購入検索 </a>
+            <router-link to="/Property-search"> 購入検索 </router-link>
           </li>
           <li class="logo">
             <router-link to="/"
@@ -35,10 +35,10 @@
             /></router-link>
           </li>
           <li class="navItem navItemAccess">
-            <a href="#"> 物件検索 </a>
+            <router-link to="/Property-search"> 物件検索 </router-link>
           </li>
           <li class="navItem navItemContact">
-            <a href="./login.html"> ゲーム </a>
+            <a href="./match"> ゲーム </a>
           </li>
           <li class="navItem navItemContact">
             <router-link to="/Help"> ヘルプ </router-link>
