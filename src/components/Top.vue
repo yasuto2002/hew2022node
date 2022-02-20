@@ -332,7 +332,7 @@
     </div> -->
 
         <div class="wrap">
-          <div class="card">
+          <!-- <div class="card">
             <img src="images/house.png" alt="" />
 
             <div class="card__textbox">
@@ -343,9 +343,24 @@
               </div>
               <div class="card__overviewtext">徒歩9分 / 38㎡ / 1LDK</div>
             </div>
-          </div>
+          </div> -->
+          <template v-for="(item, key) in data.property" :key="key">
+            <div class="card" @click="say(item.id)">
+              <img :src="item.thumbnails" alt="物件画像" />
 
-          <div class="card">
+              <div class="card__textbox">
+                <div class="card__titletext">{{ item.name }}</div>
+                <div class="card__titletext_price">{{ item.price }}万円</div>
+                <div class="card__overviewtext">JR山手線</div>
+                <div class="card__overviewtext">
+                  徒歩{{ item.station_walk }}分 /{{ item.physical_distanc }}㎡ /
+                  {{ $store.state.floor_plan[item.floor_plan] }}
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <!-- <div class="card">
             <div class="card__imgframe"></div>
             <div class="card__textbox">
               <div class="card__titletext">
@@ -439,7 +454,7 @@
                 概要がはいります。概要がはいります。概要がはいります。概要がはいります。
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -477,7 +492,7 @@
 <script>
 import axios from "axios";
 import axiosJsonpAdapter from "axios-jsonp";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
@@ -494,6 +509,7 @@ export default {
       construction: null,
       construction_date: null,
       station_walk: null,
+      property: null,
     });
     const store = useStore();
     const router = useRouter();
@@ -536,12 +552,42 @@ export default {
         },
       });
     };
+    const newArrivals = async () => {
+      let reqstatus;
+      let surl = store.state.apiUrl + "/NewArrivals";
+      // let params = new URLSearchParams();
+      // params.append("latitude", position.coords.latitude);
+      // params.append("longitude", position.coords.longitude);
+      // params.append("page", 1);
+      try {
+        reqstatus = await axios.post(surl);
+        if (reqstatus.data.state) {
+          data.property = reqstatus.data.property;
+        } else {
+          router.push("/Error");
+        }
+      } catch (error) {
+        console.log(error);
+        router.push("/Error");
+      }
+    };
+    const say = (st) => {
+      router.push({
+        path: "/Property-detail",
+        query: { number: st },
+      });
+    };
+    onMounted(async () => {
+      await newArrivals();
+    });
     return {
       data,
       word,
       getWord,
       meta,
       getConditions,
+      newArrivals,
+      say,
     };
   },
 };
@@ -549,5 +595,12 @@ export default {
 <style>
 .head_img {
   object-fit: cover;
+}
+.card img {
+  height: 150px;
+  object-fit: cover;
+}
+.card {
+  cursor: pointer;
 }
 </style>
