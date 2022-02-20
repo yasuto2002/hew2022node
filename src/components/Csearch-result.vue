@@ -100,27 +100,27 @@
                   class="page-numbers"
                   >{{ n }}</router-link
                 >
-                <template v-if="3 < data.count">
-                  <span class="page-numbers dots">…</span>
-                  <router-link
-                    :to="{
-                      path: '/Csearch-result',
-                      query: {
-                        lower: $route.query.lower,
-                        upper: $route.query.upper,
-                        floor_plan: $route.query.floor_plan,
-                        building_type: $route.query.building_type,
-                        room_floor: $route.query.room_floor,
-                        construction: $route.query.construction,
-                        construction_date: $route.query.construction_date,
-                        station_walk: $route.query.station_walk,
-                        page: data.count,
-                      },
-                    }"
-                    class="page-numbers"
-                    >{{ data.count }}</router-link
-                  >
-                </template>
+              </template>
+              <template v-if="3 < data.count">
+                <span class="page-numbers dots">…</span>
+                <router-link
+                  :to="{
+                    path: '/Csearch-result',
+                    query: {
+                      lower: $route.query.lower,
+                      upper: $route.query.upper,
+                      floor_plan: $route.query.floor_plan,
+                      building_type: $route.query.building_type,
+                      room_floor: $route.query.room_floor,
+                      construction: $route.query.construction,
+                      construction_date: $route.query.construction_date,
+                      station_walk: $route.query.station_walk,
+                      page: data.count,
+                    },
+                  }"
+                  class="page-numbers"
+                  >{{ data.count }}</router-link
+                >
               </template>
             </template>
 
@@ -188,27 +188,27 @@
                   class="page-numbers"
                   >{{ n }}</router-link
                 >
-                <template v-if="data.next < data.count">
-                  <span class="page-numbers dots">…</span>
-                  <router-link
-                    :to="{
-                      path: '/Csearch-result',
-                      query: {
-                        lower: $route.query.lower,
-                        upper: $route.query.upper,
-                        floor_plan: $route.query.floor_plan,
-                        building_type: $route.query.building_type,
-                        room_floor: $route.query.room_floor,
-                        construction: $route.query.construction,
-                        construction_date: $route.query.construction_date,
-                        station_walk: $route.query.station_walk,
-                        page: data.count,
-                      },
-                    }"
-                    class="page-numbers"
-                    >{{ data.count }}</router-link
-                  >
-                </template>
+              </template>
+              <template v-if="data.next < data.count">
+                <span class="page-numbers dots">…</span>
+                <router-link
+                  :to="{
+                    path: '/Csearch-result',
+                    query: {
+                      lower: $route.query.lower,
+                      upper: $route.query.upper,
+                      floor_plan: $route.query.floor_plan,
+                      building_type: $route.query.building_type,
+                      room_floor: $route.query.room_floor,
+                      construction: $route.query.construction,
+                      construction_date: $route.query.construction_date,
+                      station_walk: $route.query.station_walk,
+                      page: data.count,
+                    },
+                  }"
+                  class="page-numbers"
+                  >{{ data.count }}</router-link
+                >
               </template>
             </template>
 

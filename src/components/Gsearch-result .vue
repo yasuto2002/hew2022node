@@ -87,23 +87,23 @@
                   class="page-numbers"
                   >{{ n }}</router-link
                 >
-                <template v-if="3 < data.count">
-                  <span class="page-numbers dots">…</span>
-                  <router-link
-                    :to="{
-                      path: '/Gsearch-result',
-                      params: {
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        page: data.count,
-                      },
-                    }"
-                    class="page-numbers"
-                    >{{ data.count }}</router-link
-                  >
-                </template>
               </template>
-              <router-link
+              <template v-if="3 < data.count">
+                <span class="page-numbers dots">…</span>
+                <router-link
+                  :to="{
+                    path: '/Gsearch-result',
+                    params: {
+                      latitude: data.latitude,
+                      longitude: data.longitude,
+                      page: data.count,
+                    },
+                  }"
+                  class="page-numbers"
+                  >{{ data.count }}</router-link
+                >
+              </template>
+              <!-- <router-link
                 :to="{
                   path: '/Gsearch-result',
                   params: {
@@ -115,7 +115,7 @@
                 class="last page-numbers"
                 v-if="data.page < data.count"
                 >&raquo;</router-link
-              >
+              > -->
             </template>
 
             <template v-else>
@@ -164,36 +164,36 @@
                   class="page-numbers"
                   >{{ n }}</router-link
                 >
-                <template v-if="data.next < data.count">
-                  <span class="page-numbers dots">…</span>
-                  <router-link
-                    :to="{
-                      path: '/Gsearch-result',
-                      params: {
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        page: data.count,
-                      },
-                    }"
-                    class="page-numbers"
-                    >{{ data.count }}</router-link
-                  >
-                </template>
               </template>
-              <router-link
-                :to="{
-                  path: '/Gsearch-result',
-                  params: {
-                    latitude: data.latitude,
-                    longitude: data.longitude,
-                    page: data.next,
-                  },
-                }"
-                class="last page-numbers"
-                v-if="data.page < data.count"
-                >&raquo;</router-link
-              >
+              <template v-if="data.next < data.count">
+                <span class="page-numbers dots">…</span>
+                <router-link
+                  :to="{
+                    path: '/Gsearch-result',
+                    params: {
+                      latitude: data.latitude,
+                      longitude: data.longitude,
+                      page: data.count,
+                    },
+                  }"
+                  class="page-numbers"
+                  >{{ data.count }}</router-link
+                >
+              </template>
             </template>
+            <router-link
+              :to="{
+                path: '/Gsearch-result',
+                params: {
+                  latitude: data.latitude,
+                  longitude: data.longitude,
+                  page: data.next,
+                },
+              }"
+              class="last page-numbers"
+              v-if="data.page < data.count"
+              >&raquo;</router-link
+            >
 
             <!-- <a class="next page-numbers" href="">&rsaquo;</a> -->
             <!-- <a class="last page-numbers" href="">&raquo;</a> -->
