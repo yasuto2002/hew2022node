@@ -25,8 +25,3 @@ var app = createApp(App)
 app.use(router)
 app.use(store)
 app.mount('#app')
-import jQuery from "jquery";
-// global.jquery = jQuery;
-// global.$ = jQuery;
-// window.$ = window.jQuery = require("jquery");
-import $ from 'jquery'

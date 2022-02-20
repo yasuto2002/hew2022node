@@ -77,31 +77,38 @@
         </div>
       </div>
     </div>
-    <div class="mypage-favo-box">
+    <div class="mypage-favo-box" v-if="data.flg">
       <div class="mypage-info-favo-minibox">
         <p class="mypage-info-favo-title">お気に入りを<br />確認する</p>
         <p class="mypage-info-txt"></p>
-        <div class="mypage-sarch-section">
-          <a href="property-detail.html" class="sarch-section-link">
-            <h1 class="mypage-sarch-section-title">東京都練馬区大泉学園町</h1>
+        <div class="mypage-sarch-section" @click="goodJump">
+          <a class="sarch-section-link">
+            <h1 class="mypage-sarch-section-title">{{ data.first.name }}</h1>
             <div class="mypage-sarch-section-box">
               <img
-                src="images/220x220.png"
+                :src="data.first.thumbnails"
                 style="width: 20%; margin: auto 5%"
                 alt="新着物件イメージ画像"
               />
               <div class="mypage-sarch-section-box-txt">
                 <dl>
                   <dt>物件名</dt>
-                  <dd>東京都練馬区大泉学園町</dd>
+                  <dd>{{ data.first.name }}</dd>
                   <dt>賃料</dt>
-                  <dd style="color: red; font-weight: bold">1800万円</dd>
+                  <dd style="color: red; font-weight: bold">
+                    {{ data.first.price }}万円
+                  </dd>
                   <dt>所在地</dt>
-                  <dd>東京都練馬区大泉学園町</dd>
+                  <dd>{{ data.first.street_address }}</dd>
                   <dt>沿線・駅</dt>
-                  <dd>東武東上線朝霞駅 徒歩2960m徒歩37分</dd>
+                  <dd>
+                    山手線{{ $store.state.station[data.first.station_id] }}駅
+                    徒歩{{ data.first.physical_distance }}m徒歩{{
+                      data.first.station_walk
+                    }}分
+                  </dd>
                   <dt>間取</dt>
-                  <dd>2K</dd>
+                  <dd>{{ $store.state.floor_plan[data.first.floor_plan] }}</dd>
                 </dl>
               </div>
             </div>
@@ -137,6 +144,9 @@ export default {
       date: "",
       assumedName: "",
       assumedKName: "",
+      id: "",
+      first: null,
+      flg: false,
     });
     const store = useStore();
     const router = useRouter();
@@ -171,10 +181,15 @@ export default {
           data.assumedKName = status.data.user.kname;
           data.gender = status.data.user.sex;
           data.date = status.data.user.birthday;
+          data.id = status.data.user.id;
           let birthday = status.data.user.birthday.split("-");
           data.birthday = `${birthday[0]} 年${birthday[1]} 月 ${birthday[2]} 日`;
           data.mail_address = status.data.user.mail_address;
           data.point = status.data.point;
+          if (status.data.first != null) {
+            data.first = status.data.first;
+            data.flg = true;
+          }
         } else {
           router.push("/Error");
         }
@@ -198,12 +213,16 @@ export default {
         },
       });
     };
+    const goodJump = () => {
+      router.push({ name: "Fsearch-result", params: { page: 1 } });
+    };
     onMounted(() => {
       getMypage();
     });
     return {
       data,
       jump,
+      goodJump,
     };
   },
 };

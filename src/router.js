@@ -31,7 +31,8 @@ import Helpfirst from './components/Help-first.vue'
 import Helpmember from './components/Help-member.vue'
 import Helppay from './components/Help-pay.vue'
 import Propertysearch from './components/Property-search.vue'
-import Gsearchresult from './components/Gsearch-result .vue'
+import Gsearchresult from './components/Gsearch-result.vue'
+import Fsearchresult from './components/Fsearch-result.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -184,6 +185,11 @@ export const router = createRouter({
       path: '/Gsearch-result',
       name: 'Gsearch-result',
       component: Gsearchresult,
+      props: true,
+    }, {
+      path: '/Fsearch-result',
+      name: 'Fsearch-result',
+      component: Fsearchresult,
       props: true,
     }
   ],
