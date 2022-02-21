@@ -232,12 +232,10 @@ export default {
       try {
         reqstatus = await axios.post(surl, params);
         console.log(reqstatus.data);
-        if (reqstatus.data.properties[0] != null) {
-          data.properties = reqstatus.data.properties;
-          data.count = Math.ceil(reqstatus.data.count / 4);
-          data.page = page;
-          data.next = parseInt(data.page) + 1;
-        }
+        data.properties = reqstatus.data.properties;
+        data.count = Math.ceil(reqstatus.data.count / 4);
+        data.page = page;
+        data.next = parseInt(data.page) + 1;
       } catch (error) {
         console.log(error);
         router.push("/Error");

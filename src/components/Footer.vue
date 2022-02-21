@@ -3,12 +3,14 @@
     <div class="footer-inner-block">
       <div class="footer-wrap">
         <div class="footer-logo">
-          <a href="index.html"><img src="images/hew_logo.png" alt="" /></a>
+          <router-link to="/"
+            ><img src="images/hew_logo.png" alt=""
+          /></router-link>
         </div>
         <ul class="footer-nav">
-          <li><a href="index.html">TOP</a></li>
-          <li><a href=".html">よくある質問</a></li>
-          <li><a href=".html">お問い合わせ</a></li>
+          <li><router-link to="/">TOP</router-link></li>
+          <li><router-link to="/Help">よくある質問</router-link></li>
+          <li><router-link to="/Contact">お問い合わせ</router-link></li>
         </ul>
       </div>
     </div>

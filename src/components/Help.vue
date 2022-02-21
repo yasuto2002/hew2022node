@@ -38,8 +38,8 @@
             <h3 class="title">退会手続き方法を知りたい</h3>
             <div class="box">
               <p>
-                サイト内の「<a class="link" href="member-withdrawal.html"
-                  >退会ページ</a
+                サイト内の「<router-link class="link" to="/Member-withdrawal"
+                  >退会ページ</router-link
                 >」より退会が可能です。
               </p>
             </div>
@@ -58,8 +58,8 @@
             <h3 class="title">お問い合わせ方法を教えてください</h3>
             <div class="box">
               <p>
-                サイト内の「<a class="link" href="index.html"
-                  >問い合わせフォーム</a
+                サイト内の「<router-link class="link" to="/Contact"
+                  >問い合わせフォーム</router-link
                 >」よりお問い合わせください。
                 何かお困りのことがございましたら、ぜひご活用ください。
               </p>

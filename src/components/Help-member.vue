@@ -39,7 +39,8 @@
             <h3 class="title">メール通知設定を確認方法</h3>
             <div class="box">
               <p>
-                サイト内の「<a class="link" href="/mypage">マイページ</a
+                サイト内の「<router-link class="link" to="/Mypage"
+                  >マイページ</router-link
                 >」より確認が可能です。
               </p>
             </div>
@@ -65,11 +66,11 @@
       <p class="help-contact-txt">
         解決しない場合はこちらよりお問い合わせください
       </p>
-      <a href="/Contact" class="help-contact-btn help-contact-btn-c"
+      <router-link to="/Contact" class="help-contact-btn help-contact-btn-c"
         ><i class="far fa-envelope"></i>お問い合わせはこちら<i
           class="fas fa-chevron-right"
         ></i
-      ></a>
+      ></router-link>
     </div>
   </div>
 </template>

@@ -37,7 +37,7 @@
           <li class="navItem navItemAccess">
             <router-link to="/Property-search"> 物件検索 </router-link>
           </li>
-          <li class="navItem navItemContact">
+          <li class="navItem navItemGame">
             <a href="./match"> ゲーム </a>
           </li>
           <li class="navItem navItemContact">

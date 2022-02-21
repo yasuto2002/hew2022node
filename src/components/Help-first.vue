@@ -52,8 +52,8 @@
                 TROUBLE
                 HOUSEでは会員登録をするとスムーズにお買い物いただけます。<br />
                 ご登録後は、本登録のメールアドレス、パスワードでログインが可能です。<br />
-                サイト内の「<a class="link" href="member.html"
-                  >新規会員登録ページ</a
+                サイト内の「<router-link class="link" to="/Member"
+                  >新規会員登録ページ</router-link
                 >」から登録可能です。
               </p>
             </div>
@@ -73,10 +73,11 @@
                 」と表示される場合】<br />
                 既に同メールアドレスにてご登録がございます。未登録のアドレスをご入力ください。<br />
                 <br />
-                ご登録内容をお忘れの場合は、 サイト内の「<a
+                ご登録内容をお忘れの場合は、 サイト内の「<router-link
+                  to="/pass-change"
                   class="link"
                   href="#.html"
-                  >パスワードを忘れた方 </a
+                  >パスワードを忘れた方 </router-link
                 >」画面より、パスワードの再設定をしてください。
               </p>
             </div>
@@ -90,11 +91,11 @@
       <p class="help-contact-txt">
         解決しない場合はこちらよりお問い合わせください
       </p>
-      <a href="/Contact" class="help-contact-btn help-contact-btn-c"
+      <router-link to="/Contact" class="help-contact-btn help-contact-btn-c"
         ><i class="far fa-envelope"></i>お問い合わせはこちら<i
           class="fas fa-chevron-right"
         ></i
-      ></a>
+      ></router-link>
     </div>
   </div>
 </template>

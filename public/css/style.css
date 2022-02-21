@@ -74,10 +74,10 @@ nav ul li a {
 }
 .navItem a {
   display: block;
-  padding: 45px 0 15px;
+  padding: 50px 10px 0px;
   margin-left: 1rem;
   position: relative;
-  width: 105px;
+  width: 125px;
   text-align: center;
   font-size: 0.8rem;
   color: #fff;
@@ -92,37 +92,43 @@ nav ul li a {
   width: 100%;
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 0px;
 }
 
 .navItemHome a::before {
   /* font-family: "Font Awesome 5 Free";
   font-weight: 900; */
-  content: url(../images/サラリーマン.png);
+  content: url(../images/icon-singnup.png);
 }
 
 .navItemIntroduce a::before {
   /* font-family: "Font Awesome 5 Free";
   font-weight: 900; */
-  content: "\f1ad";
+  content: url(../images/icon-mypage.png);
 }
 
 .navItemAbout a::before {
   /* font-family: "Font Awesome 5 Free";
   font-weight: 900; */
-  content: "\f500";
+  content: url(../images/icon-article.png);
 }
 
 .navItemAccess a::before {
   /* font-family: "Font Awesome 5 Free";
   font-weight: 900; */
-  content: "\f55e";
+  content: url(../images/icon-article.png);
+}
+
+.navItemGame a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-game.png);
 }
 
 .navItemContact a::before {
   /* font-family: "Font Awesome 5 Free";
   font-weight: 900; */
-  content: "\f1d8";
+  content: url(../images/icon-help.png);
 }
 
 /*----------------------
@@ -197,14 +203,13 @@ nav ul li a {
 トップイメージ
 ----------------------*/
 .head_img {
-  width: 83%;
-  height: 500px;
+  width: 100%;
+  height: 700px;
   content: url(../images/top_img.jpg);
   margin: auto;
   text-align: center;
   position: relative;
-  top: 100px;
-  border-radius: 0.5rem; 
+
 }
 
 .headhead{
@@ -304,21 +309,18 @@ nav ul li a {
   height: 35px;
   margin: 5px 0px 0px 20px;
   border-radius: 0.5rem;
+  outline: none;  
 }
 
 .search_container input[type="submit"] {
   cursor: pointer;
   border: none;
-  background: #505050;
+  background: #da5789;
   color: #fff;
   width: 50px;
   height: 35px;
 }
 
-.search_line {
-  margin: 10px 0px 0px 20px;
-  color: #505050;
-}
 
 .rent {
   margin: 5px 0px 0px 20px;
@@ -370,64 +372,130 @@ a.btn_06:hover span {
 }
 
 /*----------------------
-ラジオボタン装飾
+ラジオボタン（山手線中央線）
 ----------------------*/
-.cp_ipradio05 {
-	width: 90%;
-	margin: 2em auto;
-	text-align: left;
+.select-radio {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.cp_ipradio05 ul {
-	margin: 0.5rem 0.5rem 2rem 0.5rem;
-	padding: 0.5rem 1rem;
-	list-style: none;
-	border: 1px solid #cccccc;
+.select-radio .select-radio-item {
+  margin: 5px 0;
+  padding: 0;
 }
-.cp_ipradio05 .list_item {
-	margin: 0 0 0.5rem 0;
-	padding: 0;
+.select-radio input[type="radio"] {
+  display: none;
 }
-.cp_ipradio05 label {
-	line-height: 135%;
-	position: relative;
-	margin: 0.5rem;
-	cursor: pointer;
+.select-radio input[type="radio"]:checked+label {
+  background: #ffeaf3;
+  color: #333333;
+  border: 2px solid #da5789;
 }
-.cp_ipradio05 .option-input {
-	position: relative;
-	margin: 0 1rem 0 0;
-	cursor: pointer;
+.select-radio .select-radio-label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  color: #333333;
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  background: #eee;
+  transition: 0.2s;
+  border-radius: 4px;
+  margin: 10px 0 0 20px;
 }
-.cp_ipradio05 .option-input:before {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	left: 0.125rem;
-	width: 0.75rem;
-	height: 0.75rem;
-	content: '';
-	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-	        transition:         transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-	-webkit-transform: scale(0, 0);
-	        transform: scale(0, 0);
-	border-radius: 50%;
-	background: #da3c41;
+.select-radio.select-radio-inline .select-radio-item {
+  display: block;
+  max-width: 120px;
+  width: 100%;
+  margin-right: 10px;
+  padding-right: 30px;
 }
-.cp_ipradio05 .option-input:checked:before {
-	-webkit-transform: scale(1, 1);
-	        transform: scale(1, 1);
+.select-radio.select-radio-inline .select-radio-label {
+  display: block;
 }
-.cp_ipradio05 .option-input:after {
-	position: absolute;
-	top: -0.25rem;
-	left: -0.125rem;
-	width: 1rem;
-	height: 1rem;
-	content: '';
-	border: 2px solid #f2f2f2;
-	border-radius: 50%;
-	background: #ffffff;
+
+
+/*----------------------
+チェックボックスボタン
+----------------------*/
+.line-box{
+  margin: 10px 0 0 20px;
+  display: flex;
 }
+.line_CheckboxInput {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.line_CheckboxInput-Input {
+  margin: 0;
+  width: 0;
+  opacity: 0;
+}
+/* .ECM_CheckboxInput:hover{
+  background: rgba(0,0,0,.05) !important;
+} */
+.line_CheckboxInput:hover > .line_CheckboxInput-DummyInput{
+  transform: scale(1.1);
+}
+.line_CheckboxInput-Input:focus + .line_CheckboxInput-DummyInput{
+  transform: scale(1.1);
+}
+.line_CheckboxInput-Input:checked + .line_CheckboxInput-DummyInput {
+  background: #da5789;
+}
+.line_CheckboxInput-Input:checked + .line_CheckboxInput-DummyInput::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 60%;
+  width: 38%;
+  height: 3px;
+  border-radius: 2px;
+  transform: translate(-6px, 5px) rotateZ(-135deg);
+  transform-origin: 2px 2px;
+  background: #FFFFFF;
+}
+.line_CheckboxInput-Input:checked + .line_CheckboxInput-DummyInput::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 74%;
+  width: 70%;
+  height: 3px;
+  border-radius: 2px;
+  transform: translate(-6px, 5px) rotateZ(-45deg);
+  transform-origin: 2px 2px;
+  background: #FFFFFF;
+}
+.line_CheckboxInput-DummyInput {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: solid 2px transparent;
+  background: rgba(0, 0, 0, .15);
+  border-radius: 50%;
+  transition: all .15s linear;
+  margin-left: 5px;
+}
+.line_CheckboxInput-LabelText {
+  margin-left: 5px;
+  margin-right: 12px;
+  display: block;
+}
+
+/*----------------------
+プルダウン
+----------------------*/
+
 
 /*----------------------
 新着物件
@@ -452,6 +520,7 @@ a.btn_06:hover span {
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
   position: relative;
+  color: #505050;
 }
 
 .card:after{
@@ -496,6 +565,7 @@ a.btn_06:hover span {
   font-size: 20px;
   font-weight: bold;
   line-height: 125%;
+  color: #505050;
 }
 
 .card__titletext_price {
@@ -506,8 +576,9 @@ a.btn_06:hover span {
 }
 
 .card__overviewtext {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 150%;
+  color: #505050;
 }
 /* .object{
   display: flex;

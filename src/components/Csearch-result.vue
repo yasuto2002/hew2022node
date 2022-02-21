@@ -76,6 +76,7 @@
                       construction_date: $route.query.construction_date,
                       station_walk: $route.query.station_walk,
                       page: n,
+                      root: $route.query.root,
                     },
                   }"
                   class="page-numbers"
@@ -95,6 +96,7 @@
                       construction_date: $route.query.construction_date,
                       station_walk: $route.query.station_walk,
                       page: n,
+                      root: $route.query.root,
                     },
                   }"
                   class="page-numbers"
@@ -116,6 +118,7 @@
                       construction_date: $route.query.construction_date,
                       station_walk: $route.query.station_walk,
                       page: data.count,
+                      root: $route.query.root,
                     },
                   }"
                   class="page-numbers"
@@ -138,6 +141,7 @@
                     construction_date: $route.query.construction_date,
                     station_walk: $route.query.station_walk,
                     page: data.page - 1,
+                    root: $route.query.root,
                   },
                 }"
                 class="last page-numbers"
@@ -158,6 +162,7 @@
                       construction_date: $route.query.construction_date,
                       station_walk: $route.query.station_walk,
                       page: n,
+                      root: $route.query.root,
                     },
                   }"
                   class="page-numbers"
@@ -183,6 +188,7 @@
                       construction_date: $route.query.construction_date,
                       station_walk: $route.query.station_walk,
                       page: n,
+                      root: $route.query.root,
                     },
                   }"
                   class="page-numbers"
@@ -204,6 +210,7 @@
                       construction_date: $route.query.construction_date,
                       station_walk: $route.query.station_walk,
                       page: data.count,
+                      root: $route.query.root,
                     },
                   }"
                   class="page-numbers"
@@ -225,6 +232,7 @@
                   construction_date: $route.query.construction_date,
                   station_walk: $route.query.station_walk,
                   page: data.next,
+                  root: $route.query.root,
                 },
               }"
               class="last page-numbers"
@@ -280,6 +288,7 @@ export default {
       params.append("construction_date", route.query.construction_date);
       params.append("station_walk", route.query.station_walk);
       params.append("skip", (route.query.page - 1) * 4);
+      params.append("root", route.query.root);
       try {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.property[0] != null) {
@@ -302,7 +311,8 @@ export default {
       room_floor,
       construction,
       construction_date,
-      station_walk
+      station_walk,
+      root
     ) => {
       let reqstatus;
       let surl = store.state.apiUrl + "/Condiserch";
@@ -316,14 +326,13 @@ export default {
       params.append("construction_date", construction_date);
       params.append("station_walk", station_walk);
       params.append("skip", (page - 1) * 4);
+      params.append("root", root);
       try {
         reqstatus = await axios.post(surl, params);
-        if (reqstatus.data.property[0] != null) {
-          data.properties = reqstatus.data.property;
-          data.count = Math.ceil(reqstatus.data.count / 4);
-          data.page = route.query.page;
-          data.next = parseInt(data.page) + 1;
-        }
+        data.properties = reqstatus.data.property;
+        data.count = Math.ceil(reqstatus.data.count / 4);
+        data.page = route.query.page;
+        data.next = parseInt(data.page) + 1;
       } catch (error) {
         console.log(error);
         router.push("/Error");
@@ -357,7 +366,8 @@ export default {
         to.query.room_floor,
         to.query.construction,
         to.query.construction_date,
-        to.query.station_walk
+        to.query.station_walk,
+        to.query.root
       );
       next();
     });

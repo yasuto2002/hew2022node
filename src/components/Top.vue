@@ -24,12 +24,79 @@
           <input type="submit" value="検索" :disabled="!meta.valid" />
         </form>
 
-        <div class="searchform_border">
-          <p class="searchform_txt">絞り込み条件</p>
-        </div>
-        <form class="search_line">
-          <label><input type="radio" name="line" />山手線</label>
-          <label><input type="radio" name="line" />中央線</label>
+        <form class="search_property">
+          <div class="searchform_border">
+            <p class="searchform_txt">絞り込み条件</p>
+          </div>
+
+          <ul class="select-radio select-radio-inline">
+            <li class="select-radio-item">
+              <input
+                checked
+                id="radio-btn1"
+                name="line"
+                type="radio"
+                value="1"
+                v-model="data.root"
+              />
+              <label class="select-radio-label" for="radio-btn1">山手線</label>
+            </li>
+            <li class="select-radio-item">
+              <input
+                id="radio-btn2"
+                name="line"
+                type="radio"
+                value="2"
+                v-model="data.root"
+              />
+              <label class="select-radio-label" for="radio-btn2">中央線</label>
+            </li>
+          </ul>
+
+          <!-- <div class="line-box">
+            <label class="line_CheckboxInput"
+              ><input class="line_CheckboxInput-Input" type="checkbox" /><span
+                class="line_CheckboxInput-DummyInput"
+              ></span
+              ><span class="line_CheckboxInput-LabelText">新宿</span></label
+            >
+            <label class="line_CheckboxInput"
+              ><input class="line_CheckboxInput-Input" type="checkbox" /><span
+                class="line_CheckboxInput-DummyInput"
+              ></span
+              ><span class="line_CheckboxInput-LabelText">池袋</span></label
+            >
+            <label class="line_CheckboxInput"
+              ><input class="line_CheckboxInput-Input" type="checkbox" /><span
+                class="line_CheckboxInput-DummyInput"
+              ></span
+              ><span class="line_CheckboxInput-LabelText">秋葉原</span></label
+            >
+          </div>
+
+          <div class="line-box">
+            <label class="line_CheckboxInput"
+              ><input class="line_CheckboxInput-Input" type="checkbox" /><span
+                class="line_CheckboxInput-DummyInput"
+              ></span
+              ><span class="line_CheckboxInput-LabelText">新宿</span></label
+            >
+            <label class="line_CheckboxInput"
+              ><input class="line_CheckboxInput-Input" type="checkbox" /><span
+                class="line_CheckboxInput-DummyInput"
+              ></span
+              ><span class="line_CheckboxInput-LabelText">池袋</span></label
+            >
+            <label class="line_CheckboxInput"
+              ><input class="line_CheckboxInput-Input" type="checkbox" /><span
+                class="line_CheckboxInput-DummyInput"
+              ></span
+              ><span class="line_CheckboxInput-LabelText">秋葉原</span></label
+            >
+          </div> -->
+          <!--
+      <label><input type="checkbox" name="line">山手線</label>
+      <label><input type="checkbox" name="line">中央線</label> -->
         </form>
 
         <div class="searchform_border">
@@ -351,9 +418,12 @@
               <div class="card__textbox">
                 <div class="card__titletext">{{ item.name }}</div>
                 <div class="card__titletext_price">{{ item.price }}万円</div>
-                <div class="card__overviewtext">JR山手線</div>
                 <div class="card__overviewtext">
-                  徒歩{{ item.station_walk }}分 /{{ item.physical_distanc }}㎡ /
+                  JR山手線<br />{{ $store.state.station[item.station_id] }} 駅
+                </div>
+                <div class="card__overviewtext">
+                  徒歩{{ item.station_walk }}分 /{{ item.physical_distance }}㎡
+                  /
                   {{ $store.state.floor_plan[item.floor_plan] }}
                 </div>
               </div>
@@ -510,6 +580,7 @@ export default {
       construction_date: null,
       station_walk: null,
       property: null,
+      root: 1,
     });
     const store = useStore();
     const router = useRouter();
@@ -537,6 +608,7 @@ export default {
       });
     });
     const getConditions = () => {
+      console.log(data.root);
       router.push({
         name: "Csearch-result",
         query: {
@@ -549,6 +621,7 @@ export default {
           construction_date: data.construction_date,
           station_walk: data.station_walk,
           page: 1,
+          root: data.root,
         },
       });
     };
