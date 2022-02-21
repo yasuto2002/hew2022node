@@ -2,9 +2,11 @@
   <!-- パンくずリスト -->
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
-      <li><a href="property-search.html"></a>物件検索</li>
-      <li>ＪＲ山手線(東京都)から探すマンションの購入情報 検索結果一覧</li>
+      <li>
+        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
+      </li>
+      <li><router-link to="/Property-search">物件検索</router-link></li>
+      <li>検索結果一覧</li>
     </ul>
   </div>
 

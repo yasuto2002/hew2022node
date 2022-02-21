@@ -1,10 +1,12 @@
 <template>
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
-      <li><a href="search-result.html">物件検索</a></li>
-      <li><a href="property-detail.html">練馬区の賃貸 物件一覧</a></li>
-      <li><a href="index.html">東京都練馬区大泉学園町</a></li>
+      <li>
+        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
+      </li>
+      <li><router-link to="Property-search">物件検索</router-link></li>
+      <li><a @click="$router.go(-2)">物件一覧</a></li>
+      <li><a @click="$router.go(-1)">物件詳細</a></li>
       <li>お支払い</li>
     </ul>
   </div>

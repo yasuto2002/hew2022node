@@ -2,8 +2,10 @@
   <!-- パンくずリスト -->
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
-      <li><a href="help.html">ヘルプ</a></li>
+      <li>
+        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
+      </li>
+      <li><router-link to="/Help">ヘルプ</router-link></li>
       <li>会員情報について</li>
     </ul>
   </div>

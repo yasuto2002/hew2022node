@@ -1,8 +1,12 @@
  <template>
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
-      <li><a href="login-member.html">新規会員登録・ログイン</a></li>
+      <li>
+        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
+      </li>
+      <li>
+        <router-link to="/Logreg">新規会員登録・ログイン</router-link>
+      </li>
       <li>新規会員登録</li>
     </ul>
   </div>

@@ -1,8 +1,10 @@
 <template>
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
-      <li><a href="mypage.html">マイページ</a></li>
+      <li>
+        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
+      </li>
+      <li><router-link to="Mypage">マイページ</router-link></li>
       <li><a>パスワード変更</a></li>
     </ul>
   </div>
