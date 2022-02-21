@@ -102,10 +102,10 @@
                   <dd>{{ data.first.street_address }}</dd>
                   <dt>沿線・駅</dt>
                   <dd>
-                    山手線{{ $store.state.station[data.first.station_id] }}駅
-                    徒歩{{ data.first.physical_distance }}m徒歩{{
-                      data.first.station_walk
-                    }}分
+                    {{ $store.state.root[data.first.station_id]
+                    }}{{ $store.state.station[data.first.station_id] }}駅 徒歩{{
+                      data.first.physical_distance
+                    }}m徒歩{{ data.first.station_walk }}分
                   </dd>
                   <dt>間取</dt>
                   <dd>{{ $store.state.floor_plan[data.first.floor_plan] }}</dd>

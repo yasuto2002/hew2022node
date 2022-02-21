@@ -35,9 +35,14 @@
                   <dt>所在地</dt>
                   <dd>{{ item.street_address }}</dd>
                   <dt>沿線・駅</dt>
-                  <dd>東武東上線朝霞駅 徒歩2960m徒歩37分</dd>
+                  <dd>
+                    {{ $store.state.root[item.station_id]
+                    }}{{ $store.state.station[item.station_id] }}駅 徒歩{{
+                      item.physical_distance
+                    }}m徒歩{{ item.station_walk }}分
+                  </dd>
                   <dt>間取</dt>
-                  <dd>2K</dd>
+                  <dd>{{ $store.state.floor_plan[item.floor_plan] }}</dd>
                 </dl>
               </div>
             </div>
@@ -272,7 +277,6 @@ export default {
         } else {
           router.push("/Error");
         }
-        console.log(reqstatus);
       } catch (error) {
         console.log(error);
         router.push("/Error");
