@@ -108,6 +108,11 @@ app.get('/game', (req, res) => {
   }
 });
 
+app.get('/soleGame', (req, res) => {
+  return res.render("soleGame", {});
+
+});
+
 
 function makeToken(id) {
   const str = SECRET_TOKEN + id;

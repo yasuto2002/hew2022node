@@ -13,6 +13,7 @@ module.exports = {
   entry: {
     bundle: "./src/index.js",
     main: "./src/game.js",
+    soleGame: "./src/soleGame.js",
   },
   //ファイルの出力設定
   output: {

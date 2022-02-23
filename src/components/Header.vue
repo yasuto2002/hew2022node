@@ -38,7 +38,7 @@
             <router-link to="/Property-search"> 物件検索 </router-link>
           </li>
           <li class="navItem navItemGame">
-            <a href="./match"> ゲーム </a>
+            <router-link to="/GameRoot"> ゲーム </router-link>
           </li>
           <li class="navItem navItemContact">
             <router-link to="/Help"> ヘルプ </router-link>

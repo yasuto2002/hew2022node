@@ -33,6 +33,7 @@ import Helppay from './components/Help-pay.vue'
 import Propertysearch from './components/Property-search.vue'
 import Gsearchresult from './components/Gsearch-result.vue'
 import Fsearchresult from './components/Fsearch-result.vue'
+import GameRoot from './components/GameRoot.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -190,6 +191,11 @@ export const router = createRouter({
       path: '/Fsearch-result',
       name: 'Fsearch-result',
       component: Fsearchresult,
+      props: true,
+    }, {
+      path: '/GameRoot',
+      name: 'GameRoot',
+      component: GameRoot,
       props: true,
     }
   ],

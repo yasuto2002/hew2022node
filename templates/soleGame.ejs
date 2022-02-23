@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO chat</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+    }
+
+    #Lscore {
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #Wscore {
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .score-text {
+      height: 35vw;
+      width: 50vw;
+      background-color: #fff;
+      border: solid palevioletred;
+      border-radius: 5%;
+      text-align: center;
+    }
+
+    .score-text .score-title {
+      color: #b6b4b4;
+      font-size: 12vw;
+    }
+
+    .score-text .textwrap p {
+      font-size: 1.5vw;
+      color: #eeebeb;
+    }
+
+    .viw {
+      display: block;
+    }
+
+    .none {
+      display: none !important;
+    }
+
+    .textwrap {
+      height: 33%;
+      margin-top: 20%;
+    }
+  </style>
+</head>
+<body>
+  <div id="Wscore" class="none">
+    <div class="score-text">
+      <div class="textwrap">
+        <h5 class="score-title">Winner</h5><br>
+        <p>獲得したポイント:<span>50p</span></p>
+        <p><span id="time"></span>秒後にTOPページにリダイレクトします</p>
+      </div>
+    </div>
+  </div>
+  <div id="Lscore" class="none">
+    <div class="score-text">
+      <div class="textwrap">
+        <h5 class="score-title">Losser</h5><br>
+        <p><span id="time"></span>秒後にTOPページにリダイレクトします</p>
+      </div>
+    </div>
+  </div>
+  <div id="game">
+  </div>
+  <script>
+
+  </script>
+  <script src="soleGame.js"></script>
+
+</body>
+</html>

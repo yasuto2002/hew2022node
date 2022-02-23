@@ -1,5 +1,8 @@
 <template>
-  <a href=""></a>
+  <div class="game">
+    <a href="./soleGame"><p>一人で遊ぶ</p></a>
+    <a href="./match"><p>知らない人と対戦する</p></a>
+  </div>
 </template>
 
 <script>
@@ -18,3 +21,10 @@ export default {
   // },
 };
 </script>
+<style scoped>
+.game {
+  height: 200px;
+  widows: 100%;
+  color: #000;
+}
+</style>
