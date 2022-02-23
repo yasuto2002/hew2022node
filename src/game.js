@@ -161,7 +161,7 @@ function preload() {
   this.load.image('Goal', 'game/assets/images/Goal.png');
   this.load.image('Wall', 'game/assets/images/wall.png');
   // At last image must be loaded with its JSON
-  this.load.atlas('player', 'game/assets/images/kenney_player.png', 'game/assets/images/kenney_player_atlas.json');
+  this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
   this.load.image('tiles', 'game/assets/tilesets/platformPack_tilesheet.png');
   // Load the export Tiled JSON
   this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level1.json');
@@ -200,12 +200,14 @@ function create() {
   this.physics.add.collider(this.player, platforms);
   this.player.body.setGravityY(300);
   npc = this.physics.add.sprite(20, 300, 'player');
+  this.player.body.setSize(this.player.width - 70, this.player.height);
+  npc.body.setSize(this.player.width - 70, this.player.height);
   this.anims.create({
     key: 'walk',
     frames: this.anims.generateFrameNames('player', {
       prefix: 'robo_player_',
-      start: 2,
-      end: 3,
+      start: 3,
+      end: 4,
     }),
     frameRate: 10,
     repeat: -1
@@ -214,7 +216,7 @@ function create() {
     key: 'idle',
     frames: [{
       key: 'player',
-      frame: 'robo_player_0'
+      frame: 'robo_player_2'
     }],
     frameRate: 10,
   });
@@ -226,6 +228,7 @@ function create() {
     }],
     frameRate: 10,
   });
+  npc.play('idle', true);
   this.cursors = this.input.keyboard.createCursorKeys();
   this.spikes = this.physics.add.group({
     allowGravity: false,

@@ -41,7 +41,7 @@
             </p>
             <div class="withdrawal-btn-box">
               <a class="withdrawal-btn" @click="onSubmit">退会する</a>
-              <a class="withdrawal-btn" href="index.html">いいえ</a>
+              <router-link class="withdrawal-btn" to="/">いいえ</router-link>
             </div>
           </div>
         </div>
