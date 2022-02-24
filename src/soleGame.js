@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import axios from "axios";
+import $ from "jquery";
 // import Pusher from 'pusher-js';
 // Pusher.logToConsole = true;
 
@@ -18,7 +20,7 @@ const config = {
   parent: 'game',
   width: 1530,
   heigth: 600,
-  backgroundColor: "#000000",
+  // backgroundColor: "#000000",
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
@@ -54,6 +56,12 @@ var timeScore = 60;
 var timeSubtraction;
 var setPosition;
 var timeid
+var over;
+var clear;
+var interval_id;
+var countNum;
+var doownId;
+var countTime = document.querySelectorAll(".time");;
 
 function getRandam(n, m) {
   for (let i = 0; i < 5; i++) {
@@ -63,26 +71,32 @@ function getRandam(n, m) {
 };
 
 function preload() {
-  this.load.image('background', 'soleGame/assets/images/background.png');
+  this.load.image('background', 'game/assets/images/backgroung1.png');
   this.load.image('spike', 'soleGame/assets/images/spike.png');
   // At last image must be loaded with its JSON
-  this.load.atlas('player', 'soleGame/assets/images/kenney_player.png', 'soleGame/assets/images/kenney_player_atlas.json');
+  this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
   this.load.image('tiles', 'soleGame/assets/tilesets/platformPack_tilesheet.png');
   // Load the export Tiled JSON
   this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level1.json');
-  this.load.image('star', 'soleGame/assets/images/star.png');
-  this.load.spritesheet('dude', 'soleGame/assets/images/dude.png', {
-    frameWidth: 32,
-    frameHeight: 48
-  });
+  this.load.image('star', 'soleGame/assets/images/Coin.png');
+  // this.load.spritesheet('dude', 'soleGame/assets/images/dude.png', {
+  //   frameWidth: 32,
+  //   frameHeight: 48
+  // });
+  this.load.atlas('dude', 'soleGame/assets/images/death.png', 'soleGame/assets/images/death.json');
+  // this.load.spritesheet('dude', 'soleGame/assets/images/skeleton.png', {
+  //   frameWidth: 36,
+  //   frameHeight: 38.4
+  // });
+  this.load.image('Goal', 'game/assets/images/Goal.png');
 }
 
 function create() {
 
-  // for (let x = 0; x < 10; x++) {
-  //     let backgroundImage = this.add.image(1024 * x, 0, 'background').setOrigin(0, 0);
-  //     backgroundImage.setScale(2, 0.8);
-  // }
+  for (let x = 0; x < 10; x++) {
+    let backgroundImage = this.add.image(2048 * x, 0, 'background').setOrigin(0, 0);
+    // backgroundImage.setScale(2, 0.8);
+  }
 
   // const backgroundImage = this.add.image(0, 0, 'background').setOrigin(0, 0);
   // backgroundImage.setScale(2, 0.8);
@@ -95,26 +109,28 @@ function create() {
   this.player = this.physics.add.sprite(50, 300, 'player');
   this.player.setBounce(0.1);
   this.physics.world.setBounds(0, 0, 3100 * 2, 380 * 2);
-  this.cameras.main.setBounds(0, 0, 3100 * 2, 380 * 2);
+  this.cameras.main.setBounds(0, 0, 3100 * 2, 100 * 2);
+  this.cameras.main.setZoom(1.1);
   this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
   this.player.setCollideWorldBounds(true);
   this.physics.add.collider(this.player, platforms);
   this.player.body.setGravityY(300);
+  this.player.body.setSize(this.player.width - 70, this.player.height);
   this.anims.create({
     key: 'walk',
     frames: this.anims.generateFrameNames('player', {
       prefix: 'robo_player_',
-      start: 2,
-      end: 3,
+      start: 3,
+      end: 4,
     }),
-    frameRate: 10,
+    frameRate: 4,
     repeat: -1
   });
   this.anims.create({
     key: 'idle',
     frames: [{
       key: 'player',
-      frame: 'robo_player_0'
+      frame: 'robo_player_2'
     }],
     frameRate: 10,
   });
@@ -137,6 +153,8 @@ function create() {
   });
   this.physics.add.collider(this.player, this.spikes, playerHit, null, this);
 
+
+
   //Add star
   stars = this.physics.add.group({
     key: 'star',
@@ -155,61 +173,107 @@ function create() {
   });
   this.physics.add.collider(stars, platforms);
   this.physics.add.overlap(this.player, stars, collectStar, null, this);
-  //Add npc
+  // Add npc
+  npc = this.physics.add.group({
+    key: 'dude',
+    setXY: {
+      x: 900,
+      y: 550,
+    }
+  });
+  // 1218
   // npc = this.physics.add.group({
-  //     key: 'dude',
-  //     setXY: {
-  //         x: 900,
-  //         y: 550,
-  //     }
+  //   key: 'dude',
+  //   repeat: 15,
+  //   setXY: {
+  //     x: 790,
+  //     y: 0,
+  //     stepX: 570
+  //   }
   // });
   //1218
-  // npc = this.physics.add.group({
-  //     key: 'dude',
-  //     repeat: 15,
-  //     setXY: {
-  //         x: 790,
-  //         y: 0,
-  //         stepX: 570
-  //     }
-  // });
-  //1218
+  npc.children.iterate(function (child) {
+
+    //  Give each star a slightly different bounce
+    child.setBounce(0.2);
+    child.setCollideWorldBounds(true);
+
+  });
 
   // npc = this.physics.add.sprite(100, 450, 'dude');
   // npc.setBounce(0.2);
   // npc.setCollideWorldBounds(true);
   //  Our npc animations, turning, walking left and walking right.
-  //1218
+  //0223
   // this.anims.create({
-  //     key: 'leftNpc',
-  //     frames: this.anims.generateFrameNumbers('dude', {
-  //         start: 0,
-  //         end: 3
-  //     }),
-  //     frameRate: 10,
-  //     repeat: -1
+  //   key: 'leftNpc',
+  //   frames: this.anims.generateFrameNumbers('dude', {
+  //     start: 0,
+  //     end: 3
+  //   }),
+  //   frameRate: 10,
+  //   repeat: -1
   // });
 
   // this.anims.create({
-  //     key: 'turnNpc',
-  //     frames: [{
-  //         key: 'dude',
-  //         frame: 4
-  //     }],
-  //     frameRate: 20
+  //   key: 'turnNpc',
+  //   frames: [{
+  //     key: 'dude',
+  //     frame: 4
+  //   }],
+  //   frameRate: 20
   // });
 
   // this.anims.create({
-  //     key: 'rightNpc',
-  //     frames: this.anims.generateFrameNumbers('dude', {
-  //         start: 5,
-  //         end: 8
-  //     }),
-  //     frameRate: 10,
-  //     repeat: -1
+  //   key: 'rightNpc',
+  //   frames: this.anims.generateFrameNumbers('dude', {
+  //     start: 5,
+  //     end: 8
+  //   }),
+  //   frameRate: 10,
+  //   repeat: -1
   // });
-  // this.physics.add.collider(npc, platforms);
-  //1218
+  //0223
+  this.anims.create({
+    key: 'leftNpc',
+    frames: this.anims.generateFrameNames('dude', {
+      prefix: 'skeleton_',
+      start: 3,
+      end: 5,
+    }),
+    frameRate: 4,
+    repeat: -1
+  });
+  this.anims.create({
+    key: 'rightNpc',
+    frames: this.anims.generateFrameNames('dude', {
+      prefix: 'skeleton_',
+      start: 3,
+      end: 5,
+    }),
+    frameRate: 4,
+    repeat: -1
+  });
+  // this.anims.create({
+  //   key: 'idle',
+  //   frames: [{
+  //     key: 'dude',
+  //     frame: 'skeleton_14'
+  //   }],
+  //   frameRate: 10,
+  // });
+  this.anims.create({
+    key: 'idle',
+    frames: this.anims.generateFrameNames('dude', {
+      prefix: 'skeleton_',
+      start: 6,
+      end: 8,
+    }),
+    frameRate: 4,
+    repeat: -1
+  });
+
+  this.physics.add.collider(npc, platforms);
 
   // var timedEvent = this.time.delayedCall(0, onEvent1, [], this);
   // timedEvent = this.time.addEvent({
@@ -220,21 +284,21 @@ function create() {
   // });
 
   //1218
-  // timedEvent1 = this.time.addEvent({
-  //     delay: 4000,
-  //     startAt: 2000,
-  //     callback: onEvent1,
-  //     callbackScope: this,
-  //     loop: true,
-  // });
+  timedEvent1 = this.time.addEvent({
+    delay: 4000,
+    startAt: 2000,
+    callback: onEvent1,
+    callbackScope: this,
+    loop: true,
+  });
 
-  // timedEvent2 = this.time.addEvent({
-  //     delay: 4000,
-  //     callback: onEvent2,
-  //     callbackScope: this,
-  //     loop: true,
-  // });
-  // this.physics.add.overlap(this.player, npc, hitNpc, null, this);
+  timedEvent2 = this.time.addEvent({
+    delay: 4000,
+    callback: onEvent2,
+    callbackScope: this,
+    loop: true,
+  });
+  this.physics.add.overlap(this.player, npc, hitNpc, null, this);
   //1218
 
 
@@ -294,7 +358,7 @@ function create() {
   this.button2.on('pointerover', () => {
     if (this.player.body.onFloor()) {
       // this.player.setVelocityY(-400);
-      this.player.setVelocity(200, -400);
+      this.player.setVelocity(200, -450);
       this.player.play('jump', true);
       numflg = 1;
       timeid = window.setTimeout(() => {
@@ -334,11 +398,90 @@ function create() {
   });
   // setPosition = this.time.delayedCall(10000, setpotishon, [], this);
   //console.log(this.player.body.position.x);
+
+  var timecount = async () => {
+    countNum--;
+    console.log(countNum);
+    // document.getElementById("time").innerHTML = countNum;
+    // countTime.innerHTML = countNum;
+    await setCount(countNum);
+    if (countNum == 0) {
+      clearInterval(doownId);
+      location.href = "/";
+    }
+  }
+
+  var setCount = async (countNum) => {
+    console.log(countTime);
+    // countTime[0].childNodes.appendChild(countNum);
+    $('.time').text(countNum)
+    return;
+  }
+  var timecount2 = async () => {
+    countNum--;
+    console.log(countNum);
+    // document.getElementById("time").innerHTML = countNum;
+    // countTime.innerHTML = countNum;
+    await setCount2(countNum);
+    if (countNum == 0) {
+      clearInterval(doownId);
+      location.href = "/";
+    }
+  }
+
+  var setCount2 = async (countNum) => {
+    console.log(countTime);
+    // countTime[0].childNodes.appendChild(countNum);
+    $('.time').text(countNum)
+    return;
+  }
+
+  over = async () => {
+    this.physics.pause();
+    gameOver = true;
+    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over.setText('GAME OVER!');
+    clearInterval(interval_id);
+    setTimeout(function () {
+      let scoreBord = document.getElementById('Lscore');
+      scoreBord.classList.remove('none');
+      let game = document.getElementById('game');
+      game.classList.add('none');
+    }, 5000);
+    countNum = 10;
+    doownId = await window.setInterval(timecount, 1000);
+  }
+  clear = async () => {
+    this.physics.pause();
+    gameOver = true;
+    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over.setText('GAME CLEAR!');
+    clearInterval(interval_id);
+    setTimeout(function () {
+      let scoreBord = document.getElementById('Wscore');
+      scoreBord.classList.remove('none');
+      let game = document.getElementById('game');
+      game.classList.add('none');
+    }, 5000);
+    countNum = 10;
+    doownId = await window.setInterval(timecount, 1000);
+  }
+  this.goals = this.physics.add.group({
+    allowGravity: false,
+    immovable: true
+  });
+  map.getObjectLayer('Goal').objects.forEach((goal) => {
+    const goalSprite = this.goals.create(goal.x, goal.y + 200 - goal.height, 'Goal').setOrigin(0);
+    goalSprite.body.setSize(goal.width, goal.height - 20).setOffset(0, 20);
+    this.physics.add.collider(this.player, goalSprite, clear, null, this);
+  });
 }
 
 // function setpotishon() {
 //     this.player.setX(900);
 // }
+
+
 function Eventjump() {
   player.setVelocityX(0);
 }
@@ -347,12 +490,13 @@ function Subtraction() {
   timeScore -= 1;
   this.Timetext.setText(timeScore);
   if (timeScore == 0) {
-    this.physics.pause();
-    this.player.setTint(0xff0000);
-    gameOver = true;
-    this.over = this.add.text(1100 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
-    this.over.setText('GAME OVER');
-    timeSubtraction.destroy();
+    // this.physics.pause();
+    // this.player.setTint(0xff0000);
+    // gameOver = true;
+    // this.over = this.add.text(1100 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    // this.over.setText('GAME OVER');
+    // timeSubtraction.destroy();
+    over();
   }
   return;
 }
@@ -363,24 +507,26 @@ function textChange() {
 
 function onEvent1() {
   for (const npcSprite of npc.getChildren()) {
-    npcSprite.setVelocityX(100);
+    npcSprite.setFlipX(false);
+    npcSprite.setVelocityX(50);
     npcSprite.play('rightNpc', true);
   }
 }
+
 // function onEvent1() {
-//     // for (const npcSprite of npc.getChildren()) {
+//   for (const npcSprite of npc.getChildren()) {
 //     if (npc.body.onFloor()) {
-//         console.log(numflg);
-//         npc.setVelocityX(10);
-//         npc.play('leftNpc', true);
+//       npc.setVelocityX(10);
+//       npc.play('leftNpc', true);
 //     }
 //     return;
-//     // }
+//   }
 // }
 
 function onEvent2() {
   for (const npcSprite of npc.getChildren()) {
-    npcSprite.setVelocityX(-100);
+    npcSprite.setFlipX(true);
+    npcSprite.setVelocityX(-50);
     npcSprite.play('leftNpc', true);
   }
 }
@@ -392,12 +538,13 @@ function collectStar(player, star) {
 }
 
 function hitNpc(player, npc) {
-  this.physics.pause();
-  player.setTint(0xff0000);
-  gameOver = true;
-  this.over = this.add.text(1100 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
-  this.over.setText('GAME OVER');
-  timeSubtraction.destroy();
+  // this.physics.pause();
+  // player.setTint(0xff0000);
+  // gameOver = true;
+  // this.over = this.add.text(1100 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  // this.over.setText('GAME OVER');
+  // timeSubtraction.destroy();
+  over();
 }
 // function onEvent2() {
 //   for (const npcSprite of npc.getChildren()) {
@@ -486,7 +633,7 @@ function update() {
   // Player can jump while walking any direction by pressing the space bar
   // or the 'UP' arrow
   if ((this.cursors.space.isDown || this.cursors.up.isDown) && this.player.body.onFloor()) {
-    this.player.setVelocityY(-400);
+    this.player.setVelocityY(-450);
     this.player.play('jump', true);
   }
   if (this.player.body.velocity.x > 0) {
