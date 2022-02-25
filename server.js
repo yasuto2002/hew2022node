@@ -100,7 +100,8 @@ app.get('/game', (req, res) => {
     });
     return res.render("game", {
       player_id: req.query.player_id,
-      roomid: req.query.roomid
+      roomid: req.query.roomid,
+      maile: req.session.Log
     });
   } else {
     res.redirect('/');
@@ -109,8 +110,9 @@ app.get('/game', (req, res) => {
 });
 
 app.get('/soleGame', (req, res) => {
-  return res.render("soleGame", {});
-
+  return res.render("soleGame", {
+    maile: req.session.Log
+  });
 });
 
 

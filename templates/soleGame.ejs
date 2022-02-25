@@ -91,7 +91,10 @@
   <div id="game">
   </div>
   <script>
-
+    const maile = "<%= maile  %>";
+    if (!maile) {
+      location.href = "/";
+    }
   </script>
   <script src="soleGame.js"></script>
 

@@ -417,24 +417,7 @@ function create() {
     $('.time').text(countNum)
     return;
   }
-  var timecount2 = async () => {
-    countNum--;
-    console.log(countNum);
-    // document.getElementById("time").innerHTML = countNum;
-    // countTime.innerHTML = countNum;
-    await setCount2(countNum);
-    if (countNum == 0) {
-      clearInterval(doownId);
-      location.href = "/";
-    }
-  }
 
-  var setCount2 = async (countNum) => {
-    console.log(countTime);
-    // countTime[0].childNodes.appendChild(countNum);
-    $('.time').text(countNum)
-    return;
-  }
 
   over = async () => {
     this.physics.pause();
