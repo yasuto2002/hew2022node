@@ -1,5 +1,7 @@
 import io from "socket.io-client";
 import Phaser from 'phaser';
+import axios from "axios";
+import $ from "jquery";
 var socket = io();
 var messages = document.getElementById('messages');
 var form = document.getElementById('form');
@@ -591,6 +593,8 @@ function create() {
   //   callbackScope: this,
   //   repeat: 64
   // });
+
+
   over = () => {
     this.physics.pause();
     gameOver = true;
@@ -633,7 +637,7 @@ function create() {
       game.classList.add('none');
     }, 5000);
     countNum = 10;
-    doownId = window.setInterval(timecount, 1000);
+    doownId = window.setInterval(timecount2, 1000);
   }
 
 }
@@ -641,12 +645,47 @@ function create() {
 function timecount() {
   countNum--;
   console.log(countNum);
-  document.getElementById("time").innerHTML = countNum;
+  // document.getElementById("time").innerHTML = countNum;
+  $('.time').text(countNum)
   if (countNum == 0) {
     clearInterval(doownId);
     location.href = "/";
   }
 }
+
+function timecount2() {
+  countNum--;
+  console.log(countNum);
+  // document.getElementById("time").innerHTML = countNum;
+  $('.time').text(countNum)
+  if (countNum == 0) {
+    clearInterval(doownId);
+    Scorereport();
+    location.href = "/";
+  }
+}
+
+var Scorereport = async () => {
+  let surl = "http://localhost:8080/GameRecord";
+  let params = new URLSearchParams();
+  params.append("mail_address", maile);
+  params.append("point", 50);
+  let status;
+  try {
+    status = await axios.post(surl, params);
+    console.log(status.data);
+    if (status.data.status) {
+      return;
+    } else {
+      location.href = "/Error";
+      return;
+    }
+  } catch (error) {
+    location.href = "/Error";
+    return;
+  }
+}
+
 
 function textChange() {
   over_text.destroy();

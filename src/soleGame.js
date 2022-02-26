@@ -322,7 +322,7 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(32, 32).setScrollFactor(0).setFontSize(32);
+  this.button1 = this.add.text(112, 42).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
   this.button1.setPadding(10)
@@ -334,7 +334,7 @@ function create() {
   })
 
 
-  this.button2 = this.add.text(74, 38).setScrollFactor(0).setFontSize(20);
+  this.button2 = this.add.text(149, 48).setScrollFactor(0).setFontSize(20);
   this.button2.setText("↗");
   this.button2.setOrigin(0.5)
   this.button2.setPadding(10)
@@ -399,6 +399,27 @@ function create() {
   // setPosition = this.time.delayedCall(10000, setpotishon, [], this);
   //console.log(this.player.body.position.x);
 
+  var Scorereport = async () => {
+    let surl = "http://localhost:8080/GameRecord";
+    let params = new URLSearchParams();
+    params.append("mail_address", maile);
+    params.append("point", score);
+    let status;
+    try {
+      status = await axios.post(surl, params);
+      console.log(status.data);
+      if (status.data.status) {
+        return;
+      } else {
+        location.href = "/Error";
+        return;
+      }
+    } catch (error) {
+      location.href = "/Error";
+      return;
+    }
+  }
+
   var timecount = async () => {
     countNum--;
     console.log(countNum);
@@ -407,6 +428,7 @@ function create() {
     await setCount(countNum);
     if (countNum == 0) {
       clearInterval(doownId);
+      await Scorereport();
       location.href = "/";
     }
   }
@@ -458,6 +480,7 @@ function create() {
     goalSprite.body.setSize(goal.width, goal.height - 20).setOffset(0, 20);
     this.physics.add.collider(this.player, goalSprite, clear, null, this);
   });
+  // this.physics.add.collider(this.player, this.goals, clear, null, this);
 }
 
 // function setpotishon() {

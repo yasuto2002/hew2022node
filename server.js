@@ -104,6 +104,7 @@ app.get('/game', (req, res) => {
       maile: req.session.Log
     });
   } else {
+    console.log("a");
     res.redirect('/');
     return;
   }
@@ -115,6 +116,49 @@ app.get('/soleGame', (req, res) => {
   });
 });
 
+app.get('/matchconf', (req, res) => {
+  fs.readFile("room.json", {
+    encoding: "utf-8",
+    flag: 'r+',
+  }, (err, data) => {
+    if (err) throw err;
+    roomFile = JSON.parse(data);
+    for (let i = 0; i < roomFile.length; i++) {
+      if (roomFile[i].roomid == req.query.id) {
+        // console.log(roomFile[i]);
+        if (roomFile[i].player1 != null && roomFile[i].player2 != null) {
+          resData = {
+            "judg": true,
+          };
+          req.session.flg = true;
+          res.json(resData);
+          return;
+        } else {
+          resData = {
+            "judg": false,
+          };
+          res.json(resData);
+          return;
+        }
+      }
+    }
+  })
+  // let flg = judroom(req.query.id)
+  // console.log(flg);
+  // if (flg) {
+  //   resData = {
+  //     "judg": true,
+  //   };
+  //   res.json(resData);
+  //   return;
+  // } else {
+  //   resData = {
+  //     "judg": false,
+  //   };
+  //   res.json(resData);
+  //   return;
+  // }
+});
 
 function makeToken(id) {
   const str = SECRET_TOKEN + id;
@@ -197,7 +241,7 @@ app.get('/matchRequest', (req, res) => {
             if (err) throw err;
           });
           check = true;
-          req.session.flg = true;
+          // req.session.flg = true;
           res.json(resData);
           return;
         }
@@ -374,7 +418,9 @@ function judroom(id) {
     roomFile = JSON.parse(data);
     for (let i = 0; i < roomFile.length; i++) {
       if (roomFile[i].roomid == id) {
-        if (roomFile[i].player1 && roomFile[i].player2) {
+        // console.log(roomFile[i]);
+        if (roomFile[i].player1 != null && roomFile[i].player2 != null) {
+          console.log('a');
           return true;
         } else {
           return false;
