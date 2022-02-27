@@ -1,4 +1,135 @@
 @charset "utf-8";
+
+
+
+/*----------------------
+property-search.html
+----------------------*/
+.search-title-box{
+  width: 80%;
+  margin: 2% auto;
+  padding: 1%;
+  border: solid 1px rgb(236, 236, 236);
+  border-top: solid 6px #da5789;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.search-title{
+  color: #505050;
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: bold;    
+}
+
+
+.property-search-box{
+  width: 80%;
+  height: auto;
+  margin: 2% auto;
+  padding: 1%;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.property-search-box-title{
+  margin-left: 20px;
+}
+
+.search-box-content{
+  width: 95%;
+  height: auto;
+  margin: 2% auto;
+  padding: 1%;
+  background-color: #fff;
+  
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.search-box_left{
+  width: 50%;
+  height: auto;
+}
+
+.search-box_right{
+  width: 50%;
+  height: auto; 
+}
+
+
+/* .search-box_head {
+  color: #808080;
+  margin: 20px 20px 5px 20px;
+  font-size: 17px;
+}
+
+.search-box_txt {
+  color: #808080;
+  font-size: 13px;
+}
+
+.search-box_border {
+  width: 150px;
+  border-bottom: solid 1px #808080;
+  margin: 30px 0px 0px 20px;
+  padding-bottom: 1%;
+}
+
+.search-box_container {
+  box-sizing: border-box;
+}
+
+.search-box_container input[type="text"] {
+  background: #ffffff;
+  border: 1px solid #808080;
+  height: 35px;
+  margin: 5px 0px 0px 20px;
+}
+
+.property-search-box input[type="submit"] {
+  cursor: pointer;
+  border: none;
+  background: #808080;
+  color: #fff;
+  width: 60px;
+  height: 40px;
+} */
+
+.property-search-box img{
+  width: 2%;
+  height: auto;
+  position: absolute;
+  padding-left: 0.5%;
+  padding-top: 0.5%;
+}
+
+.property-search-btn{
+  width: 300px;
+  background-color: rgb(218, 87, 137);
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  margin: 5% auto;
+  font-size: 16px;
+  padding: 20px;
+  border-radius: 100vh;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.property-search-btn:hover{
+  background-color: #f18ab2;
+}
+
 /*----------------------
 検索結果画面
 ----------------------*/

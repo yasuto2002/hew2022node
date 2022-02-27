@@ -1,9 +1,8 @@
 <template>
+  <!-- パンくずリスト -->
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li>
-        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
-      </li>
+      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
       <li>新規会員登録・ログイン</li>
     </ul>
   </div>
@@ -21,9 +20,19 @@
           <p class="Form-Item-Label">パスワード</p>
           <input type="password" class="Form-Item-Input" />
         </div>
-        <input id="box1" type="checkbox" />
-        <label for="box1">次回から自動ログイン</label>
-        <input class="contact-btn" type="submit" value="ログイン" />
+        <div class="login-checkbox">
+          <label class="ECM_CheckboxInput"
+            ><input class="ECM_CheckboxInput-Input" type="checkbox" /><span
+              class="ECM_CheckboxInput-DummyInput"
+            ></span
+            ><span class="ECM_CheckboxInput-LabelText"
+              >次回から自動ログイン</span
+            ></label
+          >
+        </div>
+        <a href="mypage.html"
+          ><input class="contact-btn" type="submit" value="ログイン"
+        /></a>
         <p class="login-txt">
           パスワードを忘れた方は<a class="login-txt-link" href="index.html"
             >こちら</a

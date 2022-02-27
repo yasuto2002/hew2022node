@@ -386,10 +386,10 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(255, 42).setScrollFactor(0).setFontSize(32);
+  this.button1 = this.add.text(231, 45).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
-  this.button1.setPadding(10)
+  this.button1.setPadding(5)
   // this.button1.setStyle({
   //     backgroundColor: '#111',
   // })
@@ -422,7 +422,7 @@ function create() {
   });
 
 
-  this.button2 = this.add.text(186, 44).setScrollFactor(0).setFontSize(32);
+  this.button2 = this.add.text(169, 45).setScrollFactor(0).setFontSize(32);
   this.button2.setText("↑");
   this.button2.setOrigin(0.5)
   this.button2.setPadding(10)
@@ -459,10 +459,10 @@ function create() {
 
 
 
-  this.button3 = this.add.text(225, 48).setScrollFactor(0).setFontSize(20);
+  this.button3 = this.add.text(201, 51).setScrollFactor(0).setFontSize(20);
   this.button3.setText("↗");
   this.button3.setOrigin(0.5)
-  this.button3.setPadding(10)
+  this.button3.setPadding(5)
   // this.button1.setStyle({
   //     backgroundColor: '#111',
   // })
@@ -500,7 +500,7 @@ function create() {
 
   // });
 
-  this.button4 = this.add.text(149, 48).setScrollFactor(0).setFontSize(20);
+  this.button4 = this.add.text(139, 51).setScrollFactor(0).setFontSize(20);
   this.button4.setText("↖");
   this.button4.setOrigin(0.5)
   this.button4.setPadding(10)
@@ -536,7 +536,7 @@ function create() {
     });
   });
 
-  this.button5 = this.add.text(112, 42).setScrollFactor(0).setFontSize(32);
+  this.button5 = this.add.text(107, 45).setScrollFactor(0).setFontSize(32);
   this.button5.setText("←");
   this.button5.setOrigin(0.5)
   this.button5.setPadding(10)
@@ -576,16 +576,16 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(730, 42).setScrollFactor(0).setFontSize(32);
+  this.text = this.add.text(725, 42).setScrollFactor(0).setFontSize(32);
   this.text.setText('SCORE:' + 0);
-  over_text = this.add.text(670, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  over_text = this.add.text(675, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // this.over_text.setText('START');
   // timedstart = this.time.delayedCall(6000, textChange, [], this);
 
   Timetext = this.add.text(1400, 42).setScrollFactor(0).setFontSize(32);
   Timetext.setText(60);
 
-  startCount = this.over = this.add.text(700, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  startCount = this.over = this.add.text(757, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // timeSubtraction = this.time.addEvent({
   //   delay: 1000,
   //   startAt: 0,
@@ -598,7 +598,7 @@ function create() {
   over = () => {
     this.physics.pause();
     gameOver = true;
-    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over = this.add.text(560, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME OVER!');
     clearInterval(interval_id);
     setTimeout(function () {
@@ -621,15 +621,19 @@ function create() {
     // }, 1000);
   }
   clear = () => {
+    socket.emit('gameClea', {
+      room: room,
+      player_id: player_id
+    });
     this.physics.pause();
     gameOver = true;
     this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME CLEAR!');
     clearInterval(interval_id);
-    socket.emit('gameClea', {
-      room: room,
-      player_id: player_id
-    });
+    if (!maile) {
+      location.href = "/Logreg";
+      return;
+    }
     setTimeout(function () {
       let scoreBord = document.getElementById('Wscore');
       scoreBord.classList.remove('none');
@@ -653,14 +657,14 @@ function timecount() {
   }
 }
 
-function timecount2() {
+async function timecount2() {
   countNum--;
   console.log(countNum);
   // document.getElementById("time").innerHTML = countNum;
   $('.time').text(countNum)
   if (countNum == 0) {
     clearInterval(doownId);
-    Scorereport();
+    await Scorereport();
     location.href = "/";
   }
 }

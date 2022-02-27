@@ -110,7 +110,7 @@ nav ul li a {
 .navItemAbout a::before {
   /* font-family: "Font Awesome 5 Free";
   font-weight: 900; */
-  content: url(../images/icon-article.png);
+  content: url(../images/icon-cart.png);
 }
 
 .navItemAccess a::before {
@@ -238,7 +238,7 @@ nav ul li a {
 
 .left-column {
   width: 30%;
-  height: 950px;
+  height: 1140px;
   /* margin: 50px 10px 0 130px; */
   /* ↑削除 */
   margin: 10px;
@@ -250,7 +250,7 @@ nav ul li a {
 
 .right-column {
   width: 70%;
-  height: auto;
+  height: 1140px;
   margin: 10px;
   /* ↑追加 */
   /* margin: 50px 130px 0 10px; */
@@ -316,15 +316,16 @@ nav ul li a {
   cursor: pointer;
   border: none;
   background: #da5789;
+  border-radius: 0.25rem;
   color: #fff;
   width: 50px;
   height: 35px;
 }
 
 
-.rent {
+/* .rent {
   margin: 5px 0px 0px 20px;
-}
+} */
 
 .searchform_floor {
   color: #505050;
@@ -417,6 +418,60 @@ a.btn_06:hover span {
   display: block;
 }
 
+/*----------------------
+ラジオボタン
+----------------------*/
+.floor-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  }
+  .floor-radio-Input{
+  opacity: 0;
+  width: 0;
+  margin: 0;
+  }
+  .floor-radio-Input:hover > .floor-radio-DummyInput{
+  border: dashed 2px #da5789;
+  }
+  .floor-radio-Input:focus + .floor-radio-DummyInput {
+  background: #FFFFFF;
+  }
+  .floor-radio-Input:checked + .floor-radio-DummyInput {
+  background: #da5789;
+  }
+  .floor-radio-Input:checked + .floor-radio-DummyInput::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  }
+  .floor-radio-DummyInput {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #DDDDDD;
+  border: dashed 2px transparent;
+  }
+  .floor-radio-LabelText {
+  margin-left: 3px;
+  margin-right: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 18px;
+  }
+
 
 /*----------------------
 チェックボックスボタン
@@ -492,10 +547,152 @@ a.btn_06:hover span {
   display: block;
 }
 
+/*login チェックボックスボタン*/
+.login-checkbox{
+  width: 35%;
+  margin: 0 auto;
+}
+.ECM_CheckboxInput {
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.ECM_CheckboxInput-Input {
+  margin: 0;
+  width: 0;
+  opacity: 0;
+}
+.ECM_CheckboxInput:hover > .ECM_CheckboxInput-DummyInput{
+  background: #CCCCCC;
+}
+.ECM_CheckboxInput-Input:focus + .ECM_CheckboxInput-DummyInput{
+  background: #CCCCCC;
+}
+.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
+  background: #da5789;
+}
+.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 35%;
+  height: 2px;
+  transform: translate(-5px, 6px) rotateZ(-135deg);
+  transform-origin: 1px 1px;
+  background: #FFFFFF;
+}
+.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 70%;
+  height: 2px;
+  transform: translate(-5px, 6px) rotateZ(-45deg);
+  transform-origin: 1px 1px;
+  background: #FFFFFF;
+}
+.ECM_CheckboxInput-DummyInput {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: #F5F5F5;
+  box-shadow: 0 1px 4px rgba(0,0,0, .4) inset;
+}
+.ECM_CheckboxInput-LabelText {
+  margin-left: 12px;
+  display: block;
+  font-size: 1.05rem;
+}
+
 /*----------------------
 プルダウン
 ----------------------*/
+.rent-box{
+  display: flex;
+  margin: 10px 0px 0px 20px;
+}
+.rent_ipselect {
+	overflow: hidden;
+	width: 40%;
+}
+.rent_ipselect select {
+	width: 100%;
+  padding-left: 4px;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.rent_ipselect select::-ms-expand {
+    display: none;
+}
+.rent_ipselect.rent_sl05 {
+	position: relative;
+	border-radius: 2px;
+  border-radius: 50px;
+	background: #fff;
+  border: 1px solid #505050;
+  margin-right: 10px;
+}
+.rent_ipselect.rent_sl05::before {
+	position: absolute;
+	top: 0.6em;
+	right: 0.8em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #505050;
+	pointer-events: none;
+}
+.rent_ipselect.rent_sl05 select {
+	padding: 10px 30px 10px 15px;
+}
 
+
+/*ボックス*/
+.floor-box{
+  display: flex;
+}
+
+.room-box{
+  display: flex;
+}
+
+.sarch-display{
+  display: flex;
+}
+
+.building-box{
+  display: flex;
+}
+
+.floor-radio-LabelText-a {
+  margin-left: 3px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 18px;
+}
+  
 
 /*----------------------
 新着物件
@@ -762,7 +959,7 @@ a.btn_06:hover span {
   width: 100%;
   /* ↑追加 */
   margin-bottom: 3%;
-  color: #000;
+  color: #505050;
 }
 
 
@@ -799,10 +996,13 @@ a.btn_06:hover span {
   background-color: #fff;
   border: 2px solid #fff;
   text-align: center;
-  color: #000;
+  color: #505050;
   /* line-height: 50px; */
 }
 
+.contact label{
+  font-size: 1.05rem;
+}
 @media screen and (max-width: 480px) {
   .login_main {
     display: block;
@@ -905,6 +1105,7 @@ a.btn_06:hover span {
   max-width: 410px;
   background: #eaedf2;
   font-size: 18px;
+  outline: none;
 }
 @media screen and (max-width: 480px) {
   .Form-Item-Input {
@@ -913,6 +1114,7 @@ a.btn_06:hover span {
     height: 40px;
     flex: inherit;
     font-size: 15px;
+    outline: none;
   }
 }
 .Form-Item-Textarea {
@@ -957,11 +1159,12 @@ a.btn_06:hover span {
 }
 
 .login-txt{
+  font-size: 1.05rem;
   margin-bottom: 5%;
 }
 
 .login-txt-link:hover{
-  color: rgb(59, 37, 255);
+  color: #da5789;
   text-decoration: underline;
 }
 /*----------------------
@@ -977,6 +1180,7 @@ a.btn_06:hover span {
 }
 
 .signup p{
+  font-size: 1.05rem;
   line-height: 200%;
 }
 
@@ -1470,7 +1674,7 @@ a.btn_06:hover span {
   color: rgb(182, 181, 181);
 }
 .login-txt-link:hover{
-  color: rgb(52, 44, 132);
+  color: #da5789;
   text-decoration: underline;
 }
 
@@ -1841,148 +2045,4 @@ max-width: 100%;
   font-size: 1.1rem;
 }
 
-/*----------------------
-検索画面
-----------------------*/
-.property-search-box{
-  width: 80%;
-  height: auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-  padding: 2%;
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  line-height: 130%;
-  color: #333;
-  margin: 3% auto 0% auto;
-}
-
-.search-box-content{
-  width: 80%;
-  height: auto;
-  background-color: #fff;
-  margin: 0 auto;
-  padding: 2%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-  border-radius: 0rem 0rem 0.5rem 0.5rem;
-  line-height: 130%;
-  color: #333;
-  margin: 0 auto 3% auto;
-  justify-content: center;
-  
-}
-
-.search-box-content-box{
-  width: 90%;
-  height:  auto;
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
-}
-
-.search-box_left{
-  width: 30%;
-  height: auto;
-}
-
-.search-box_right{
-  width: 30%;
-  height: auto;
-}
-
-
-.search-box_head {
-  color: #808080;
-  margin: 20px 20px 5px 20px;
-  font-size: 17px;
-}
-
-.search-box_txt {
-  color: #808080;
-  font-size: 13px;
-}
-
-.search-box_border {
-  width: 150px;
-  border-bottom: solid 1px #808080;
-  margin: 30px 0px 0px 20px;
-  padding-bottom: 1%;
-}
-
-.search-box_container {
-  box-sizing: border-box;
-}
-
-.search-box_container input[type="text"] {
-  background: #ffffff;
-  border: 1px solid #808080;
-  height: 35px;
-  margin: 5px 0px 0px 20px;
-}
-
-.property-search-box input[type="submit"] {
-  cursor: pointer;
-  border: none;
-  background: #808080;
-  color: #fff;
-  width: 60px;
-  height: 40px;
-}
-
-.property-search-box img{
-  width: 3%;
-  height: auto;
-}
-
-.search-box_line {
-  margin: 0px 0px 0px 20px;
-  color: #808080;
-}
-
-.search-box-rent {
-  margin: 5px 0px 0px 20px;
-}
-
-.search-box_floor {
-  color: #808080;
-  margin: 10px 0px 0px 20px;
-}
-
-.search-box_submit {
-  width: 330px;
-  margin: 3% auto;
-}
-
-a.btn_06 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 99%;
-  height: 50px;
-  box-sizing: border-box;
-  background: repeating-linear-gradient(45deg, #ffffff, #ffffff 3px, #e7e7e7 3px, #e7e7e7 30px);
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  position: relative;
-}
-
-a.btn_06 span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 99%;
-  height: 50px;
-  background: #da5789;
-  border: 1px solid #808080;
-  box-sizing: border-box;
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  transition-duration: 0.2s;
-}
-
-a.btn_06:hover span {
-  left: -1px;
-  top: -1px;
-}
 

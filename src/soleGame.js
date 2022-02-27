@@ -322,7 +322,7 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(112, 42).setScrollFactor(0).setFontSize(32);
+  this.button1 = this.add.text(90, 42).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
   this.button1.setPadding(10)
@@ -334,7 +334,7 @@ function create() {
   })
 
 
-  this.button2 = this.add.text(149, 48).setScrollFactor(0).setFontSize(20);
+  this.button2 = this.add.text(122, 48).setScrollFactor(0).setFontSize(20);
   this.button2.setText("↗");
   this.button2.setOrigin(0.5)
   this.button2.setPadding(10)
@@ -382,13 +382,13 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(685, 32).setScrollFactor(0).setFontSize(32);
+  this.text = this.add.text(685, 42).setScrollFactor(0).setFontSize(32);
   this.text.setText('SCORE:' + 0);
-  this.over_text = this.add.text(1200 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  this.over_text = this.add.text(1250 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   this.over_text.setText('START');
   var timedstart = this.time.delayedCall(1000, textChange, [], this);
 
-  this.Timetext = this.add.text(1400, 32).setScrollFactor(0).setFontSize(32);
+  this.Timetext = this.add.text(1400, 42).setScrollFactor(0).setFontSize(32);
   this.Timetext.setText(timeScore);
   timeSubtraction = this.time.addEvent({
     delay: 1000,
@@ -444,7 +444,7 @@ function create() {
   over = async () => {
     this.physics.pause();
     gameOver = true;
-    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over = this.add.text(560, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME OVER!');
     clearInterval(interval_id);
     setTimeout(function () {
@@ -462,6 +462,10 @@ function create() {
     this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME CLEAR!');
     clearInterval(interval_id);
+    if (!maile) {
+      location.href = "/Logreg";
+      return;
+    }
     setTimeout(function () {
       let scoreBord = document.getElementById('Wscore');
       scoreBord.classList.remove('none');
