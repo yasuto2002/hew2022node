@@ -75,9 +75,9 @@ function preload() {
   this.load.image('spike', 'soleGame/assets/images/spike.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
-  this.load.image('tiles', 'soleGame/assets/tilesets/platformPack_tilesheet.png');
+  this.load.image('tiles', 'soleGame/assets/tilesets/sprite.png');
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level1.json');
+  this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level2.json');
   this.load.image('star', 'soleGame/assets/images/Coin.png');
   // this.load.spritesheet('dude', 'soleGame/assets/images/dude.png', {
   //   frameWidth: 32,
@@ -88,7 +88,7 @@ function preload() {
   //   frameWidth: 36,
   //   frameHeight: 38.4
   // });
-  this.load.image('Goal', 'game/assets/images/Goal.png');
+  this.load.image('Goal', 'soleGame/assets/images/Goal.png');
 }
 
 function create() {
@@ -108,8 +108,8 @@ function create() {
   platforms.setCollisionByExclusion(-1, true);
   this.player = this.physics.add.sprite(50, 300, 'player');
   this.player.setBounce(0.1);
-  this.physics.world.setBounds(0, 0, 3100 * 2, 380 * 2);
-  this.cameras.main.setBounds(0, 0, 3100 * 2, 100 * 2);
+  this.physics.world.setBounds(0, 0, 4480, 380 * 2);
+  this.cameras.main.setBounds(0, 0, 4480, 100 * 2);
   this.cameras.main.setZoom(1.1);
   this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
   this.player.setCollideWorldBounds(true);
@@ -156,15 +156,21 @@ function create() {
 
 
   //Add star
-  stars = this.physics.add.group({
-    key: 'star',
-    repeat: 15,
-    setXY: {
-      x: 900,
-      y: 0,
-      stepX: 570 + getRandam(10, 40)
-    }
-  });
+  // stars = this.physics.add.group({
+  //   key: 'star',
+  //   repeat: 15,
+  //   setXY: {
+  //     x: 900,
+  //     y: 0,
+  //     stepX: 570 + getRandam(10, 40)
+  //   }
+  // });
+  stars = this.physics.add.group();
+  stars.add(this.physics.add.sprite(480, 0, 'star'));
+  stars.add(this.physics.add.sprite(736, 0, 'star'));
+  stars.add(this.physics.add.sprite(1696, 0, 'star'));
+  stars.add(this.physics.add.sprite(2912, 0, 'star'));
+  stars.add(this.physics.add.sprite(3552, 0, 'star'));
   stars.children.iterate(function (child) {
 
     //  Give each star a slightly different bounce
@@ -174,13 +180,13 @@ function create() {
   this.physics.add.collider(stars, platforms);
   this.physics.add.overlap(this.player, stars, collectStar, null, this);
   // Add npc
-  npc = this.physics.add.group({
-    key: 'dude',
-    setXY: {
-      x: 900,
-      y: 550,
-    }
-  });
+  // npc = this.physics.add.group({
+  //   key: 'dude',
+  //   setXY: {
+  //     x: 900,
+  //     y: 550,
+  //   }
+  // });
   // 1218
   // npc = this.physics.add.group({
   //   key: 'dude',
@@ -192,8 +198,14 @@ function create() {
   //   }
   // });
   //1218
+  npc = this.physics.add.group();
+  npc.add(this.physics.add.sprite(300, 0, 'dude'));
+  npc.add(this.physics.add.sprite(1024, 0, 'dude'));
+  npc.add(this.physics.add.sprite(1600, 0, 'dude'));
+  npc.add(this.physics.add.sprite(2436, 0, 'dude'));
+  npc.add(this.physics.add.sprite(3250, 0, 'dude'));
   npc.children.iterate(function (child) {
-
+    child.body.setSize(child.width - 40, child.height);
     //  Give each star a slightly different bounce
     child.setBounce(0.2);
     child.setCollideWorldBounds(true);
@@ -358,7 +370,7 @@ function create() {
   this.button2.on('pointerover', () => {
     if (this.player.body.onFloor()) {
       // this.player.setVelocityY(-400);
-      this.player.setVelocity(200, -450);
+      this.player.setVelocity(200, -350);
       this.player.play('jump', true);
       numflg = 1;
       timeid = window.setTimeout(() => {

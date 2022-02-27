@@ -164,10 +164,10 @@ function preload() {
   this.load.image('Wall', 'game/assets/images/wall.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
-  this.load.image('tiles', 'game/assets/tilesets/platformPack_tilesheet.png');
+  this.load.image('tiles', 'game/assets/tilesets/sprite.png');
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level1.json');
-  this.load.image('star', 'game/assets/images/star.png');
+  this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level2.json');
+  this.load.image('star', 'game/assets/images/Coin.png');
   this.load.spritesheet('dude', 'game/assets/images/dude.png', {
     frameWidth: 32,
     frameHeight: 48
@@ -389,7 +389,7 @@ function create() {
   this.button1 = this.add.text(231, 45).setScrollFactor(0).setFontSize(32);
   this.button1.setText("→");
   this.button1.setOrigin(0.5)
-  this.button1.setPadding(5)
+  this.button1.setPadding(0)
   // this.button1.setStyle({
   //     backgroundColor: '#111',
   // })
@@ -398,14 +398,16 @@ function create() {
   })
 
   this.button1.on('pointerover', () => {
-    this.player.setVelocityX(200);
-    this.player.play('walk', true);
-    numflg = 1;
-    socket.emit('chat message', {
-      room: room,
-      value: 2,
-      player_id: player_id
-    });
+    if (this.player.body.onFloor()) {
+      this.player.setVelocityX(200);
+      this.player.play('walk', true);
+      numflg = 1;
+      socket.emit('chat message', {
+        room: room,
+        value: 2,
+        player_id: player_id
+      });
+    }
   });
   this.button1.on('pointerout', () => {
     if (this.player.body.onFloor()) {
@@ -422,72 +424,30 @@ function create() {
   });
 
 
-  this.button2 = this.add.text(169, 45).setScrollFactor(0).setFontSize(32);
-  this.button2.setText("↑");
-  this.button2.setOrigin(0.5)
-  this.button2.setPadding(10)
-  // this.button1.setStyle({
-  //     backgroundColor: '#111',
+  // this.button2 = this.add.text(169, 45).setScrollFactor(0).setFontSize(32);
+  // this.button2.setText("↑");
+  // this.button2.setOrigin(0.5)
+  // this.button2.setPadding(10)
+  // // this.button1.setStyle({
+  // //     backgroundColor: '#111',
+  // // })
+  // this.button2.setInteractive({
+  //   useHandCursor: true
   // })
-  this.button2.setInteractive({
-    useHandCursor: true
-  })
 
-  this.button2.on('pointerover', () => {
-    if (this.player.body.onFloor()) {
-      this.player.setVelocityY(-400);
-      this.player.play('jump', true);
-      numflg = 1;
-      socket.emit('chat message', {
-        room: room,
-        value: 0,
-        player_id: player_id
-      });
-    }
-  });
-  this.button2.on('pointerout', () => {
-    this.player.setVelocityX(0);
-    this.player.play('idle', true);
-    numflg = 0;
-    socket.emit('chat message', {
-      room: room,
-      value: 3,
-      player_id: player_id,
-      location: this.player.x
-    });
-  });
-
-
-
-  this.button3 = this.add.text(201, 51).setScrollFactor(0).setFontSize(20);
-  this.button3.setText("↗");
-  this.button3.setOrigin(0.5)
-  this.button3.setPadding(5)
-  // this.button1.setStyle({
-  //     backgroundColor: '#111',
-  // })
-  this.button3.setInteractive({
-    useHandCursor: true
-  })
-
-  this.button3.on('pointerover', () => {
-    if (this.player.body.onFloor()) {
-      this.player.setVelocityY(-500);
-      this.player.play('jump', true);
-      this.player.setVelocityX(300);
-      numflg = 1;
-      timeid = window.setTimeout(() => {
-        this.player.setVelocity(0, 0);
-        this.player.play('idle', true);
-      }, 1670);
-      socket.emit('chat message', {
-        room: room,
-        value: 4,
-        player_id: player_id
-      });
-    }
-  });
-  // this.button3.on('pointerout', () => {
+  // this.button2.on('pointerover', () => {
+  //   if (this.player.body.onFloor()) {
+  //     this.player.setVelocityY(-400);
+  //     this.player.play('jump', true);
+  //     numflg = 1;
+  //     socket.emit('chat message', {
+  //       room: room,
+  //       value: 0,
+  //       player_id: player_id
+  //     });
+  //   }
+  // });
+  // this.button2.on('pointerout', () => {
   //   this.player.setVelocityX(0);
   //   this.player.play('idle', true);
   //   numflg = 0;
@@ -497,8 +457,50 @@ function create() {
   //     player_id: player_id,
   //     location: this.player.x
   //   });
-
   // });
+
+
+
+  this.button3 = this.add.text(201, 51).setScrollFactor(0).setFontSize(20);
+  this.button3.setText("↗");
+  this.button3.setOrigin(0.5)
+  this.button3.setPadding(0)
+  // this.button1.setStyle({
+  //     backgroundColor: '#111',
+  // })
+  this.button3.setInteractive({
+    useHandCursor: true
+  })
+
+  this.button3.on('pointerover', () => {
+    if (this.player.body.onFloor()) {
+      this.player.setVelocityY(-450);
+      this.player.play('jump', true);
+      this.player.setVelocityX(250);
+      numflg = 1;
+      // timeid = window.setTimeout(() => {
+      //   this.player.setVelocity(0, 0);
+      //   this.player.play('idle', true);
+      // }, 1500);
+      socket.emit('chat message', {
+        room: room,
+        value: 4,
+        player_id: player_id
+      });
+    }
+  });
+  this.button3.on('pointerout', () => {
+    this.player.setVelocityX(0);
+    this.player.play('idle', true);
+    numflg = 0;
+    socket.emit('chat message', {
+      room: room,
+      value: 3,
+      player_id: player_id,
+      location: this.player.x
+    });
+
+  });
 
   this.button4 = this.add.text(139, 51).setScrollFactor(0).setFontSize(20);
   this.button4.setText("↖");
@@ -789,12 +791,23 @@ function update() {
     if (this.player.body.onFloor()) {
       this.player.play('walk', true);
     }
+    socket.emit('chat message', {
+      room: room,
+      value: 2,
+      player_id: player_id
+    });
   } else {
     if (numflg != 1) {
       this.player.setVelocityX(0);
       if (this.player.body.onFloor()) {
         this.player.play('idle', true);
       }
+      socket.emit('chat message', {
+        room: room,
+        value: 3,
+        player_id: player_id,
+        location: this.player.x
+      });
     }
 
     // jumpbutton.addEventListener("mouseover", () => {
@@ -815,6 +828,11 @@ function update() {
   if ((this.cursors.space.isDown || this.cursors.up.isDown) && this.player.body.onFloor()) {
     this.player.setVelocityY(-400);
     this.player.play('jump', true);
+    socket.emit('chat message', {
+      room: room,
+      value: 0,
+      player_id: player_id
+    });
   }
   if (this.player.body.velocity.x > 0) {
     this.player.setFlipX(false);
@@ -906,20 +924,20 @@ function stop() {
 
 function rightJump() {
   if (npc.body.onFloor()) {
-    npc.setVelocityX(300);
-    npc.setVelocityY(-540);
+    npc.setVelocityX(250);
+    npc.setVelocityY(-490);
     npc.play('jump', true);
   }
   timeid = window.setTimeout(() => {
     npc.setVelocity(0, 0);
     npc.play('idle', true);
-  }, 1670);
+  }, 1500);
   return;
 }
 
 function leftJump() {
-  npc.setVelocityX(-200);
-  npc.setVelocityY(-440);
+  npc.setVelocityX(250);
+  npc.setVelocityY(-490);
   npc.play('jump', true);
   timeid = window.setTimeout(() => {
     npc.setVelocity(0, 0);
