@@ -670,10 +670,16 @@ export default {
   object-fit: cover;
 }
 .card img {
-  height: 150px;
+  height: 132px;
   object-fit: cover;
 }
 .card {
   cursor: pointer;
+}
+.card__titletext {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <!-- パンくずリスト -->
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
       <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>

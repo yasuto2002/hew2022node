@@ -142,6 +142,14 @@ function create() {
     }],
     frameRate: 10,
   });
+  this.anims.create({
+    key: 'die',
+    frames: [{
+      key: 'player',
+      frame: 'robo_player_0'
+    }],
+    frameRate: 10,
+  });
   this.cursors = this.input.keyboard.createCursorKeys();
   this.spikes = this.physics.add.group({
     allowGravity: false,
@@ -334,61 +342,64 @@ function create() {
   //   callbackScope: this,
   //   repeat: 4
   // });
-  this.button1 = this.add.text(90, 42).setScrollFactor(0).setFontSize(32);
-  this.button1.setText("→");
-  this.button1.setOrigin(0.5)
-  this.button1.setPadding(10)
-  // this.button1.setStyle({
-  //     backgroundColor: '#111',
+
+  //0227
+  // this.button1 = this.add.text(90, 42).setScrollFactor(0).setFontSize(32);
+  // this.button1.setText("→");
+  // this.button1.setOrigin(0.5)
+  // this.button1.setPadding(10)
+  // // this.button1.setStyle({
+  // //     backgroundColor: '#111',
+  // // })
+  // this.button1.setInteractive({
+  //   useHandCursor: true
   // })
-  this.button1.setInteractive({
-    useHandCursor: true
-  })
 
 
-  this.button2 = this.add.text(122, 48).setScrollFactor(0).setFontSize(20);
-  this.button2.setText("↗");
-  this.button2.setOrigin(0.5)
-  this.button2.setPadding(10)
-  // this.button1.setStyle({
-  //     backgroundColor: '#111',
+  // this.button2 = this.add.text(122, 48).setScrollFactor(0).setFontSize(20);
+  // this.button2.setText("↗");
+  // this.button2.setOrigin(0.5)
+  // this.button2.setPadding(10)
+  // // this.button1.setStyle({
+  // //     backgroundColor: '#111',
+  // // })
+  // this.button2.setInteractive({
+  //   useHandCursor: true
   // })
-  this.button2.setInteractive({
-    useHandCursor: true
-  })
 
-  this.button1.on('pointerover', () => {
-    this.player.setVelocityX(200);
-    this.player.play('walk', true);
-    numflg = 1;
-  });
-  this.button1.on('pointerout', () => {
-    this.player.setVelocityX(0);
-    this.player.play('idle', true);
-    numflg = 0;
-  });
-  this.button2.on('pointerover', () => {
-    if (this.player.body.onFloor()) {
-      // this.player.setVelocityY(-400);
-      this.player.setVelocity(200, -350);
-      this.player.play('jump', true);
-      numflg = 1;
-      timeid = window.setTimeout(() => {
-        if (!this.player.body.onFloor()) {
-          this.player.setVelocity(0, 0);
-          this.player.play('idle', true);
-        }
-      }, 1375);
-    }
-  });
-  this.button2.on('pointerout', () => {
-    if (timeid != undefined) {
-      window.clearTimeout(timeid);
-    }
-    this.player.setVelocityX(0);
-    this.player.play('idle', true);
-    numflg = 0;
-  });
+  // this.button1.on('pointerover', () => {
+  //   this.player.setVelocityX(200);
+  //   this.player.play('walk', true);
+  //   numflg = 1;
+  // });
+  // this.button1.on('pointerout', () => {
+  //   this.player.setVelocityX(0);
+  //   this.player.play('idle', true);
+  //   numflg = 0;
+  // });
+  // this.button2.on('pointerover', () => {
+  //   if (this.player.body.onFloor()) {
+  //     // this.player.setVelocityY(-400);
+  //     this.player.setVelocity(200, -350);
+  //     this.player.play('jump', true);
+  //     numflg = 1;
+  //     timeid = window.setTimeout(() => {
+  //       if (!this.player.body.onFloor()) {
+  //         this.player.setVelocity(0, 0);
+  //         this.player.play('idle', true);
+  //       }
+  //     }, 1375);
+  //   }
+  // });
+  // this.button2.on('pointerout', () => {
+  //   if (timeid != undefined) {
+  //     window.clearTimeout(timeid);
+  //   }
+  //   this.player.setVelocityX(0);
+  //   this.player.play('idle', true);
+  //   numflg = 0;
+  // });
+  //0227
   // this.text.strokeRoundedRect(32, 32, 300, 200, 32);
   // .on('pointerdown', startGame)
   // .on('pointerover', () => startButton.setStyle({
@@ -454,6 +465,7 @@ function create() {
 
 
   over = async () => {
+    this.player.play('die', true);
     this.physics.pause();
     gameOver = true;
     this.over = this.add.text(560, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');

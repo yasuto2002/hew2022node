@@ -236,6 +236,14 @@ function create() {
     }],
     frameRate: 10,
   });
+  this.anims.create({
+    key: 'die',
+    frames: [{
+      key: 'player',
+      frame: 'robo_player_0'
+    }],
+    frameRate: 10,
+  });
   npc.play('idle', true);
   this.cursors = this.input.keyboard.createCursorKeys();
   this.spikes = this.physics.add.group({
@@ -606,6 +614,7 @@ function create() {
 
 
   over = () => {
+    this.player.play('die', true);
     this.physics.pause();
     gameOver = true;
     this.over = this.add.text(560, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');

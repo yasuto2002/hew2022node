@@ -4,7 +4,7 @@
       <div class="footer-wrap">
         <div class="footer-logo">
           <router-link to="/"
-            ><img src="images/hew_logo.png" alt=""
+            ><img src="images/footer-logo.png" alt=""
           /></router-link>
         </div>
         <ul class="footer-nav">

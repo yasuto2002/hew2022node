@@ -388,7 +388,7 @@ export default {
     const route = useRoute();
     const em = store.state.em;
     const schema = yup.object({
-      word: yup.string().required(),
+      word: yup.string().matches(store.state.regex, em.Matches).required(),
     });
     useForm({
       validationSchema: schema,
