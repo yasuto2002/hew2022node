@@ -4,7 +4,7 @@
       <h1 class="member-authentication-box-title">認証ページ</h1>
       <p class="member-authentication-txt">
         登録はまだ完了していません。<br />
-        メールに記載の認証コード（半角数字）を確認後、24時間以内に入力してください。<br />
+        メールに記載の認証コード（全角英字）を確認後、24時間以内に入力してください。<br />
         ※この画面は閉じたり別のページを開いたりせず、そのままにしておいてください。<br />
       </p>
       <p style="color: red">{{ data.em }}</p>
@@ -34,6 +34,7 @@ import { onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
+import UserHelper from "../functons/userHelper";
 import * as yup from "yup";
 export default {
   name: "memberauthentication",
@@ -45,6 +46,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
+    const { LogCheck } = UserHelper();
     const schema = yup.object({
       password: yup.string().length(6).required(),
     });
@@ -127,7 +129,11 @@ export default {
         router.push("/Error");
       }
     };
-    onMounted(() => {
+    onMounted(async () => {
+      let flg = await LogCheck();
+      if (flg) {
+        router.push("/");
+      }
       getUdata();
     });
     return {

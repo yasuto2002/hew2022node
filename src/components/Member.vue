@@ -232,12 +232,13 @@
 <script>
 import axios from "axios";
 import axiosJsonpAdapter from "vue-jsonp";
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
 let url = "http://localhost:8080/checkmaile";
+import UserHelper from "../functons/userHelper";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
 export default {
@@ -327,6 +328,7 @@ export default {
     const { value: password2 } = useField("password2");
     const { value: gender } = useField("gender");
     const { value: date } = useField("date");
+    const { LogCheck } = UserHelper();
     const onSubmit = handleSubmit(async (values) => {
       if (values.password1 == values.password2) {
         let params = new URLSearchParams();
@@ -399,6 +401,12 @@ export default {
       // this.$router.push("/");
       router.push("/");
     };
+    onMounted(async () => {
+      let flg = await LogCheck();
+      if (flg) {
+        router.push("/");
+      }
+    });
     return {
       data,
       jumppage,

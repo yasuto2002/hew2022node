@@ -74,6 +74,7 @@ import { onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
+import UserHelper from "../functons/userHelper";
 export default {
   name: "memberauthentication",
   setup() {
@@ -89,6 +90,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
+    const { LogCheck } = UserHelper();
     const url = store.state.apiUrl + "/reg";
     const getUdata = async () => {
       let reqstatus;
@@ -135,7 +137,11 @@ export default {
         router.push("/Error");
       }
     };
-    onMounted(() => {
+    onMounted(async () => {
+      let flg = await LogCheck();
+      if (flg) {
+        router.push("/");
+      }
       getUdata();
     });
     return {
