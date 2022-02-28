@@ -237,14 +237,14 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
-let url = "http://175.41.222.35/checkmaile";
+let url = "http://35.77.127.209/checkmaile";
 import UserHelper from "../functons/userHelper";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
 export default {
   name: "Member",
   devServer: {
-    proxy: "http://175.41.222.35",
+    proxy: "http://35.77.127.209",
   },
   setup() {
     const data = reactive({

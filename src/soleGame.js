@@ -423,7 +423,7 @@ function create() {
   //console.log(this.player.body.position.x);
 
   var Scorereport = async () => {
-    let surl = "http://175.41.222.35/GameRecord";
+    let surl = "http://35.77.127.209/GameRecord";
     let params = new URLSearchParams();
     params.append("mail_address", maile);
     params.append("point", score);
