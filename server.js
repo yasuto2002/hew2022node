@@ -117,7 +117,7 @@ app.get('/soleGame', (req, res) => {
 });
 
 app.get('/matchconf', (req, res) => {
-  fs.readFile("room.json", {
+  fs.readFile(__dirname + "/room.json", {
     encoding: "utf-8",
     flag: 'r+',
   }, (err, data) => {
@@ -203,7 +203,7 @@ function generateRandomString(length) {
 }
 
 app.get('/matchRequest', (req, res) => {
-  fs.readFile("room.json", {
+  fs.readFile(__dirname + "/room.json", {
     encoding: "utf-8",
     flag: 'r+',
   }, (err, data) => {
@@ -222,7 +222,7 @@ app.get('/matchRequest', (req, res) => {
           };
           roomFile[i].player1 = true;
           roomFile = JSON.stringify(roomFile);
-          fs.writeFile("room.json", roomFile, (err) => {
+          fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
             if (err) throw err;
           });
           check = true;
@@ -237,7 +237,7 @@ app.get('/matchRequest', (req, res) => {
           };
           roomFile[i].player2 = true;
           roomFile = JSON.stringify(roomFile);
-          fs.writeFile("room.json", roomFile, (err) => {
+          fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
             if (err) throw err;
           });
           check = true;
@@ -262,7 +262,7 @@ app.get('/matchRequest', (req, res) => {
         "playerid": 1
       };
       roomFile = JSON.stringify(roomFile);
-      fs.writeFile("room.json", roomFile, (err) => {
+      fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
         if (err) return;
       });
       req.session.flg = true;
@@ -410,7 +410,7 @@ io.on('connection', (socket) => {
 
 
 function judroom(id) {
-  fs.readFile("room.json", {
+  fs.readFile(__dirname + "/room.json", {
     encoding: "utf-8",
     flag: 'r+',
   }, (err, data) => {
@@ -431,7 +431,7 @@ function judroom(id) {
 }
 
 function deleteroom(id) {
-  fs.readFile("room.json", {
+  fs.readFile(__dirname + "/room.json", {
     encoding: "utf-8",
     flag: 'r+',
   }, (err, data) => {
@@ -443,7 +443,7 @@ function deleteroom(id) {
       }
     }
     roomFile = JSON.stringify(roomFile);
-    fs.writeFile("room.json", roomFile, (err) => {
+    fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
       if (err) throw err;
     });
   })
