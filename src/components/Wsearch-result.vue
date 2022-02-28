@@ -286,4 +286,9 @@ export default {
 .sarch-section:hover {
   cursor: pointer;
 }
+.sarch-section-box img {
+  height: 160px;
+  width: 160px !important;
+  object-fit: cover;
+}
 </style>
