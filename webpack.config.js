@@ -14,6 +14,7 @@ module.exports = {
     bundle: "./src/index.js",
     main: "./src/game.js",
     soleGame: "./src/soleGame.js",
+    match: "./src/match.js",
   },
   //ファイルの出力設定
   output: {

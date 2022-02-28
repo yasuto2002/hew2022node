@@ -20,11 +20,10 @@
         style="width: 1080px"
         v-model="word"
       />
-      <input type="submit" value="検索" /><img
+      <input type="submit" value="検索" :disabled="!meta.valid" /><img
         src="images/地図マーカー.png"
         class="map"
         @click="GpsSerch"
-        :disabled="!meta.valid"
       />
     </form>
 
