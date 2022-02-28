@@ -41,7 +41,7 @@ async function test() {
   try {
     let surl = '/test1';
     let request;
-    request = await axios.get(surl);
+    request = await axios.post(surl);
     // data = request.data;
     // if (request.data.judg == true) {
     //   // stopInterval(data);
