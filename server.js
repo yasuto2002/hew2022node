@@ -201,7 +201,7 @@ app.get('/sql', (req, res) => {
 function generateRandomString(length) {
   return randomBytes(length).reduce((p, i) => p + (i % 32).toString(32), '')
 }
-app.get('/test', (req, res) => {
+app.get('/test1', (req, res) => {
   resData = {
     "judg": true,
     "roomid": 3,

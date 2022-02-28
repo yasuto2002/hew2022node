@@ -39,7 +39,7 @@ var data;
 // }
 async function test() {
   try {
-    let surl = '/test';
+    let surl = '/test1';
     let request;
     request = await axios.get(surl);
     // data = request.data;
