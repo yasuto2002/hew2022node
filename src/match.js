@@ -37,18 +37,20 @@ var data;
 //   clearInterval(interval_id);
 //   location.href = `/game?player_id=${urldata.playerid}&roomid=${urldata.roomid}`;
 // }
-
-try {
-  let surl = '/test';
-  let request;
-  request = await axios.get(surl);
-  // data = request.data;
-  // if (request.data.judg == true) {
-  //   // stopInterval(data);
-  //   flg = true;
-  // }
-  console.log(request);
-} catch (er) {
-  console.log(request)
-  console.log(er);
+async function test() {
+  try {
+    let surl = '/test';
+    let request;
+    request = await axios.get(surl);
+    // data = request.data;
+    // if (request.data.judg == true) {
+    //   // stopInterval(data);
+    //   flg = true;
+    // }
+    console.log(request);
+  } catch (er) {
+    console.log(request)
+    console.log(er);
+  }
 }
+test();

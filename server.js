@@ -204,7 +204,7 @@ function generateRandomString(length) {
 app.get('/test', (req, res) => {
   resData = {
     "judg": true,
-    "roomid": roomFile[i].roomid,
+    "roomid": 3,
     "playerid": 2
   };
   res.json(resData);
