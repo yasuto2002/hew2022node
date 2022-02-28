@@ -49,7 +49,6 @@ async function test() {
     // }
     console.log(request);
   } catch (er) {
-    console.log(request)
     console.log(er);
   }
 }
