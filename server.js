@@ -203,88 +203,92 @@ function generateRandomString(length) {
 }
 
 app.get('/matchRequest', (req, res) => {
-  fs.readFile(__dirname + "/room.json", {
-    encoding: "utf-8",
-    flag: 'r+',
-  }, (err, data) => {
-    if (err) throw err;
-    roomFile = JSON.parse(data);
-    let check = false;
-    var resData;
-    let i = 0;
-    if (roomFile.length != 0) {
-      while (i < roomFile.length && !check) {
-        if (roomFile[i].player1 == null) {
-          resData = {
-            "judg": true,
-            "roomid": roomFile[i].roomid,
-            "playerid": 1
-          };
-          roomFile[i].player1 = true;
-          roomFile = JSON.stringify(roomFile);
-          fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
-            if (err) throw err;
-          });
-          check = true;
-          req.session.flg = true;
-          res.json(resData);
-          return;
-        } else if (roomFile[i].player2 == null) {
-          resData = {
-            "judg": true,
-            "roomid": roomFile[i].roomid,
-            "playerid": 2
-          };
-          roomFile[i].player2 = true;
-          roomFile = JSON.stringify(roomFile);
-          fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
-            if (err) throw err;
-          });
-          check = true;
-          // req.session.flg = true;
-          res.json(resData);
-          return;
+  try {
+    fs.readFile(__dirname + "/room.json", {
+      encoding: "utf-8",
+      flag: 'r+',
+    }, (err, data) => {
+      if (err) throw err;
+      roomFile = JSON.parse(data);
+      let check = false;
+      var resData;
+      let i = 0;
+      if (roomFile.length != 0) {
+        while (i < roomFile.length && !check) {
+          if (roomFile[i].player1 == null) {
+            resData = {
+              "judg": true,
+              "roomid": roomFile[i].roomid,
+              "playerid": 1
+            };
+            roomFile[i].player1 = true;
+            roomFile = JSON.stringify(roomFile);
+            fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
+              if (err) throw err;
+            });
+            check = true;
+            req.session.flg = true;
+            res.json(resData);
+            return;
+          } else if (roomFile[i].player2 == null) {
+            resData = {
+              "judg": true,
+              "roomid": roomFile[i].roomid,
+              "playerid": 2
+            };
+            roomFile[i].player2 = true;
+            roomFile = JSON.stringify(roomFile);
+            fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
+              if (err) throw err;
+            });
+            check = true;
+            // req.session.flg = true;
+            res.json(resData);
+            return;
+          }
+          i++;
         }
-        i++;
       }
-    }
-    if (!check) {
-      let random = generateRandomString(32);
-      let roomjson = {
-        "roomid": random,
-        "player1": true,
-        "player2": null
+      if (!check) {
+        let random = generateRandomString(32);
+        let roomjson = {
+          "roomid": random,
+          "player1": true,
+          "player2": null
+        }
+        roomFile[i] = roomjson;
+        resData = {
+          "judg": true,
+          "roomid": random,
+          "playerid": 1
+        };
+        roomFile = JSON.stringify(roomFile);
+        fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
+          if (err) return;
+        });
+        req.session.flg = true;
+        res.json(resData);
+        return;
+        // resData = {
+        //   "judg": false,
+        //   "roomid": null,
+        //   "playerid": null
+        // };
+        // res.json(resData);
+        // return;
       }
-      roomFile[i] = roomjson;
-      resData = {
-        "judg": true,
-        "roomid": random,
-        "playerid": 1
-      };
-      roomFile = JSON.stringify(roomFile);
-      fs.writeFile(__dirname + "/room.json", roomFile, (err) => {
-        if (err) return;
-      });
-      req.session.flg = true;
-      res.json(resData);
-      return;
-      // resData = {
-      //   "judg": false,
-      //   "roomid": null,
-      //   "playerid": null
-      // };
-      // res.json(resData);
-      // return;
-    }
-    // else {
-    //   roomFile = JSON.stringify(roomFile);
-    //   fs.writeFile("room.json", roomFile, (err) => {
-    //     if (err) throw err;
-    //     console.log('正常に書き込みが完了しました');
-    //   });
-    // }
-  });
-  // res.json(resData);
+      // else {
+      //   roomFile = JSON.stringify(roomFile);
+      //   fs.writeFile("room.json", roomFile, (err) => {
+      //     if (err) throw err;
+      //     console.log('正常に書き込みが完了しました');
+      //   });
+      // }
+    });
+    // res.json(resData);
+  } catch (er) {
+    return res.json(er);
+  }
 });
 
 // io.on('connection', (socket) => {

@@ -14,6 +14,7 @@ interval_id = setInterval(async () => {
         flg = true;
       }
     } catch (er) {
+      console.log(request)
       console.log(er);
     }
   } else {
@@ -26,6 +27,7 @@ interval_id = setInterval(async () => {
         stopInterval(data);
       }
     } catch (er) {
+      console.log(request)
       console.log(er)
     }
   }
