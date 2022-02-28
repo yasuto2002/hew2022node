@@ -201,7 +201,15 @@ app.get('/sql', (req, res) => {
 function generateRandomString(length) {
   return randomBytes(length).reduce((p, i) => p + (i % 32).toString(32), '')
 }
-
+app.get('/test', (req, res) => {
+  resData = {
+    "judg": true,
+    "roomid": roomFile[i].roomid,
+    "playerid": 2
+  };
+  res.json(resData);
+  return;
+})
 app.get('/matchRequest', (req, res) => {
   try {
     fs.readFile(__dirname + "/room.json", {
