@@ -1,7 +1,9 @@
 <template>
   <div class="breadcrumb">
     <ul class="breadcrumb_ul">
-      <li><a href="index.html">不動産・住宅情報サイトTROUBLE HOUSE</a></li>
+      <li>
+        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
+      </li>
       <li>新規会員登録・ログイン</li>
     </ul>
   </div>
@@ -49,8 +51,8 @@
           ><input class="contact-btn" type="submit" value="ログイン"
         /></a>
         <p class="login-txt">
-          パスワードを忘れた方は<a class="login-txt-link" href="index.html"
-            >こちら</a
+          パスワードを忘れた方は<router-link class="login-txt-link" to="/"
+            >こちら</router-link
           >
         </p>
       </div>

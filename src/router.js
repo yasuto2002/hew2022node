@@ -193,8 +193,8 @@ export const router = createRouter({
       component: Fsearchresult,
       props: true,
     }, {
-      path: '/GameRoot',
-      name: 'GameRoot',
+      path: '/GameSelect',
+      name: 'GameSelect',
       component: GameRoot,
       props: true,
     }
