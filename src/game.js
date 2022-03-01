@@ -200,8 +200,8 @@ function create() {
   platforms.setCollisionByExclusion(-1, true);
   this.player = this.physics.add.sprite(50, 300, 'player');
   this.player.setBounce(0.1);
-  this.physics.world.setBounds(0, 0, 3100 * 2, 380 * 2);
-  this.cameras.main.setBounds(0, 0, 3100 * 2, 100 * 2);
+  this.physics.world.setBounds(0, 0, 4480, 380 * 2);
+  this.cameras.main.setBounds(0, 0, 4480, 100 * 2);
   this.cameras.main.setZoom(1.1);
   this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
   this.player.setCollideWorldBounds(true);
