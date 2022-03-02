@@ -166,7 +166,7 @@ function getRandam(n, m) {
 function preload() {
   this.load.image('background', 'game/assets/images/backgroung1.png');
   this.load.image('spike', 'game/assets/images/spike.png');
-  this.load.image('Goal', 'game/assets/images/Goal.png');
+  this.load.image('Goal', 'game/assets/images/goal.png');
   this.load.image('Wall', 'game/assets/images/wall.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');

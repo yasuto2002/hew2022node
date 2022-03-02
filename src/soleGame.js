@@ -88,7 +88,7 @@ function preload() {
   //   frameWidth: 36,
   //   frameHeight: 38.4
   // });
-  this.load.image('Goal', 'soleGame/assets/images/Goal.png');
+  this.load.image('Goal', 'soleGame/assets/images/goal.png');
 }
 
 function create() {
