@@ -649,10 +649,6 @@ function create() {
     this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME CLEAR!');
     clearInterval(interval_id);
-    if (!maile) {
-      location.href = "/Logreg";
-      return;
-    }
     setTimeout(function () {
       let scoreBord = document.getElementById('Wscore');
       scoreBord.classList.remove('none');
@@ -660,6 +656,10 @@ function create() {
       game.classList.add('none');
     }, 5000);
     countNum = 10;
+    if (!maile) {
+      location.href = "/Logreg";
+      return;
+    }
     doownId = window.setInterval(timecount2, 1000);
   }
   socket.on('chat message', function (msg) {
