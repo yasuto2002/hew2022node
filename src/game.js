@@ -244,7 +244,7 @@ function create() {
     }],
     frameRate: 10,
   });
-  npc.play('idle', true);
+  // npc.play('idle', true);
   this.cursors = this.input.keyboard.createCursorKeys();
   this.spikes = this.physics.add.group({
     allowGravity: false,

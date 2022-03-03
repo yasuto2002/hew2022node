@@ -1,6 +1,15 @@
 {
     "frames": [
         {
+            "filename": "robo_player_5",
+            "frame": {
+                "x": 300,
+                "y": 0,
+                "w": 150,
+                "h": 150
+            }
+        },
+        {
             "filename": "robo_player_0",
             "frame": {
                 "x": 0,
