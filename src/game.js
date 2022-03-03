@@ -129,11 +129,14 @@ if (player_id == 2) {
         player_id: player_id
       });
     }
-  }, 15000);
+  }, 3500);
 }
 socket.on("numCheck", (msg) => {
   if (msg.num == 1) {
-    location.href = "/";
+    alert("マッチングに失敗しました");
+    window.setTimeout(() => {
+      location.href = "/match";
+    }, 1500);
   }
 });
 socket.on("member-join", (data) => {
@@ -1078,6 +1081,8 @@ socket.on('gameStart', function (msg) {
 socket.on('breakRoom', function (data) {
   if (room == data.name) {
     alert("相手が退出しました");
-    location.href = "/";
+    window.setTimeout(() => {
+      location.href = "/";
+    }, 1500);
   }
 })
