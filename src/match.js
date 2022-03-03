@@ -31,7 +31,7 @@ interval_id = setInterval(async () => {
       console.log(er)
     }
   }
-}, 5000);
+}, 3500);
 
 function stopInterval(urldata) {
   clearInterval(interval_id);
