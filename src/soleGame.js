@@ -75,9 +75,9 @@ function preload() {
   this.load.image('spike', 'soleGame/assets/images/spike.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
-  this.load.image('tiles', 'soleGame/assets/tilesets/sprite.png');
+  this.load.image('tiles', 'soleGame/assets/tilesets/kenney-tileset-64px.png'); //ここ
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level2.json');
+  this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level3.json'); //ここ
   this.load.image('star', 'soleGame/assets/images/Coin.png');
   // this.load.spritesheet('dude', 'soleGame/assets/images/dude.png', {
   //   frameWidth: 32,
@@ -176,8 +176,8 @@ function create() {
   stars = this.physics.add.group();
   stars.add(this.physics.add.sprite(480, 0, 'star'));
   stars.add(this.physics.add.sprite(736, 0, 'star'));
-  stars.add(this.physics.add.sprite(1696, 0, 'star'));
-  stars.add(this.physics.add.sprite(2912, 0, 'star'));
+  stars.add(this.physics.add.sprite(1632, 0, 'star'));
+  stars.add(this.physics.add.sprite(2848, 0, 'star'));
   stars.add(this.physics.add.sprite(3552, 0, 'star'));
   stars.children.iterate(function (child) {
 
@@ -207,11 +207,11 @@ function create() {
   // });
   //1218
   npc = this.physics.add.group();
-  npc.add(this.physics.add.sprite(300, 0, 'dude'));
-  npc.add(this.physics.add.sprite(1024, 0, 'dude'));
-  npc.add(this.physics.add.sprite(1600, 0, 'dude'));
-  npc.add(this.physics.add.sprite(2436, 0, 'dude'));
-  npc.add(this.physics.add.sprite(3250, 0, 'dude'));
+  npc.add(this.physics.add.sprite(288, 0, 'dude'));
+  npc.add(this.physics.add.sprite(1045, 0, 'dude'));
+  npc.add(this.physics.add.sprite(1568, 0, 'dude'));
+  npc.add(this.physics.add.sprite(2368, 0, 'dude'));
+  npc.add(this.physics.add.sprite(3104, 0, 'dude'));
   npc.children.iterate(function (child) {
     child.body.setSize(child.width - 40, child.height);
     //  Give each star a slightly different bounce
@@ -405,9 +405,15 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(685, 42).setScrollFactor(0).setFontSize(32);
+  const {
+    centerX,
+    centerY
+  } = this.cameras.main;
+
+  // this.add.text(centerX, centerY, 'GAME OVER!').setOrigin(0.5, 0.5);
+  this.text = this.add.text(centerX, 42).setOrigin(0.5, 0).setScrollFactor(0).setFontSize(32);
   this.text.setText('SCORE:' + 0);
-  this.over_text = this.add.text(1250 / 2, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  this.over_text = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   this.over_text.setText('START');
   var timedstart = this.time.delayedCall(1000, textChange, [], this);
 
@@ -468,7 +474,7 @@ function create() {
     this.player.play('die', true);
     this.physics.pause();
     gameOver = true;
-    this.over = this.add.text(560, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME OVER!');
     clearInterval(interval_id);
     setTimeout(function () {
@@ -483,7 +489,7 @@ function create() {
   clear = async () => {
     this.physics.pause();
     gameOver = true;
-    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME CLEAR!');
     clearInterval(interval_id);
     if (!maile) {

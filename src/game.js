@@ -170,9 +170,9 @@ function preload() {
   this.load.image('Wall', 'game/assets/images/wall.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
-  this.load.image('tiles', 'game/assets/tilesets/sprite.png');
+  this.load.image('tiles', 'game/assets/tilesets/kenney-tileset-64px.png');
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level2.json');
+  this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level3.json');
   this.load.image('star', 'game/assets/images/Coin.png');
   this.load.spritesheet('dude', 'game/assets/images/dude.png', {
     frameWidth: 32,
@@ -282,25 +282,25 @@ function create() {
 
   // timewall = this.time.delayedCall(5000, deletewall, [], this);
   //Add star
-  stars = this.physics.add.group({
-    key: 'star',
-    repeat: 15,
-    setXY: {
-      x: 900,
-      y: 0,
-      stepX: 570 + getRandam(10, 40)
-    }
-  });
-  stars.children.iterate(function (child) {
+  // stars = this.physics.add.group({
+  //   key: 'star',
+  //   repeat: 15,
+  //   setXY: {
+  //     x: 900,
+  //     y: 0,
+  //     stepX: 570 + getRandam(10, 40)
+  //   }
+  // });
+  // stars.children.iterate(function (child) {
 
-    //  Give each star a slightly different bounce
-    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+  //   //  Give each star a slightly different bounce
+  //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
-  });
-  this.physics.add.collider(stars, platforms);
-  this.physics.add.overlap(this.player, stars, collectStar, null, this);
-  // this.physics.add.collider(stars, npc);
-  this.physics.add.overlap(npc, stars, npcStar, null, this);
+  // });
+  // this.physics.add.collider(stars, platforms);
+  // this.physics.add.overlap(this.player, stars, collectStar, null, this);
+  // // this.physics.add.collider(stars, npc);
+  // this.physics.add.overlap(npc, stars, npcStar, null, this);
   //Add npc
   // npc = this.physics.add.group({
   //     key: 'dude',
@@ -594,16 +594,21 @@ function create() {
   // .on('pointerover', () => startButton.setStyle({
   //   fill: '#f39c12'
   // }))
-  this.text = this.add.text(725, 42).setScrollFactor(0).setFontSize(32);
-  this.text.setText('SCORE:' + 0);
-  over_text = this.add.text(675, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+
+  // this.text = this.add.text(725, 42).setScrollFactor(0).setFontSize(32);
+  // this.text.setText('SCORE:' + 0);
+  const {
+    centerX,
+    centerY
+  } = this.cameras.main;
+  over_text = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // this.over_text.setText('START');
   // timedstart = this.time.delayedCall(6000, textChange, [], this);
 
   Timetext = this.add.text(1400, 42).setScrollFactor(0).setFontSize(32);
   Timetext.setText(60);
 
-  startCount = this.over = this.add.text(757, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+  startCount = this.over = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
   // timeSubtraction = this.time.addEvent({
   //   delay: 1000,
   //   startAt: 0,
@@ -617,7 +622,7 @@ function create() {
     this.player.play('die', true);
     this.physics.pause();
     gameOver = true;
-    this.over = this.add.text(560, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME OVER!');
     clearInterval(interval_id);
     setTimeout(function () {
@@ -646,7 +651,7 @@ function create() {
     });
     this.physics.pause();
     gameOver = true;
-    this.over = this.add.text(610, 580 / 2).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
+    this.over = this.add.text(centerX, centerY).setOrigin(0.5, 0.5).setScrollFactor(0).setFontSize(80).setColor('#ffffff');
     this.over.setText('GAME CLEAR!');
     clearInterval(interval_id);
     setTimeout(function () {
@@ -843,7 +848,7 @@ function gameClear() {
 function collectStar(player, star) {
   star.disableBody(true, true);
   score += 10;
-  this.text.setText('SCORE:' + score);
+  // this.text.setText('SCORE:' + score);
 }
 socket.on('submit Location', function (location) {
   npc.x = location.location;
