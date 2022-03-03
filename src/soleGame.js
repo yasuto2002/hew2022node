@@ -36,7 +36,7 @@ const config = {
       gravity: {
         y: 300
       },
-      debug: false,
+      debug: true,
     },
   }
 };
@@ -75,9 +75,9 @@ function preload() {
   this.load.image('spike', 'soleGame/assets/images/spike.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
-  this.load.image('tiles', 'soleGame/assets/tilesets/kenney-tileset-64px.png'); //ここ
+  this.load.image('tiles', 'soleGame/assets/tilesets/block.png'); //ここ
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level3.json'); //ここ
+  this.load.tilemapTiledJSON('map', 'soleGame/assets/tilemaps/level4.json'); //ここ
   this.load.image('star', 'soleGame/assets/images/Coin.png');
   // this.load.spritesheet('dude', 'soleGame/assets/images/dude.png', {
   //   frameWidth: 32,
@@ -115,7 +115,7 @@ function create() {
   this.player.setCollideWorldBounds(true);
   this.physics.add.collider(this.player, platforms);
   this.player.body.setGravityY(300);
-  this.player.body.setSize(this.player.width - 70, this.player.height);
+  this.player.body.setSize(this.player.width - 90, this.player.height);
   this.anims.create({
     key: 'walk',
     frames: this.anims.generateFrameNames('player', {
