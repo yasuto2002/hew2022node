@@ -524,3 +524,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.map:hover {
+  cursor: pointer;
+}
+</style>
