@@ -517,7 +517,9 @@ function create() {
   //   this.physics.add.collider(this.player, goalSprite, clear, null, this);
   // });
   //0303
-  this.goals = this.physics.add.sprite(4128, 320, 'Goal');
+  this.goals = this.physics.add.sprite(4128, 520, 'Goal');
+  this.goals.body.setGravityY(-300);
+  this.goals.body.setSize(this.goals.width - 60, this.goals.height);
   this.physics.add.collider(this.goals, platforms);
   this.physics.add.collider(this.player, this.goals, clear, null, this);
   this.physics.add.collider(npc, this.goals, over, null, this);

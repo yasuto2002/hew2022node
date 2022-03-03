@@ -83,7 +83,7 @@
             class="membership-Form-Item-Label"
             style="width: 80%; text-align: left"
           >
-            性別
+            姓別
           </p>
           <p class="em">{{ errors.gender }}</p>
           <div class="membership-Form-Item" style="width: 100%">

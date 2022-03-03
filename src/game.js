@@ -108,7 +108,7 @@ socket.on("join-result", (data) => {
   if (data.status) {
     // 入室フラグを立てる
     IAM.is_join = true;
-    console.log(data);
+    // console.log(data);
     // すでにログイン中のメンバー一覧を反映
     for (let i = 1; i < data.list.length; i++) {
       const cur = data.list[i];
@@ -137,13 +137,13 @@ socket.on("numCheck", (msg) => {
   }
 });
 socket.on("member-join", (data) => {
-  console.log(`${data.name}さんが入室しました`);
+  // console.log(`${data.name}さんが入室しました`);
   addMemberList(data.token, data.name);
 });
 socket.on("member-quit", (data) => {
   if (room == data.name) {
     const name = MEMBER[data.token];
-    console.log(`${name}さんが退室しました`);
+    // console.log(`${name}さんが退室しました`);
     removeMemberList(data.token);
   }
 });
@@ -170,9 +170,9 @@ function preload() {
   this.load.image('Wall', 'game/assets/images/wall.png');
   // At last image must be loaded with its JSON
   this.load.atlas('player', 'game/assets/images/spritesheet.png', 'game/assets/images/kenney_player_atlas.json');
-  this.load.image('tiles', 'game/assets/tilesets/kenney-tileset-64px.png');
+  this.load.image('tiles', 'game/assets/tilesets/block.png');
   // Load the export Tiled JSON
-  this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level3.json');
+  this.load.tilemapTiledJSON('map', 'game/assets/tilemaps/level4.json');
   this.load.image('star', 'game/assets/images/Coin.png');
   this.load.spritesheet('dude', 'game/assets/images/dude.png', {
     frameWidth: 32,
@@ -266,17 +266,19 @@ function create() {
     this.physics.add.collider(npc, wallSprite);
   });
 
+  //0303
+  // this.goals = this.physics.add.group({
+  //   allowGravity: false,
+  //   immovable: true
+  // });
+  // map.getObjectLayer('Goal').objects.forEach((goal) => {
+  //   const goalSprite = this.goals.create(goal.x, goal.y + 200 - goal.height, 'Goal').setOrigin(0);
+  //   goalSprite.body.setSize(goal.width, goal.height - 20).setOffset(0, 20);
+  //   this.physics.add.collider(this.player, goalSprite, gameClear, null, this);
+  //   this.physics.add.collider(npc, goalSprite, npcgoal, null, this);
+  // });
+  //0303
 
-  this.goals = this.physics.add.group({
-    allowGravity: false,
-    immovable: true
-  });
-  map.getObjectLayer('Goal').objects.forEach((goal) => {
-    const goalSprite = this.goals.create(goal.x, goal.y + 200 - goal.height, 'Goal').setOrigin(0);
-    goalSprite.body.setSize(goal.width, goal.height - 20).setOffset(0, 20);
-    this.physics.add.collider(this.player, goalSprite, gameClear, null, this);
-    this.physics.add.collider(npc, goalSprite, npcgoal, null, this);
-  });
   // this.physics.add.collider(this.player, this.spikes, playerHit, null, this);
 
 
@@ -667,6 +669,12 @@ function create() {
     }
     doownId = window.setInterval(timecount2, 1000);
   }
+  this.goals = this.physics.add.sprite(4320, 590, 'Goal');
+  this.goals.body.setGravityY(-300);
+  this.goals.body.setSize(this.goals.width - 60, this.goals.height);
+  this.physics.add.collider(this.goals, platforms);
+  this.physics.add.collider(this.player, this.goals, clear, null, this);
+  this.physics.add.collider(npc, this.goals, over, null, this);
   socket.on('chat message', function (msg) {
     if (msg.player_id != player_id) {
       if (msg.value == 0) {
@@ -678,6 +686,7 @@ function create() {
       } else if (msg.value == 3) {
         stop();
         npc.x = msg.location;
+        npc.y = msg.locationy;
       } else if (msg.value == 4) {
         rightJump();
       } else if (msg.value == 5) {
@@ -750,7 +759,6 @@ function create() {
 
 function timecount() {
   countNum--;
-  console.log(countNum);
   // document.getElementById("time").innerHTML = countNum;
   $('.time').text(countNum)
   if (countNum == 0) {
@@ -761,7 +769,6 @@ function timecount() {
 
 async function timecount2() {
   countNum--;
-  console.log(countNum);
   // document.getElementById("time").innerHTML = countNum;
   $('.time').text(countNum)
   if (countNum == 0) {
@@ -779,7 +786,7 @@ var Scorereport = async () => {
   let status;
   try {
     status = await axios.post(surl, params);
-    console.log(status.data);
+    // console.log(status.data);
     if (status.data.status) {
       return;
     } else {
@@ -801,7 +808,8 @@ function textChange() {
 function LocationEvent() {
   socket.emit('submit Location', {
     room: room,
-    location: this.player.x
+    location: this.player.x,
+    locationy: this.player.y
   });
 }
 
@@ -852,6 +860,7 @@ function collectStar(player, star) {
 }
 socket.on('submit Location', function (location) {
   npc.x = location.location;
+  npc.y = location.locationy;
 });
 
 // function hitNpc(player, npc) {
@@ -906,7 +915,8 @@ function update() {
         room: room,
         value: 3,
         player_id: player_id,
-        location: this.player.x
+        location: this.player.x,
+        locationy: this.player.y
       });
     }
 
@@ -1002,7 +1012,7 @@ function npcHit(npc, spike) {
 socket.on('Start', function () {
   console.log("Start");
   Pflg = false;
-  console.log(socket.id);
+  // console.log(socket.id);
   interval_id = setInterval(() => {
     Subtraction();
   }, 1000)
