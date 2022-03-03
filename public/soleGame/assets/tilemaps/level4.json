@@ -16,29 +16,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":5,
-         "name":"Goal",
-         "objects":[
-                {
-                 "gid":1,
-                 "height":64,
-                 "id":79,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":4096,
-                 "y":384
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":2,
          "name":"Spikes",
          "objects":[

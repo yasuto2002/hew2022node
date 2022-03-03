@@ -36,7 +36,7 @@ const config = {
       gravity: {
         y: 300
       },
-      debug: true,
+      debug: false,
     },
   }
 };
@@ -505,15 +505,22 @@ function create() {
     countNum = 10;
     doownId = await window.setInterval(timecount, 1000);
   }
-  this.goals = this.physics.add.group({
-    allowGravity: false,
-    immovable: true
-  });
-  map.getObjectLayer('Goal').objects.forEach((goal) => {
-    const goalSprite = this.goals.create(goal.x, goal.y + 200 - goal.height, 'Goal').setOrigin(0);
-    goalSprite.body.setSize(goal.width, goal.height - 20).setOffset(0, 20);
-    this.physics.add.collider(this.player, goalSprite, clear, null, this);
-  });
+
+  //0303
+  // this.goals = this.physics.add.group({
+  //   allowGravity: false,
+  //   immovable: true
+  // });
+  // map.getObjectLayer('Goal').objects.forEach((goal) => {
+  //   const goalSprite = this.goals.create(goal.x, goal.y + 200 - goal.height, 'Goal').setOrigin(0);
+  //   goalSprite.body.setSize(goal.width, goal.height - 20).setOffset(0, 20);
+  //   this.physics.add.collider(this.player, goalSprite, clear, null, this);
+  // });
+  //0303
+  this.goals = this.physics.add.sprite(4128, 320, 'Goal');
+  this.physics.add.collider(this.goals, platforms);
+  this.physics.add.collider(this.player, this.goals, clear, null, this);
+  this.physics.add.collider(npc, this.goals, over, null, this);
   // this.physics.add.collider(this.player, this.goals, clear, null, this);
 }
 
