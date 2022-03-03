@@ -29,7 +29,7 @@
               class="membership-Form-Item-Label"
               style="width: 8%; text-align: center"
             >
-              性
+              姓
             </p>
             <!-- <p class="membership-Form-Item-Label">お名前</p> -->
             <input
@@ -83,7 +83,7 @@
             class="membership-Form-Item-Label"
             style="width: 80%; text-align: left"
           >
-            姓別
+            性別
           </p>
           <p class="em">{{ errors.gender }}</p>
           <div class="membership-Form-Item" style="width: 100%">
