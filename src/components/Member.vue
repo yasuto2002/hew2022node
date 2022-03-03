@@ -288,14 +288,15 @@ export default {
         .string(em.String)
         .min(10, em.Pasmin)
         .max(20, em.Pasmax)
-        .matches(store.state.regex, em.Matches),
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
       password2: yup
         .string(em.String)
-        .required(em.Quired)
         .oneOf([yup.ref("password1")], em.OneOf)
         .min(10, em.Pasmin)
         .max(20, em.Pasmax)
-        .matches(store.state.regex, em.Matches),
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
       gender: yup
         .string(em.String)
         .required(em.Quired)
