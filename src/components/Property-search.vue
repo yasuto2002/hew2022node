@@ -25,7 +25,7 @@
       <input type="submit" value="検索" :disabled="!meta.valid" /><img
         src="images/地図マーカー.png"
         class="map"
-        @click="GpsSerch"
+        @mousedown="GpsSerch"
       />
     </form>
 
