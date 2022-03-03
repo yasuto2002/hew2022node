@@ -133,7 +133,7 @@ if (player_id == 2) {
 }
 socket.on("numCheck", (msg) => {
   if (msg.num == 1) {
-    alert("マッチングに失敗しました");
+    alert("マッチングに失敗しました もう一度マッチングしなおします");
     socket.disconnect();
     window.setTimeout(() => {
       location.href = "/match";
