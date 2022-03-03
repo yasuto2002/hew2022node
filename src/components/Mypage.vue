@@ -46,7 +46,7 @@
         <a href="#">ポイントを貯める</a>
       </button>
     </div>
-    <div class="mypage-confirmation-box">
+    <!-- <div class="mypage-confirmation-box">
       <div class="mypage-confirmation-info-minibox">
         <p class="mypage-info-title">注文確認</p>
         <p class="mypage-info-txt"></p>
@@ -78,7 +78,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="mypage-favo-box" v-if="data.flg">
       <div class="mypage-info-favo-minibox">
         <p class="mypage-info-favo-title">お気に入りを<br />確認する</p>
@@ -229,3 +229,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.mypage-sarch-section-box img {
+  height: 160px;
+  width: 160px !important;
+  object-fit: cover;
+}
+</style>

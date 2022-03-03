@@ -109,7 +109,11 @@ export default {
         .max(254, em.Smax)
         .required(em.Quired)
         .email(em.Maile),
-      password: yup.string(em.String).max(254, em.Smax).required(em.Quired),
+      password: yup
+        .string(em.String)
+        .max(254, em.Smax)
+        .matches(store.state.regex, em.Matches)
+        .required(em.Quired),
     });
     useForm({
       validationSchema: schema,
