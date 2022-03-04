@@ -677,7 +677,9 @@
       </div>
     </div>
 
-    <a class="btn-section" href="member.html">新規会員登録はこちら</a>
+    <router-link class="btn-section" to="/Member"
+      >新規会員登録はこちら</router-link
+    >
   </div>
 
   <!-- <div class="flow-wrap">
@@ -694,7 +696,9 @@
     <div class="contact-txtbox">
       <h1>お問い合わせ・ヘルプ<span>- CONTACT -</span></h1>
     </div>
-    <a href="contact.html" class="btn-section-a">お問い合わせはこちら</a>
+    <router-link to="/Contact" class="btn-section-a"
+      >お問い合わせはこちら</router-link
+    >
   </div>
 </template>
 <script>
