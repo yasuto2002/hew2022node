@@ -1,6 +1,22 @@
 <template>
   <div class="headhead">
-    <div class="head_img">a</div>
+    <div class="head_img"></div>
+    <div class="head_img_sec">
+      <h2 class="head_img_sec-title">
+        <span class="head-img-title-bg">TROUBLE</span><br /><span
+          class="head-img-title-bg"
+          >HOUSE</span
+        >
+      </h2>
+      <p class="head_img_sec-txt">
+        <span class="head-img-txt-bg"
+          >「趣味にお金を使いたい」「貯金したい」「駅近物件に住みたい」</span
+        ><br />
+        <span class="head-img-txt-bg"
+          >そんな方々にオススメのお家をご提供致します。</span
+        >
+      </p>
+    </div>
   </div>
 
   <div class="main_box">
@@ -599,33 +615,86 @@
     </div>
   </div>
 
-  <div class="intro_section">
-    <h1>TROUBLE HOUSE会員ができること</h1>
+  <div class="about-wrap">
+    <h1>TROUBLE HOUSEとは<span>- ABOUT -</span></h1>
+  </div>
 
-    <div class="intro_section_box">
-      <div class="intro_section_minibox">
-        <div class="border-radius">
-          <img src="images/パソコンする女の子.png" alt="お気に入り" />
-        </div>
-        <p>新着物件をメールでお届け</p>
-      </div>
-      <!-- <p>新着物件をメールでお届け</p> -->
+  <div class="about-slider">
+    <div class="slid-bg">
+      <ul class="slider">
+        <li><img src="images/slid-img01.jpg" alt="" /></li>
+        <li><img src="images/slid-img02.jpg" alt="" /></li>
+        <li><img src="images/slid-img03.jpg" alt="" /></li>
+        <li><img src="images/slid-img04.jpg" alt="" /></li>
+        <li><img src="images/slid-img05.jpg" alt="" /></li>
+        <!--/slider-->
+      </ul>
 
-      <div class="intro_section_minibox">
-        <div class="border-radius">
-          <img src="images/お気に入りする女の子.png" alt="お気に入り" />
+      <div class="slid-txt-wrap">
+        <div class="slid-txt">
+          <h1>お金も時間も有意義に</h1>
+          <p>
+            TROUBLEHOUSEでは増え続ける死の問題に真摯に向き合い流通を促すことで<br />
+            「事故物件」の価値の向上と住み続けられるまちづくりを目指しています。
+          </p>
         </div>
-        <p>お気に入り登録ができる</p>
-      </div>
-      <!-- <p>お気に入り登録ができる</p> -->
-
-      <div class="intro_section_minibox">
-        <div class="border-radius">
-          <img src="images/ゲームする女の子.png" alt="お気に入り" />
-        </div>
-        <p>ゲームでポイントが貯めれる</p>
       </div>
     </div>
+  </div>
+
+  <div class="intro_section">
+    <h1>TROUBLE HOUSE会員ができること<span>- SERVICE -</span></h1>
+    <!-- <h1>TROUBLE HOUSE会員ができること</h1> -->
+
+    <div class="intro_section_box">
+      <div class="flex delayScroll">
+        <div class="intro_section_minibox">
+          <div class="border-radius">
+            <img src="images/パソコンする女の子.png" alt="お気に入り" />
+          </div>
+          <p>新着物件をメールでお届け</p>
+        </div>
+        <!-- <p>新着物件をメールでお届け</p> -->
+      </div>
+
+      <div class="flex delayScroll">
+        <div class="intro_section_minibox">
+          <div class="border-radius">
+            <img src="images/お気に入りする女の子.png" alt="お気に入り" />
+          </div>
+          <p>お気に入り登録ができる</p>
+        </div>
+        <!-- <p>お気に入り登録ができる</p> -->
+      </div>
+
+      <div class="flex delayScroll">
+        <div class="intro_section_minibox">
+          <div class="border-radius">
+            <img src="images/ゲームする女の子.png" alt="お気に入り" />
+          </div>
+          <p>ゲームでポイントが貯めれる</p>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn-section" href="member.html">新規会員登録はこちら</a>
+  </div>
+
+  <!-- <div class="flow-wrap">
+  <h1>契約までの流れ<span>- FLOW -</span></h1>
+
+  <div class="">
+
+
+  </div>
+
+</div> -->
+
+  <div class="main-contact-wrap">
+    <div class="contact-txtbox">
+      <h1>お問い合わせ・ヘルプ<span>- CONTACT -</span></h1>
+    </div>
+    <a href="contact.html" class="btn-section-a">お問い合わせはこちら</a>
   </div>
 </template>
 <script>
@@ -636,6 +705,11 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
+import $ from "jquery";
+import "slick-carousel";
+import "slick-carousel/slick/slick.css"; // 追加
+import "slick-carousel/slick/slick-theme.css";
+// import * as slick from "slick-carousel";
 export default {
   name: "Top",
   setup(props, context) {
@@ -721,6 +795,78 @@ export default {
     };
     onMounted(async () => {
       await newArrivals();
+      $(".slider").slick({
+        arrows: false, //左右の矢印はなし
+        autoplay: true, //自動的に動き出すか。初期値はfalse。
+        autoplaySpeed: 0, //自動的に動き出す待ち時間。初期値は3000ですが今回の見せ方では0
+        speed: 13000, //スライドのスピード。初期値は300。
+        infinite: true, //スライドをループさせるかどうか。初期値はtrue。
+        pauseOnHover: false, //オンマウスでスライドを一時停止させるかどうか。初期値はtrue。
+        pauseOnFocus: false, //フォーカスした際にスライドを一時停止させるかどうか。初期値はtrue。
+        cssEase: "linear", //動き方。初期値はeaseですが、スムースな動きで見せたいのでlinear
+        slidesToShow: 2, //スライドを画面に4枚見せる
+        slidesToScroll: 1, //1回のスライドで動かす要素数
+        responsive: [
+          {
+            breakpoint: 769, //モニターの横幅が769px以下の見せ方
+            settings: {
+              slidesToShow: 2, //スライドを画面に2枚見せる
+            },
+          },
+          {
+            breakpoint: 426, //モニターの横幅が426px以下の見せ方
+            settings: {
+              slidesToShow: 1.5, //スライドを画面に1.5枚見せる
+            },
+          },
+        ],
+      });
+
+      /* 会員ができること */
+      function delayScrollAnime() {
+        var time = 0.2; //遅延時間を増やす秒数の値
+        var value = time;
+        $(".delayScroll").each(function () {
+          var parent = this; //親要素を取得
+          var elemPos = $(this).offset().top; //要素の位置まで来たら
+          var scroll = $(window).scrollTop(); //スクロール値を取得
+          var windowHeight = $(window).height(); //画面の高さを取得
+          var childs = $(this).children(); //子要素を取得
+
+          if (scroll >= elemPos - windowHeight && !$(parent).hasClass("play")) {
+            //指定領域内にスクロールが入ったらまた親要素にクラスplayがなければ
+            $(childs).each(function () {
+              if (!$(this).hasClass("fadeUp")) {
+                //アニメーションのクラス名が指定されているかどうかをチェック
+
+                $(parent).addClass("play"); //親要素にクラス名playを追加
+                $(this).css("animation-delay", value + "s"); //アニメーション遅延のCSS animation-delayを追加し
+                $(this).addClass("fadeUp"); //アニメーションのクラス名を追加
+                value = value + time; //delay時間を増加させる
+
+                //全ての処理を終わったらplayを外す
+                var index = $(childs).index(this);
+                if (childs.length - 1 == index) {
+                  $(parent).removeClass("play");
+                }
+              }
+            });
+          } else {
+            $(childs).removeClass("fadeUp"); //アニメーションのクラス名を削除
+            value = time; //delay初期値の数値に戻す
+          }
+        });
+      }
+
+      // 画面をスクロールをしたら動かしたい場合の記述
+      $(window).scroll(function () {
+        delayScrollAnime(); /* アニメーション用の関数を呼ぶ*/
+      }); // ここまで画面をスクロールをしたら動かしたい場合の記述
+
+      // 画面が読み込まれたらすぐに動かしたい場合の記述
+      $(window).on("load", function () {
+        delayScrollAnime(); /* アニメーション用の関数を呼ぶ*/
+      }); // ここまで画面が読み込まれたらすぐに動かしたい場合の記述
     });
     return {
       data,

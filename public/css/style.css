@@ -205,7 +205,7 @@ nav ul li a {
 .head_img {
   width: 100%;
   height: 700px;
-  content: url(../images/top_img.jpg);
+  content: url(../images/943400_s.jpg);
   margin: auto;
   text-align: center;
   position: relative;
@@ -218,12 +218,67 @@ nav ul li a {
   background-color: #fff;
 }
 
+.head_img_sec{
+  position: absolute;
+  top: 300px;
+}
+
+.head_img_sec-title {
+    font-family: "Cabin",Arial,Helvetica,sans-serif;
+    font-size: clamp(5rem,-0.3448rem + 8.6207vw,10rem);
+    line-height: 1.5em;
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    color: #da5789;
+}
+
+.head_img_sec-txt{
+  width: 700px;
+  color: #da5789;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  line-height: 2em;
+  letter-spacing: .08em;
+}
+
+.head-img-title-bg{
+  background-color: #fff;
+  padding: 2%;
+}
+
+.head-img-txt-bg{
+  width: 700px;
+  background-color: #fff;
+  padding: 1%;
+}
+
+
+.anim-box.slidein.is-animated {
+  animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(180px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+  }
+  40%,100% {
+    opacity: 1;
+  }
+}
+
+ 
+
 /*----------------------
 検索画面・新着物件
 ----------------------*/
 
 .main_box{
-  background-color: rgb(238, 238, 238);
+  /* background-color: rgb(238, 238, 238); */
+  background-color: #fff;
 }
 .main {
   display: flex;
@@ -246,6 +301,7 @@ nav ul li a {
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
   border-radius: 0.5rem; 
+  padding: 2%;
 }
 
 .right-column {
@@ -259,6 +315,7 @@ nav ul li a {
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
   border-radius: 0.5rem; 
+  padding: 2%;
 }
 
 @media only screen and (max-width: 1284px) {
@@ -701,7 +758,8 @@ a.btn_06:hover span {
   display: flex;
   flex-wrap: wrap;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 70px;
+  row-gap: 80px;
+  column-gap: 40px;
   /* 真ん中幅指定  */
   margin: 20px auto;
   justify-content: center;
@@ -738,6 +796,14 @@ a.btn_06:hover span {
 }
 
 
+.card img {
+  margin: 8%;
+  max-width: 185px;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
 .card__imgframe {
   width: 100%;
   height: auto;
@@ -749,7 +815,7 @@ a.btn_06:hover span {
 .card__textbox {
   width: 100%;
   height: auto;
-  padding: 20px 18px;
+  padding: 0px 18px 18px;
   background: #fff;
   box-sizing: border-box;
 }
@@ -829,29 +895,38 @@ a.btn_06:hover span {
   width: 100%;
   height: auto;
   padding-bottom: 5%;
-  margin: 0px auto;
+  margin: 5% auto;
   text-align: center;
   /* background-color: #f5f5f5; */
   background-color: #fff;
-  color: #454545;
+  color: #505050;
 }
 
-.intro_section{
-  margin: 0 auto;
+
+
+.intro_section h1{
+  padding-top: 4%;
+  padding-bottom: 2%;
+  font-size: 2rem;
+  letter-spacing: .08em;
+  margin: 0px;
+  color: #da5789;
+}
+
+.intro_section h1 span {
+  display: block;
+  font-size: 1rem;
+  margin-top: 20px;
   text-align: center;
 }
 
-.intro_section h1{
-  padding-top: 5%;
-  padding-bottom: 2%;
-  /* font-size: 200%;   */
-  margin: 0px;
-}
+
 
 .intro_section_box{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 5%;
 }
 
 @media (max-width:480px) {
@@ -887,6 +962,31 @@ a.btn_06:hover span {
   border-radius: 50%;
   color: #fff;
 } 
+
+.btn-section{
+  margin-top: 7%;
+  border-radius: 10px;
+  min-width: 230px;
+  font-size: 1.02rem;      
+  border: 2px solid #fff;
+  background: #da5789;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  padding: 1.2rem 3.25rem;
+  text-decoration: none;
+  line-height: 1;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background-color .23s ease-out,color .2s ease-out,border-color .2s ease-out;
+}
+
+.btn-section:hover{
+  background-color: #fff;
+  color: #da5789;
+  border: 2px solid #da5789;
+}
+
 
 
 /*----------------------
@@ -2046,3 +2146,265 @@ max-width: 100%;
 }
 
 
+.about-wrap{
+  width: 100%;
+  height: 150px;
+  background-color: #da5789;
+  margin: 0px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-wrap h1{
+  font-size: 2rem;
+  letter-spacing: .08em;
+  margin: 0px;
+  color: #fff;
+}
+
+.about-wrap h1 span {
+  display: block;
+  font-size: 1rem;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.about-slider{
+  position: relative;
+  height: 400px;
+  background-size: cover;
+}
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider img {
+  width:100%;
+  height: 430px;
+}
+
+
+/* 
+.slider .slick-slide {
+  margin:0 10px;/*スライド左右の余白調整
+} */
+
+.slid-bg {
+  width: 100%;
+  display: block;
+  /* opacity: 0.7;
+  background-color: black; */
+  display: inline-block;
+  position: relative;
+}
+
+
+.slid-bg p {
+  color: #303030;
+  font-size: 21px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+ .slid-txt{
+  position: absolute;
+  width: 100%;
+  height: 230px;
+  top: 0%;
+  text-align: center;
+  margin-top: 7%;
+} 
+
+/* .slid-txt-wrap{
+width: 100%;
+height: 570px;
+justify-content: center;
+align-items: center;
+display: flex;
+} */
+
+.slid-txt-wrap::before {
+  width:100%;
+  height:430px;
+  z-index: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.slid-txt h1{
+  font-weight: 100;
+  letter-spacing: 0.05em;
+  line-height: 1.2em;
+  color: #fff;
+  margin-bottom: 2%;
+}
+
+.slid-txt p{
+  padding-top: 50px;
+  font-size: 1.1rem;
+  letter-spacing: .08em;
+  line-height: 1.7em;
+  color: #fff;
+}
+
+
+.flow-wrap{
+  width: 100%;
+  height: 600px;
+  background-color: #da5789;
+  padding-bottom: 5%;
+  margin: 0px auto;
+  text-align: center;
+}
+
+.flow-wrap h1{
+  padding-top: 5%;
+  padding-bottom: 2%;
+  font-size: 2rem;
+  letter-spacing: .08em;
+  margin: 0px;
+  color: #fff;
+}
+
+.flow-wrap h1 span {
+  display: block;
+  font-size: 1rem;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.main-contact-wrap{
+  width: 100%;
+  height: 300px;
+  background-image: url(../images/contact-img.jpg);
+  padding-bottom: 5%;
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  background-size: cover;
+}
+
+.contact-txtbox{
+  position: absolute;
+  color: #fff;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.contact-txtbox h1{
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 100;  
+}
+
+
+.contact-txtbox h1 span {
+  display: block;
+  font-size: 1rem;
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.btn-section-a{
+  margin-top: 15%; 
+  border: none; 
+  background-image: -webkit-linear-gradient(left,#da5789 0,#d385a3 100%);
+  border-radius: 10px;
+  min-width: 230px;
+  font-size: 1.02rem;      
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  padding: 1.2rem 3.25rem;
+  text-decoration: none;
+  line-height: 1;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background-color .23s ease-out,color .2s ease-out,border-color .2s ease-out;
+}
+
+.btn-section-a:hover{
+  opacity: 0.8;
+  transition: ease-out;
+  color: #fff;
+  border: none;
+  transition: opacity .3s ease-out;
+}
+
+
+
+
+.wrapbox01 {
+  width: 1080px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+}
+
+.choutai01 {
+  font-size: 22px;
+  font-weight: 700;
+  /* float: left; */
+  margin-top: 20px;
+  transform: scale(0.9,1);
+  -webkit-transform: scale(0.9,1);
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+  display: inline-block;
+}
+
+.idx_news_list {
+  width: 900px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 80px;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-left-color: #000;
+  box-sizing: border-box;
+  float: right;
+}
+
+
+
+/*==================================================
+スタート時は要素自体を透過0にするためのopacity:0;を指定する
+===================================*/
+
+
+  /*==================================================
+  ふわっ
+  ===================================*/
+  
+  .fadeUp {
+  animation-name:fadeUpAnime;
+  animation-duration:1.5s;
+  animation-fill-mode:forwards;
+  opacity: 0;
+  }
+  
+  @keyframes fadeUpAnime{
+    from {
+      opacity: 0;
+  transform: translateY(100px);
+    }
+  
+    to {
+      opacity: 1;
+  transform: translateY(0);
+    }
+  }
