@@ -6,7 +6,7 @@
       </li>
       <li><router-link to="Property-search">物件検索</router-link></li>
       <li><a @click="$router.go(-1)">物件一覧</a></li>
-      <li>東京都練馬区大泉学園町</li>
+      <li>物件詳細</li>
     </ul>
   </div>
 
