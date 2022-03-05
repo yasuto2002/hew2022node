@@ -25,7 +25,7 @@
         </p>
       </div>
       <button class="mypage-minibox-btn" type="button" @click="jump">
-        <a>変更する</a>
+        変更する
       </button>
     </div>
     <div class="mypage-info-pass-box">
@@ -33,8 +33,12 @@
         <p class="mypage-info-title">パスワード</p>
         <p class="mypage-info-txt">********</p>
       </div>
-      <button class="mypage-minibox-btn" type="button">
-        <router-link to="/pass-change"> 変更する </router-link>
+      <button
+        class="mypage-minibox-btn"
+        type="button"
+        @click="$router.push('/pass-change')"
+      >
+        変更する
       </button>
     </div>
     <div class="mypage-info-point-box">
@@ -42,8 +46,12 @@
         <p class="mypage-info-title">所得ポイント</p>
         <p class="mypage-info-txt">{{ data.point }}pt</p>
       </div>
-      <button class="mypage-minibox-btn" type="button">
-        <router-link to="/GameSelect">ポイントを貯める</router-link>
+      <button
+        class="mypage-minibox-btn"
+        type="button"
+        @click="$router.push('/GameSelect')"
+      >
+        ポイントを貯める
       </button>
     </div>
     <!-- <div class="mypage-confirmation-box">
@@ -248,5 +256,8 @@ export default {
 }
 .mypage-info-favo-minibox {
   align-items: center;
+}
+.mypage-minibox-btn:hover {
+  cursor: pointer;
 }
 </style>
