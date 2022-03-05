@@ -121,7 +121,6 @@ export default {
       let user = await LogCheck();
       if (user) {
         data.maile = user;
-        consule.log(data.maile);
       } else {
         router.push("/");
       }
