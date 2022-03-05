@@ -4,7 +4,7 @@
       <h1 class="member-authentication-box-title">認証ページ</h1>
       <p class="member-authentication-txt">
         登録はまだ完了していません。<br />
-        メールに記載の認証コード（全角英字）を確認後、24時間以内に入力してください。<br />
+        メールに記載の認証コード（半角角英字）を確認後、24時間以内に入力してください。<br />
         ※この画面は閉じたり別のページを開いたりせず、そのままにしておいてください。<br />
       </p>
       <p style="color: red">{{ data.em }}</p>
