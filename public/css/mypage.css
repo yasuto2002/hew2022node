@@ -35,6 +35,7 @@
     padding: 2% 0% 2% 5%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .mypage-info-minibox{
@@ -66,6 +67,7 @@
     padding: 2% 0% 2% 5%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .mypage-info-point-box{
@@ -76,19 +78,33 @@
     padding: 2% 0% 2% 5%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .mypage-minibox-btn{
     width: 200px;
     padding: 1%;
+    height: 40px;
     border: 1px solid #da5789;
     background-color: #da5789;
     border-radius: 25px;
     margin: 0 auto;
-    margin-right: 5%;
-    margin-left: auto;
+    margin-right: 40px;
     color: #fff;
+    transition: background-color .2s ease-out,color .2s ease-out,border-color .2s ease-out;
+  }
+
+  .mypage-minibox-btn:hover{
+    color: #da5789;
+    opacity: 0.8;
+    transition: ease-out;
+    background-color: #fff;
+    border: 1px solid #da5789;
+    border-radius: 25px;
+    transition: opacity .3s ease-out;
 }
+
+
 
 /*購入物件*/
 .mypage-confirmation-box{
@@ -704,4 +720,65 @@ dd {
     color: #505050;
     font-size: 1.1rem;
     line-height: 2;
+}
+
+
+.favo-btn{
+  position: absolute;
+  right: 9em;
+  bottom: -43.5em;
+  width: 180px;
+  height: 10px;
+  padding: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #da588a;
+  border-radius: 25px;
+  font-size: 1.18rem;
+  border: 1px solid rgba(0, 0, 0, .1);
+  transition: background-color .23s ease-out,color .2s ease-out,border-color .2s ease-out;
+}
+
+.favo-btn:hover{
+  opacity: 0.8;
+  transition: ease-out;
+  color: #da5789;
+  background-color: #fff;
+  border: 1px solid #da5789;
+  border-radius: 25px;
+  transition: opacity .3s ease-out;
+  box-shadow: 0 4px 10px rgba(218,88, 138, .1);
+}
+
+
+/*お気に入りページ*/
+
+.favo-property-title-box{
+  width: 80%;
+  margin: 2% auto;
+  padding: 1%;
+  border: solid 1px rgb(236, 236, 236);
+  border-top: solid 6px #da5789;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.favo-property-title{
+  color: #505050;
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: bold;    
+}
+
+.favo-property-box{
+  width: 80%;
+  height: auto;
+  /* margin: 2% auto; */
+  margin: 2% auto;
+  padding: 1%;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 }

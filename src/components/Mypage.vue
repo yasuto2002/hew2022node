@@ -43,7 +43,7 @@
         <p class="mypage-info-txt">{{ data.point }}pt</p>
       </div>
       <button class="mypage-minibox-btn" type="button">
-        <a href="#">ポイントを貯める</a>
+        <router-link to="/GameSelect">ポイントを貯める</router-link>
       </button>
     </div>
     <!-- <div class="mypage-confirmation-box">
@@ -82,8 +82,8 @@
     <div class="mypage-favo-box" v-if="data.flg">
       <div class="mypage-info-favo-minibox">
         <p class="mypage-info-favo-title">お気に入りを<br />確認する</p>
-        <p class="mypage-info-txt"></p>
-        <div class="mypage-sarch-section" @click="goodJump">
+        <!-- <p class="mypage-info-txt"></p> -->
+        <div class="mypage-sarch-section">
           <a class="sarch-section-link">
             <h1 class="mypage-sarch-section-title">{{ data.first.name }}</h1>
             <div class="mypage-sarch-section-box">
@@ -116,6 +116,7 @@
             </div>
           </a>
         </div>
+        <a class="favo-btn" @click="goodJump">もっと見る</a>
       </div>
     </div>
   </div>
@@ -234,5 +235,18 @@ export default {
   height: 160px;
   width: 160px !important;
   object-fit: cover;
+}
+.mypage-sarch-section {
+  width: 85%;
+}
+.favo-btn {
+  position: static;
+  margin-left: 2%;
+}
+.favo-btn:hover {
+  cursor: pointer;
+}
+.mypage-info-favo-minibox {
+  align-items: center;
 }
 </style>
