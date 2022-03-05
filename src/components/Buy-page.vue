@@ -330,7 +330,7 @@ export default {
         .required(em.Quired),
       address4: yup
         .string(em.String)
-        .max(7, em.Smax)
+        .max(254, em.Smax)
         .matches(store.state.regex, em.Matches)
         .required(em.Quired),
       ksName: yup
