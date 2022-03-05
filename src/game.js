@@ -673,7 +673,7 @@ function create() {
     }
     doownId = window.setInterval(timecount2, 1000);
   }
-  this.goals = this.physics.add.sprite(4320, 590, 'Goal');
+  this.goals = this.physics.add.sprite(4320, 580, 'Goal');
   this.goals.body.setGravityY(-300);
   this.goals.body.setSize(this.goals.width - 60, this.goals.height);
   this.physics.add.collider(this.goals, platforms);
