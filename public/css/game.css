@@ -1,70 +1,251 @@
 @charset "utf-8";
 
-.game-box{
-  display: flex;
-  justify-content: center;
-  text-align: center;
+
+/*----------------------
+ヘッダー
+----------------------*/
+.game-header {
   width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #1d2b30;
+}
+/* .headerNavOuter {
   margin-bottom: 3%;
-  color: #505050;
+} */
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+}
+a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.game-left-box{
-  width: 50%;
-  height: auto;
-  margin: 0px 25px;
-  /* margin: 50px 130px 0 10px; */
-  /* background-color: skyblue; */
+
+.logo {
+  margin: 0 auto;
+  /* background: #eee; */
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.logo img{
+  width: 60%;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+}
+nav ul li a {
+  padding: 0 20px;
+}
+.navItem a {
+  display: block;
+  padding: 50px 10px 0px;
+  margin-left: 1rem;
+  position: relative;
+  width: 125px;
   text-align: center;
-  box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
-  border-radius: 0.5rem;
-}
-
-.game-right-box{
-  width: 50%;
-  height: auto;
-  /* margin: 50px 10px 0 130px; */
-  margin: 0px 25px;
-  text-align: center;
-  /* background-color: salmon; */
-  /* border: 2px solid #dcdcdc; */
-  box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
-  border-radius: 0.5rem;
-}
-
-.game-txtbox{
-  width: 90%;
-  height: auto;
-  margin: 5%;
-  background-color: #fff;
-  border: 1px solid #fff;
-  text-align: center;
-}
-
-.game-txtbox-ttl{
-  font-size: 130%;
-  padding-top: 5%;
-}
-
-.game-box-btn{
-  width: 300px;
-  background-color: rgb(218, 87, 137);
+  font-size: 0.8rem;
   color: #fff;
   font-weight: bold;
-  display: block;
-  margin: 5% auto;
-  font-size: 16px;
-  padding: 20px;
-  border-radius: 100vh;
-  border: none;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  cursor: pointer;
-  text-align: center;
-  font-size: 1.3em;
 }
 
-.game-box-btn:hover{
-  background-color: #f18ab2;
+/* アイコンを表示 */
+.navItem a::before {
+  content: "";
+  font-size: 2rem;
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0px;
+}
+
+.navItemHome a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-singnup.png);
+}
+
+.navItemIntroduce a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-mypage.png);
+}
+
+.navItemAbout a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-cart.png);
+}
+
+.navItemAccess a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-article.png);
+}
+
+.navItemGame a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-game.png);
+}
+
+.navItemContact a::before {
+  /* font-family: "Font Awesome 5 Free";
+  font-weight: 900; */
+  content: url(../images/icon-help.png);
+}
+
+
+
+/*----------------------
+フッター
+----------------------*/
+#game-footer{
+  background: #1d2b30;
+}
+ 
+.footer-logo {
+  display: inline-block;
+  width: 150px;
+}
+ 
+.footer-nav li a {
+  padding: 0px 25px;
+  color: #fff;
+}
+
+.footer-nav li{
+    list-style-type: none;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .footer-nav li + li {
+  border-left: 1px solid #fff;
+}
+
+.copyright{
+  font-size: 10px;
+  color:#fff;
+  text-align: right;
+  letter-spacing: 0.7px;
+  padding: 0px 50px 5px 0px;
+} 
+
+@media screen and (min-width: 641px) {
+  .footer-logo {
+    padding: 10px 0px 0px 0px;
+  }
+ 
+  .footer-wrap {
+    padding: 2px 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  .footer-nav {
+    display: inline-block;
+  }
+ 
+  .footer-nav li {
+    display: inline-block;
+  }
+ 
+  .footer-nav li a:hover {
+    color: #f5f5f5;
+  }
+}
+
+
+.game-wrap{
+  width: 100%;
+  height: auto;
+  background-color: #25363d;
+}
+
+
+.game-select{
+  width: 100%;
+  height: 500px;
+  padding: 2% 0;
+  background-color: #25363d;
+}
+
+.game-explanation{
+  width: 100%;
+  height: 1800px;
+  background-color: #25363d;
+}
+
+.aaa{
+  width: 100%;
+  display: flex;
+  
+}
+
+.select-one{
+  width: 50%;
+  height: 400px;
+  margin: 2% ;
+  border-radius: 15px;
+  border:  6px solid #000;
+  background-image: url(../images-game/one.png);
+}
+
+
+.select-second{
+  width: 50%;
+  height: 400px;
+  margin: 2% ;
+  border-radius: 15px;
+  border:  6px solid #000;
+  background-image: url(../images-game/second.png);
+}
+
+
+.aa-txt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.game-explanation-box-one{
+  width: 1200px;
+  height: 800px;
+  background-image: url(../images-game/game-explanation1.png);
+  margin: 5% auto;
+}
+
+.game-explanation-box-second{
+  width: 1200px;
+  height: 800px;
+  background-image: url(../images-game/game-explanation2.png);
+  margin: 5% auto;
+}
+
+#game-page-top{
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  color: #fff;
+  background-color: #af3535;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

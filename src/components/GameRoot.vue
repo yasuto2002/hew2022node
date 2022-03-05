@@ -1,47 +1,56 @@
 <template>
-  <!-- パンくずリスト -->
-  <div class="breadcrumb">
-    <ul class="breadcrumb_ul">
-      <li>
-        <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
-      </li>
-      <li>ゲーム</li>
-    </ul>
-  </div>
+  <div class="game-wrap">
+    <div class="game-select">
+      <div class="aaa">
+        <div class="select-one" @mousedown="Solojump">
+          <!-- <div class="aa-txt">１人で遊ぶ</div> -->
+        </div>
 
-  <div class="game-box">
-    <div class="game-left-box">
-      <div class="game-txtbox">
-        <h1 class="game-txtbox-ttl">１人で遊ぶ</h1>
-        <a href="/soleGame" class="game-box-btn">１人で遊ぶ</a>
+        <div class="select-second" @mousedown="Maljump">
+          <!-- <div class="aa-txt">みんなで遊ぶ</div> -->
+        </div>
       </div>
     </div>
-    <!-- 左側 -->
 
-    <div class="game-right-box">
-      <div class="game-txtbox">
-        <h1 class="game-txtbox-ttl">みんなと遊ぶ</h1>
-        <a href="/match" class="game-box-btn">みんなと遊ぶ</a>
-      </div>
+    <div class="game-explanation">
+      <div class="game-explanation-box-one"></div>
+      <div class="game-explanation-box-second"></div>
     </div>
-    <!-- 右側 -->
   </div>
-  <!-- gamebox 終-->
+
+  <p id="game-page-top"><router-link to="/">Page Top</router-link></p>
 </template>
 
 <script>
-// import { ref, reactive } from "vue";
-
+import { ref, reactive } from "vue";
+import { useStore } from "vuex";
+import { useRoute, useRouter } from "vue-router";
 export default {
   name: "GameSelect",
-  // setup(props, context) {
-  //   const data = reactive({
-  //     title: "HelloWorld",
-  //     msg: "This is HelloWorld component.",
-  //   });
-  //   return {
-  //     data,
-  //   };
-  // },
+  setup(props, context) {
+    const data = reactive({});
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+    const Solojump = () => {
+      location.href = "/soleGame";
+    };
+    const Maljump = () => {
+      location.href = "/match";
+    };
+    return {
+      data,
+      Solojump,
+      Maljump,
+    };
+  },
 };
 </script>
+<style scoped>
+.select-one:hover {
+  cursor: pointer;
+}
+.select-second {
+  cursor: pointer;
+}
+</style>

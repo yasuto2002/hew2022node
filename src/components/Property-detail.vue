@@ -319,4 +319,8 @@ export default {
   height: 12vw;
   object-fit: cover;
 }
+input[type="checkbox"]:checked + label::after {
+  top: -90px !important;
+  left: -60px;
+}
 </style>
