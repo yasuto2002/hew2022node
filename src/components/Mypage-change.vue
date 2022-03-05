@@ -97,8 +97,13 @@
       </div> -->
     </form>
 
-    <button class="mypage-change-minibox-btn" type="button">
-      <a @click="onSubmit">変更する</a>
+    <button
+      class="mypage-change-minibox-btn"
+      type="button"
+      @click="onSubmit"
+      :disabled="!meta.valid"
+    >
+      <a>変更する</a>
     </button>
   </div>
 </template>
@@ -214,7 +219,11 @@ export default {
           // adapter: axiosJsonpAdapter,
           params
         );
-        console.log(reqstatus);
+        if (reqstatus.data.state) {
+          router.push("/Mypage-change-comp");
+        } else {
+          router.push("/Error");
+        }
       } catch (error) {
         router.push("/Error");
       }
@@ -248,5 +257,8 @@ export default {
 <style scoped>
 .mypage-change-birth-Form-Item-Input-mini-mini {
   margin-left: 5%;
+}
+.mypage-change-minibox-btn:hover {
+  cursor: pointer;
 }
 </style>
