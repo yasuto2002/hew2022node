@@ -901,4 +901,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.wrap {
+  row-gap: 60px !important;
+}
 </style>
