@@ -147,7 +147,7 @@
           </div>
           <div class="buy-page-box-box">
             <p class="buy-page-box-box-txt">ポイント使用料</p>
-            <p class="buy-page-box-box-txt">1000pt</p>
+            <p class="buy-page-box-box-txt">{{ data.poinnt }}pt</p>
           </div>
           <div class="buy-page-box-box">
             <p class="buy-page-box-box-txt" style="font-weight: bold">
@@ -223,7 +223,11 @@ export default {
       1000 + data.propertyPrice * 10000 - data.poinnt
     );
     const poinntChenge = () => {
-      data.sum = parseInt(1000 + data.propertyPrice * 10000 - data.poinnt);
+      if (data.poinnt <= data.conpoint) {
+        data.sum = parseInt(1000 + data.propertyPrice * 10000 - data.poinnt);
+      } else {
+        data.poinnt = data.conpoint;
+      }
     };
     onMounted(async () => {
       if (props.number == undefined || props.number == null) {
