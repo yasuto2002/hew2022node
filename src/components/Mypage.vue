@@ -225,7 +225,7 @@ export default {
       });
     };
     const goodJump = () => {
-      router.push({ name: "Fsearch-result", params: { page: 1 } });
+      router.push({ path: "/Fsearch-result", query: { page: 1 } });
     };
     onMounted(() => {
       getMypage();

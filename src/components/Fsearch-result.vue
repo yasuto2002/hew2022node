@@ -72,8 +72,10 @@
                 <router-link
                   v-if="n == 2"
                   :to="{
-                    name: 'Fsearch-result',
-                    params: { maile: data.maile, page: n },
+                    path: '/Fsearch-result',
+                    query: {
+                      page: n,
+                    },
                   }"
                   class="page-numbers"
                   >{{ n }}</router-link
@@ -81,8 +83,8 @@
                 <router-link
                   v-if="n == 3"
                   :to="{
-                    name: 'Fsearch-result',
-                    params: { maile: data.maile, page: n },
+                    path: '/Fsearch-result',
+                    query: { page: n },
                   }"
                   class="page-numbers"
                   >{{ n }}</router-link
@@ -92,8 +94,8 @@
                 <span class="page-numbers dots">…</span>
                 <router-link
                   :to="{
-                    name: 'Fsearch-result',
-                    params: { maile: data.maile, page: data.count },
+                    path: '/Fsearch-result',
+                    query: { page: data.count },
                   }"
                   class="page-numbers"
                   >{{ data.count }}</router-link
@@ -116,8 +118,8 @@
             <template v-else>
               <router-link
                 :to="{
-                  name: 'Fsearch-result',
-                  params: { maile: data.maile, page: data.page - 1 },
+                  path: '/Fsearch-result',
+                  query: { page: data.page - 1 },
                 }"
                 class="last page-numbers"
                 >&laquo;</router-link
@@ -126,8 +128,8 @@
                 <router-link
                   v-if="n == data.page - 1"
                   :to="{
-                    name: 'Fsearch-result',
-                    params: { maile: data.maile, page: n },
+                    path: '/Fsearch-result',
+                    query: { page: n },
                   }"
                   class="page-numbers"
                   >{{ n }}</router-link
@@ -141,8 +143,8 @@
                 <router-link
                   v-if="n == data.next"
                   :to="{
-                    name: 'Fsearch-result',
-                    params: { maile: data.maile, page: n },
+                    path: '/Fsearch-result',
+                    query: { page: n },
                   }"
                   class="page-numbers"
                   >{{ n }}</router-link
@@ -152,8 +154,8 @@
                 <span class="page-numbers dots">…</span>
                 <router-link
                   :to="{
-                    name: 'Fsearch-result',
-                    params: { maile: data.maile, page: data.count },
+                    path: '/Fsearch-result',
+                    query: { page: data.count },
                   }"
                   class="page-numbers"
                   >{{ data.count }}</router-link
@@ -162,8 +164,8 @@
             </template>
             <router-link
               :to="{
-                name: 'Fsearch-result',
-                params: { maile: data.maile, page: data.next },
+                path: '/Fsearch-result',
+                query: { page: data.next },
               }"
               class="last page-numbers"
               v-if="data.page < data.count"
@@ -219,11 +221,11 @@ export default {
         if (reqstatus.data.state) {
           data.properties = reqstatus.data.properties;
           data.count = Math.ceil(reqstatus.data.count / 4);
-          data.page = route.params.page;
+          data.page = route.query.page;
           data.next = parseInt(data.page) + 1;
-          console.log(data.count);
-          console.log(data.page);
-          console.log(data.next);
+          // console.log(data.count);
+          // console.log(data.page);
+          // console.log(data.next);
         }
       } catch (error) {
         console.log(error);
@@ -231,6 +233,7 @@ export default {
       }
     };
     const updateProperties = async (page, maile) => {
+      console.log(page);
       let reqstatus;
       let surl = store.state.apiUrl + "/Favorites";
       let params = new URLSearchParams();
@@ -243,9 +246,9 @@ export default {
           data.count = Math.ceil(reqstatus.data.count / 4);
           data.page = page;
           data.next = parseInt(data.page) + 1;
-          console.log(data.count);
-          console.log(data.page);
-          console.log(data.next);
+          // console.log(data.count);
+          // console.log(page);
+          // console.log(data.next);
         }
       } catch (error) {
         console.log(error);
@@ -266,9 +269,6 @@ export default {
       });
     };
     onMounted(async () => {
-      // if (props.page == null) {
-      //   router.push("/");
-      // }
       data.maile = await LogCheck();
       if (data.maile) {
         getProperties();
@@ -277,7 +277,10 @@ export default {
       }
     });
     onBeforeRouteUpdate((to, from, next) => {
-      updateProperties(to.params.page, data.maile);
+      if (!data.maile) {
+        router.push("/Error");
+      }
+      updateProperties(to.query.page, data.maile);
       next();
     });
     return {
