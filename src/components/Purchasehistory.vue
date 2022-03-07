@@ -76,7 +76,7 @@
             <router-link
               v-if="n == 2"
               :to="{
-                path: '/Fsearch-result',
+                path: '/Purchasehistory',
                 query: {
                   page: n,
                 },
@@ -87,7 +87,7 @@
             <router-link
               v-if="n == 3"
               :to="{
-                path: '/Fsearch-result',
+                path: '/Purchasehistory',
                 query: { page: n },
               }"
               class="page-numbers"
@@ -98,7 +98,7 @@
             <span class="page-numbers dots">…</span>
             <router-link
               :to="{
-                path: '/Fsearch-result',
+                path: '/Purchasehistory',
                 query: { page: data.count },
               }"
               class="page-numbers"
@@ -122,7 +122,7 @@
         <template v-else>
           <router-link
             :to="{
-              path: '/Fsearch-result',
+              path: '/Purchasehistory',
               query: { page: data.page - 1 },
             }"
             class="last page-numbers"
@@ -132,7 +132,7 @@
             <router-link
               v-if="n == data.page - 1"
               :to="{
-                path: '/Fsearch-result',
+                path: '/Purchasehistory',
                 query: { page: n },
               }"
               class="page-numbers"
@@ -147,7 +147,7 @@
             <router-link
               v-if="n == data.next"
               :to="{
-                path: '/Fsearch-result',
+                path: '/Purchasehistory',
                 query: { page: n },
               }"
               class="page-numbers"
@@ -158,7 +158,7 @@
             <span class="page-numbers dots">…</span>
             <router-link
               :to="{
-                path: '/Fsearch-result',
+                path: '/Purchasehistory',
                 query: { page: data.count },
               }"
               class="page-numbers"
@@ -168,7 +168,7 @@
         </template>
         <router-link
           :to="{
-            path: '/Fsearch-result',
+            path: '/Purchasehistory',
             query: { page: data.next },
           }"
           class="last page-numbers"
