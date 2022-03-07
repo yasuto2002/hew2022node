@@ -87,6 +87,49 @@
         </div>
       </div>
     </div> -->
+    <div class="mypage-favo-box" v-if="data.buyflg">
+      <div class="mypage-info-favo-minibox" style="position: relative">
+        <p class="mypage-info-favo-title">注文確認</p>
+        <!-- <p class="mypage-info-txt"></p> -->
+        <div class="mypage-sarch-section">
+          <a class="sarch-section-link">
+            <h1 class="mypage-sarch-section-title">{{ data.buy.name }}</h1>
+            <div class="mypage-sarch-section-box">
+              <img
+                :src="data.buy.thumbnails"
+                style="width: 20%; margin: auto 5%"
+                alt="新着物件イメージ画像"
+              />
+              <div class="mypage-sarch-section-box-txt">
+                <dl>
+                  <dt>物件名</dt>
+                  <dd>{{ data.buy.name }}</dd>
+                  <dt>賃料</dt>
+                  <dd style="color: red; font-weight: bold">
+                    {{ data.buy.price }}万円
+                  </dd>
+                  <dt>所在地</dt>
+                  <dd>{{ data.buy.street_address }}</dd>
+                  <dt>沿線・駅</dt>
+                  <dd>
+                    {{ $store.state.root[data.buy.station_id]
+                    }}{{ $store.state.station[data.buy.station_id] }}駅 徒歩{{
+                      data.buy.physical_distance
+                    }}m徒歩{{ data.buy.station_walk }}分
+                  </dd>
+                  <dt>間取</dt>
+                  <dd>{{ $store.state.floor_plan[data.buy.floor_plan] }}</dd>
+                </dl>
+              </div>
+            </div>
+          </a>
+        </div>
+        <a class="favo-btn" style="bottom: 0.8em; right: -1em" @click="buyJump"
+          >もっと見る</a
+        >
+      </div>
+    </div>
+
     <div class="mypage-favo-box" v-if="data.flg">
       <div class="mypage-info-favo-minibox" style="position: relative">
         <p class="mypage-info-favo-title">お気に入りを<br />確認する</p>
@@ -160,6 +203,8 @@ export default {
       id: "",
       first: null,
       flg: false,
+      buy: null,
+      buyflg: false,
     });
     const store = useStore();
     const router = useRouter();
@@ -203,6 +248,10 @@ export default {
             data.first = status.data.first;
             data.flg = true;
           }
+          if (status.data.buy != null) {
+            data.buy = status.data.buy;
+            data.buyflg = true;
+          }
         } else {
           router.push("/Error");
         }
@@ -229,6 +278,9 @@ export default {
     const goodJump = () => {
       router.push({ path: "/Fsearch-result", query: { page: 1 } });
     };
+    const buyJump = () => {
+      router.push({ path: "/Purchasehistory", query: { page: 1 } });
+    };
     onMounted(() => {
       getMypage();
     });
@@ -236,6 +288,7 @@ export default {
       data,
       jump,
       goodJump,
+      buyJump,
     };
   },
 };

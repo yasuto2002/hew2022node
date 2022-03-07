@@ -36,6 +36,7 @@ import Fsearchresult from './components/Fsearch-result.vue'
 import GameRoot from './components/GameRoot.vue'
 import Mypagechangecomp from './components/Mypage-change-comp.vue'
 import Buypagecom from './components/Buy-page-com.vue'
+import Purchasehistory from './components/Purchasehistory.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -208,6 +209,11 @@ export const router = createRouter({
       path: '/Buy-page-com',
       name: 'Buy-page-com',
       component: Buypagecom,
+      props: true,
+    }, {
+      path: '/Purchasehistory',
+      name: 'Purchasehistory',
+      component: Purchasehistory,
       props: true,
     }
   ],
