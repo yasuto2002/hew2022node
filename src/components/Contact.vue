@@ -8,9 +8,10 @@
       <li>お問い合わせ</li>
     </ul>
   </div>
-
+  <div class="help-title-box">
+    <p class="help-title">お問い合わせ</p>
+  </div>
   <div class="contact-box">
-    <h1 class="contact-box-title">お問い合わせ</h1>
     <!-- <form class="contact-form">
         <div class="contact-form-name-box">
           <span class="Form-Item-Label-Required">必須</span>

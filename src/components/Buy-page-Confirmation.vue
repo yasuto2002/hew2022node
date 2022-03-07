@@ -296,3 +296,13 @@ export default {
   },
 };
 </script>
+<style scoped>
+.buy-page-minibox-btn:hover {
+  cursor: pointer;
+}
+.buy-page-sarch-section-box img {
+  width: 160px !important;
+  height: 160px;
+  object-fit: cover;
+}
+</style>

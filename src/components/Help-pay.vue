@@ -9,9 +9,10 @@
       <li>お支払いについて</li>
     </ul>
   </div>
-
+  <div class="help-title-box">
+    <p class="help-title">お支払いについて</p>
+  </div>
   <div class="help-box">
-    <h1 class="help-box-title">お支払いについて</h1>
     <div class="help-pay-accordion-box">
       <ul class="accordion-area">
         <li>

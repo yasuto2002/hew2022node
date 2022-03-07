@@ -1,4 +1,5 @@
 <template>
+  <a id="game-top"></a>
   <div class="game-wrap">
     <div class="game-select">
       <div class="aaa">
@@ -18,7 +19,7 @@
     </div>
   </div>
 
-  <p id="game-page-top"><router-link to="/">Page Top</router-link></p>
+  <p id="game-page-top"><a href="#game-top">Page Top</a></p>
 </template>
 
 <script>

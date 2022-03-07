@@ -88,7 +88,7 @@
       </div>
     </div> -->
     <div class="mypage-favo-box" v-if="data.flg">
-      <div class="mypage-info-favo-minibox">
+      <div class="mypage-info-favo-minibox" style="position: relative">
         <p class="mypage-info-favo-title">お気に入りを<br />確認する</p>
         <!-- <p class="mypage-info-txt"></p> -->
         <div class="mypage-sarch-section">
@@ -124,7 +124,9 @@
             </div>
           </a>
         </div>
-        <a class="favo-btn" @click="goodJump">もっと見る</a>
+        <a class="favo-btn" style="bottom: 0.8em; right: -1em" @click="goodJump"
+          >もっと見る</a
+        >
       </div>
     </div>
   </div>
@@ -244,19 +246,19 @@ export default {
   width: 160px !important;
   object-fit: cover;
 }
-.mypage-sarch-section {
+/* .mypage-sarch-section {
   width: 85%;
 }
 .favo-btn {
   position: static;
   margin-left: 2%;
-}
+} */
 .favo-btn:hover {
   cursor: pointer;
 }
-.mypage-info-favo-minibox {
+/* .mypage-info-favo-minibox {
   align-items: center;
-}
+} */
 .mypage-minibox-btn:hover {
   cursor: pointer;
 }

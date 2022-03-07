@@ -407,6 +407,7 @@ a.btn_06 {
   letter-spacing: 0.1em;
   text-decoration: none;
   position: relative;
+  cursor:pointer;
 }
 
 a.btn_06 span {
@@ -2139,10 +2140,16 @@ max-width: 100%;
   font-size: 14px;
 }
 
+.member-decision-box-link:hover{
+  color: #da5789;
+}
+
 .member-decision-box-txt{
   margin: 3% auto;
   color: #505050;
   font-size: 1.1rem;
+  line-height: 1.6rem;
+
 }
 
 
@@ -2408,3 +2415,247 @@ display: flex;
   transform: translateY(0);
     }
   }
+
+
+  
+/*購入検索*/
+.sarchcart-property-title-box{
+  width: 80%;
+  margin: 2% auto;
+  padding: 1%;
+  border: solid 1px rgb(236, 236, 236);
+  border-top: solid 6px #da5789;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, .1);
+}
+
+
+.sarchcart-property-title{
+  color: #505050;
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: bold;    
+}
+
+.sarchcart-property-box{
+  width: 80%;
+  height: auto;
+  /* margin: 2% auto; */
+  margin: 2% auto;
+  padding: 1%;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+.sarchcart-property-num-box{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.sarchcart-property-num{
+  width: 20%;
+  height: 45px;
+  padding: 2%;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+.sarchcart-property-num-text{
+  width: 80%;
+  padding: 2%;
+  border: 1px solid #ccc;
+}
+
+.sarchcart-property-textbox{
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  /* margin-left: 40px;
+  padding-left: 1em; */
+  padding-right: 1em;
+  height: 40px;
+  flex: 1;
+  width: 97%;
+  background: #eaedf2;
+  font-size: 18px;
+}
+
+
+.sarchcart-property-mail-box{
+  display: flex;
+  width: 100%;
+  margin-top: 2%;
+  justify-content: space-between;
+}
+
+.sarchcart-property-mail{
+  width: 18.35%;
+  height: 45px;
+  padding: 2%;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+
+.sarchcart-property-mail-text{
+  width: 73.5%;
+  padding: 2%;
+  border: 1px solid #ccc;
+}
+
+
+.sarchcart-property-btn-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3% auto;
+}
+
+.sarchcart-property-btn{
+  width: 300px;
+  height: 60px;
+  border: 1px solid #da5789;
+  background-color: #da5789;
+  border-radius: 25px;
+  margin: 0 auto;
+  margin-right: 40px;
+  color: #fff;
+  font-size: 1.25rem;
+  transition: background-color .2s ease-out,color .2s ease-out,border-color .2s ease-out;
+}
+
+.sarchcart-property-btn:hover{
+  color: #da5789;
+  opacity: 0.8;
+  transition: ease-out;
+  background-color: #fff;
+  border: 1px solid #da5789;
+  border-radius: 25px;
+  transition: opacity .3s ease-out;
+}
+
+
+/*購入検索*/
+
+.sarchcart-property-detail-wrap{
+  width: 80%;
+  height: auto;
+  /* margin: 2% auto; */
+  margin: 2% auto;
+  padding: 1%;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+/*アコーディオン*/
+
+.sarchcart-property-detail-accordion {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 100%;
+}
+.accordion-title {
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 30px 20px;
+}
+.accordion-content {
+  display: none;
+  padding: 30px 20px;
+}
+.accordion-content p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.accordion-content h3 {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: bold;
+}
+/* タイトルの背景色 */
+.accordion-item:nth-of-type(1) .accordion-title {
+  background-color:#da5789;
+}
+/* コンテンツボックスの枠線 */
+.accordion-item:nth-of-type(1) .accordion-content {
+  border-bottom: 2px solid #da5789;
+  border-left: 2px solid #da5789;
+  border-right: 2px solid #da5789;
+}
+/* 矢印 */
+.accordion-title {
+  position: relative;
+  font-size: 1.15rem;
+  display: flex;
+}
+.accordion-title::after {
+  border-right: solid 2px #fff;
+  border-top: solid 2px #fff;
+  content: "";
+  display: block;
+  height: 8px;
+  position: absolute;
+  right: 25px;
+  top: 38%;
+  transform: rotate(135deg);
+  transition: transform .3s ease-in-out, top .3s ease-in-out;
+  width: 8px;
+}
+.accordion-title.open::after {
+  top: 45%;
+  transform: rotate(-45deg);
+}
+
+.sarch-day{
+  display: flex;
+  width: 30%;
+}
+
+.sarch-day h3{
+  margin-right: 3%;
+}
+
+.sarch-price{
+  display: flex;
+  width: 64%;
+}
+
+.sarch-price h3{
+  margin-right: 3%;
+}
+
+.sarch-datail{
+  display: flex;
+  width: 4%;
+}
+
+.accordion-wrap{
+  display: flex;
+}
+
+.buy-num{
+  width: 20%;
+  border-right: 1px solid #ccc;
+}
+
+.buy-card{
+  width: 30%;
+  border-right: 1px solid #ccc;
+  margin-left: 3%;
+}
+
+
+
+.a{
+  display: flex;
+}

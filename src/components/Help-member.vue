@@ -9,9 +9,10 @@
       <li>会員情報について</li>
     </ul>
   </div>
-
+  <div class="help-title-box">
+    <p class="help-title">会員情報について</p>
+  </div>
   <div class="help-box">
-    <h1 class="help-box-title">アカウント管理</h1>
     <div class="help-member-accordion-box">
       <ul class="accordion-area">
         <li>

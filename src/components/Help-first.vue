@@ -6,12 +6,13 @@
         <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
       </li>
       <li><router-link to="/Help">ヘルプ</router-link></li>
-      <li>会員情報について</li>
+      <li>初めてのお客様</li>
     </ul>
   </div>
-
+  <div class="help-title-box">
+    <p class="help-title">初めてのお客さま</p>
+  </div>
   <div class="help-box">
-    <h1 class="help-box-title">初めてのお客さま</h1>
     <div class="help-first-accordion-box">
       <ul class="accordion-area">
         <li>
