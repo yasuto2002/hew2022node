@@ -136,7 +136,7 @@
 
       <div class="buy-page-conmain-right">
         <div class="buy-page-box-comright-minibox">
-          <a class="buy-page-minibox-btn">購入する</a>
+          <a class="buy-page-minibox-btn" @click="Buy">購入する</a>
           <div class="buy-page-box-box">
             <p class="buy-page-box-box-txt">物件価格</p>
             <p class="buy-page-box-box-txt">¥{{ data.propertyPrice }}0000</p>
@@ -229,6 +229,34 @@ export default {
         data.poinnt = data.conpoint;
       }
     };
+    const Buy = async () => {
+      let reqstatus;
+      let surl = store.state.apiUrl + "/Buy";
+      let params = new URLSearchParams();
+      params.append("properties_id", props.number);
+      params.append("mail_address", data.email);
+      params.append("purchase_price", data.sum);
+      params.append("discount_amount", data.poinnt);
+      params.append("furigana", data.kName);
+      params.append("phone_number", data.collNumber);
+      params.append("street_address", data.address);
+      params.append("postal_code", data.postal);
+      params.append("name", data.hName);
+      params.append("card", data.cardValue);
+      try {
+        reqstatus = await axios.post(surl, params);
+        if (reqstatus.data.state) {
+          router.push({
+            name: "Buy-page-com",
+            params: { num: reqstatus.data.num },
+          });
+        } else {
+          router.push("/Error");
+        }
+      } catch (error) {
+        router.push("/Error");
+      }
+    };
     onMounted(async () => {
       if (props.number == undefined || props.number == null) {
         router.push("/Error");
@@ -263,6 +291,7 @@ export default {
     return {
       data,
       poinntChenge,
+      Buy,
     };
   },
 };

@@ -755,7 +755,7 @@ export default {
       });
     });
     const getConditions = () => {
-      console.log(data.root);
+      // console.log(data.root);
       router.push({
         name: "Csearch-result",
         query: {
