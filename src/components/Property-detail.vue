@@ -139,16 +139,15 @@
     </div>
 
     <div class="property-detail-buy">
-      <router-link
-        :to="{
-          name: 'Buy-page',
-          query: { number: data.number },
-        }"
+      <a
         class="property-detail-buy-btn property-detail-buy-btn-c"
+        @click="jump"
+        :disabled="data.flg"
+        :class="{ backgroud: data.flg }"
         ><i class="fas fa-shopping-cart"></i>購入する<i
           class="fas fa-chevron-right"
         ></i
-      ></router-link>
+      ></a>
     </div>
   </div>
 </template>
@@ -181,6 +180,7 @@ export default {
       procesFlg: false,
       maile: null,
       number: "",
+      flg: false,
     });
     const store = useStore();
     const router = useRouter();
@@ -201,6 +201,10 @@ export default {
           let date = reqstatus.data.detail.construction_date.split("-");
           data.date = `${date[0]}年${date[1]}月`;
           data.slider[0] = reqstatus.data.detail.thumbnails;
+          if (reqstatus.data.detail.view_flg == 1) {
+            data.flg = true;
+            console.log(data.flg);
+          }
           for (let i = 1; i <= reqstatus.data.images.length; i++) {
             data.slider[i] = reqstatus.data.images[i - 1].file_path;
           }
@@ -274,6 +278,14 @@ export default {
     const imgClick = (num) => {
       data.imgCount = num;
     };
+    const jump = () => {
+      if (!data.flg) {
+        router.push({
+          name: "Buy-page",
+          query: { number: data.number },
+        });
+      }
+    };
     onMounted(async () => {
       let flg = await LogCheck();
       if (flg) {
@@ -291,6 +303,7 @@ export default {
       downImg,
       good,
       imgClick,
+      jump,
     };
   },
 };
@@ -322,5 +335,11 @@ export default {
 input[type="checkbox"]:checked + label::after {
   top: -90px !important;
   left: -60px;
+}
+.backgroud {
+  background-color: #d6779b !important;
+}
+a:hover {
+  cursor: pointer;
 }
 </style>

@@ -37,6 +37,8 @@ import GameRoot from './components/GameRoot.vue'
 import Mypagechangecomp from './components/Mypage-change-comp.vue'
 import Buypagecom from './components/Buy-page-com.vue'
 import Purchasehistory from './components/Purchasehistory.vue'
+import Sarchcartproperty from './components/Sarchcart-property.vue'
+import Sarchcartpropertydetail from './components/Sarchcart-property-detail.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -214,6 +216,16 @@ export const router = createRouter({
       path: '/Purchasehistory',
       name: 'Purchasehistory',
       component: Purchasehistory,
+      props: true,
+    }, {
+      path: '/Sarchcart-property',
+      name: 'Sarchcart-property',
+      component: Sarchcartproperty,
+      props: true,
+    }, {
+      path: '/Sarchcart-property-detail',
+      name: 'Sarchcart-property-detail',
+      component: Sarchcartpropertydetail,
       props: true,
     }
   ],

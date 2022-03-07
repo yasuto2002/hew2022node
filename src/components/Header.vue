@@ -27,7 +27,7 @@
             <a @click="Logout"> ログアウト </a>
           </li>
           <li class="navItem navItemAbout">
-            <router-link to="/Property-search"> 購入検索 </router-link>
+            <router-link to="/Sarchcart-property"> 購入検索 </router-link>
           </li>
           <li class="logo">
             <router-link to="/"
