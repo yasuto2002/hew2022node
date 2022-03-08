@@ -86,8 +86,8 @@
       <tr class="property-detail-tr">
         <th class="property-detail-th">最寄り駅</th>
         <td class="property-detail-td">
-          東武東上線
-          {{ $store.state.station[data.datail.station_id] }} 徒歩{{
+          {{ $store.state.root[data.datail.station_id] }}
+          {{ $store.state.station[data.datail.station_id] }}駅 徒歩{{
             data.datail.physical_distance
           }}m 徒歩{{ data.datail.station_walk }}分
         </td>

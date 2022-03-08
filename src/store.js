@@ -71,6 +71,7 @@ export const store = createStore({
         27: "高田馬場",
         28: "新大久保",
         29: "田町",
+        30: "四ツ谷"
       },
       root: {
         1: "山手線",
@@ -102,6 +103,7 @@ export const store = createStore({
         27: "山手線",
         28: "山手線",
         29: "山手線",
+        30: "中央線"
       },
       floor_plan: {
         1: "ワンルーム",
