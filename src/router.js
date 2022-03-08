@@ -41,6 +41,7 @@ import Sarchcartproperty from './components/Sarchcart-property.vue'
 import Sarchcartpropertydetail from './components/Sarchcart-property-detail.vue'
 import Passwordforgotten from './components/Password-forgotten.vue'
 import ForgetConfirmation from './components/ForgetConfirmation.vue'
+import ForgetComp from './components/ForgetComp.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -238,6 +239,11 @@ export const router = createRouter({
       path: '/ForgetConfirmation',
       name: 'ForgetConfirmation',
       component: ForgetConfirmation,
+      props: true,
+    }, {
+      path: '/ForgetComp',
+      name: 'ForgetComp',
+      component: ForgetComp,
       props: true,
     }
   ],

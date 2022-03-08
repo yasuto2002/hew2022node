@@ -121,7 +121,7 @@ export default {
       try {
         reqstatus = await axios.post(surl);
         if (reqstatus.data.status) {
-          router.push("/Pass-change-comp");
+          router.push("/ForgetComp");
         } else {
           router.push("/Error");
         }
