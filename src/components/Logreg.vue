@@ -51,7 +51,9 @@
           ><input class="contact-btn" type="submit" value="ログイン"
         /></a>
         <p class="login-txt">
-          パスワードを忘れた方は<router-link class="login-txt-link" to="/"
+          パスワードを忘れた方は<router-link
+            class="login-txt-link"
+            to="/Password-forgotten"
             >こちら</router-link
           >
         </p>

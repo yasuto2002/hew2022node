@@ -39,6 +39,8 @@ import Buypagecom from './components/Buy-page-com.vue'
 import Purchasehistory from './components/Purchasehistory.vue'
 import Sarchcartproperty from './components/Sarchcart-property.vue'
 import Sarchcartpropertydetail from './components/Sarchcart-property-detail.vue'
+import Passwordforgotten from './components/Password-forgotten.vue'
+import ForgetConfirmation from './components/ForgetConfirmation.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -226,6 +228,16 @@ export const router = createRouter({
       path: '/Sarchcart-property-detail',
       name: 'Sarchcart-property-detail',
       component: Sarchcartpropertydetail,
+      props: true,
+    }, {
+      path: '/Password-forgotten',
+      name: 'Password-forgotten',
+      component: Passwordforgotten,
+      props: true,
+    }, {
+      path: '/ForgetConfirmation',
+      name: 'ForgetConfirmation',
+      component: ForgetConfirmation,
       props: true,
     }
   ],

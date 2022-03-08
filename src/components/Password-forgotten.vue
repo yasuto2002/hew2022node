@@ -4,18 +4,17 @@
       <li>
         <router-link to="/">不動産・住宅情報サイトTROUBLE HOUSE</router-link>
       </li>
-      <li>ログイン</li>
+      <li>
+        <router-link to="/Logreg">ログイン</router-link>
+      </li>
+      <li>パスワードを忘れた人へ</li>
     </ul>
   </div>
 
   <div class="login_main">
-    <!-- ログイン-->
     <div class="login_member-column">
       <div class="contact">
-        <h1 class="contact-ttl">ログイン</h1>
-        <p class="em" v-if="data.em">
-          メールアドレスまたはパスワードが違います。再度正しく入力してください。
-        </p>
+        <!-- ログイン-->
         <div class="login_member-Form-Item">
           <p class="login_member-Form-Item-Label">メールアドレス</p>
           <!-- <p class="login_member-Form-Item-Label">{{ errors.maile }}</p> -->
@@ -26,26 +25,6 @@
             v-on:change="cheng"
           />
         </div>
-        <div class="login_member-Form-Item">
-          <p class="login_member-Form-Item-Label">パスワード</p>
-          <!-- <p class="login_member-Form-Item-Label">{{ errors.password }}</p> -->
-          <input
-            type="password"
-            class="login_member-Form-Item-Input"
-            v-model="password"
-            v-on:change="cheng"
-          />
-        </div>
-        <div class="login-checkbox" style="width: 230px">
-          <label class="ECM_CheckboxInput"
-            ><input class="ECM_CheckboxInput-Input" type="checkbox" /><span
-              class="ECM_CheckboxInput-DummyInput"
-            ></span
-            ><span class="ECM_CheckboxInput-LabelText" style="margin-left: 15px"
-              >次回から自動ログイン</span
-            ></label
-          >
-        </div>
         <input
           class="contact-btn"
           type="submit"
@@ -53,13 +32,6 @@
           :disabled="!meta.valid"
           @click="onSubmit"
         />
-        <p class="login-txt">
-          パスワードを忘れた方は<router-link
-            class="login-txt-link"
-            to="/Password-forgotten"
-            >こちら</router-link
-          >
-        </p>
       </div>
     </div>
   </div>
@@ -89,11 +61,6 @@ export default {
         .max(254, em.Smax)
         .required(em.Quired)
         .email(em.Maile),
-      password: yup
-        .string(em.String)
-        .max(254, em.Smax)
-        .matches(store.state.regex, em.Matches)
-        .required(em.Quired),
     });
     useForm({
       validationSchema: schema,
@@ -102,23 +69,21 @@ export default {
       validationSchema: schema,
       initialValues: {
         maile: "",
-        password: "",
       },
     });
     const { value: maile } = useField("maile");
-    const { value: password } = useField("password");
 
     const onSubmit = handleSubmit(async (values) => {
       let reqstatus;
-      let surl = store.state.apiUrl + "/LoginAuth";
+      let surl = store.state.apiUrl + "/Pasforgotten";
       let params = new URLSearchParams();
+      let rand = Math.floor(Math.random() * (9999999 + 1 - 1000000)) + 1000000;
       params.append("mail_address", values.maile);
-      params.append("password", values.password);
+      params.append("rand", rand);
       try {
         reqstatus = await axios.post(surl, params);
-        store.state.Umaile = values.maile;
         if (reqstatus.data.state) {
-          LogSession(values.maile);
+          await forget(values.maile, rand);
         } else {
           data.em = true;
         }
@@ -127,21 +92,16 @@ export default {
         router.push("/Error");
       }
     });
-    const cheng = () => {
-      data.em = false;
-    };
-
-    const LogSession = async (maile) => {
+    const forget = async (maile, rand) => {
       let reqstatus;
-      let surl = "/LogSession";
+      let surl = "/forget";
       let params = new URLSearchParams();
       params.append("mail_address", maile);
+      params.append("rand", rand);
       try {
         reqstatus = await axios.post(surl, params);
         if (reqstatus.data.status) {
-          // console.log("ログイン成功");
-          // router.go({ path: "/", force: true });
-          window.location.href = "/";
+          router.push("/");
         } else {
           router.push("/Error");
         }
@@ -149,7 +109,9 @@ export default {
         console.log(error);
         router.push("/Error");
       }
-      console.log(reqstatus.data);
+    };
+    const cheng = () => {
+      data.em = false;
     };
     const AuthLog = async () => {
       let reqstatus;
@@ -172,10 +134,10 @@ export default {
       errors,
       data,
       maile,
-      password,
       meta,
       onSubmit,
       cheng,
+      forget,
     };
   },
 };

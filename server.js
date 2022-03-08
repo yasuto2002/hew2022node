@@ -605,6 +605,71 @@ app.post("/Logout", function (req, res) {
   }
 })
 
+app.post("/forget", function (req, res) {
+  try {
+    req.session.rand = req.body.rand;
+    req.session.Forget = req.body.mail_address;
+    req.session.save();
+    let ob = {
+      status: true
+    };
+    res.json(ob);
+    return;
+  } catch (err) {
+    console.log(err)
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
+
+app.post("/Authforget", function (req, res) {
+  try {
+    if (typeof req.session.rand != 'undefined') {
+      let ob = {
+        status: req.session.Forget,
+        rand: req.session.rand
+      };
+      res.json(ob);
+      return;
+    } else {
+      let ob = {
+        status: false
+      };
+      res.json(ob);
+      return;
+    }
+  } catch (err) {
+    console.log(err)
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
+
+app.post("/deleteforget", function (req, res) {
+  try {
+    delete req.session.Forget;
+    delete req.session.rand;
+    let ob = {
+      status: true
+    };
+    res.json(ob);
+    return;
+  } catch (err) {
+    console.log(err)
+    let ob = {
+      status: false
+    };
+    res.json(ob);
+    return;
+  }
+})
+
 app.get(/.*/, function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
