@@ -174,11 +174,11 @@ function create() {
   //   }
   // });
   stars = this.physics.add.group();
-  stars.add(this.physics.add.sprite(480, 0, 'star'));
+  stars.add(this.physics.add.sprite(352, 0, 'star'));
   stars.add(this.physics.add.sprite(736, 0, 'star'));
-  stars.add(this.physics.add.sprite(1632, 0, 'star'));
+  stars.add(this.physics.add.sprite(1472, 0, 'star'));
   stars.add(this.physics.add.sprite(2848, 0, 'star'));
-  stars.add(this.physics.add.sprite(3552, 0, 'star'));
+  stars.add(this.physics.add.sprite(3168, 0, 'star'));
   stars.children.iterate(function (child) {
 
     //  Give each star a slightly different bounce
