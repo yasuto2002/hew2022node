@@ -504,7 +504,7 @@
                 <div class="card__titletext">{{ item.name }}</div>
                 <div class="card__titletext_price">{{ item.price }}万円</div>
                 <div class="card__overviewtext">
-                  JR山手線<br />{{ $store.state.station[item.station_id] }} 駅
+                  {{ $store.state.root[item.station_id] }}<br />{{ $store.state.station[item.station_id] }} 駅
                 </div>
                 <div class="card__overviewtext">
                   徒歩{{ item.station_walk }}分 /{{ item.physical_distance }}㎡
