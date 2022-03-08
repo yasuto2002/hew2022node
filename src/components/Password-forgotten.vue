@@ -28,7 +28,7 @@
         <input
           class="contact-btn"
           type="submit"
-          value="ログイン"
+          value="送信"
           :disabled="!meta.valid"
           @click="onSubmit"
         />
