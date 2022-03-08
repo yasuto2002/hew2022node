@@ -97,7 +97,7 @@ export default {
       }
     };
     const imgswitch = () => {
-      if (store.state.topCount < 3) {
+      if (store.state.topCount < 5) {
         store.state.topCount = parseInt(store.state.topCount) + 1;
       } else {
         store.state.topCount = 0;

@@ -728,7 +728,7 @@ export default {
       station_walk: null,
       property: null,
       root: 1,
-      back: ["back0", "back1", "back2", "back3"],
+      back: ["back0", "back1", "back2", "back3", "back4", "back5"],
     });
     const store = useStore();
     const router = useRouter();
