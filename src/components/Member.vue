@@ -10,221 +10,122 @@
       <li>新規会員登録</li>
     </ul>
   </div>
+  <div class="membership-title-box">
+    <p class="membership-title">新規会員登録</p>
+  </div>
+  <div class="membership-box">
+    <h1 class="membership-box-title">新規会員登録</h1>
+    <p class="membership-box-txt">
+      お客様の情報をご入力後、利用規約をお読みになり、「下記の利用規約に同意して確認画面へ」ボタンを押してください。<br />※印は必須入力項目です。
+    </p>
 
-  <div class="membership">
-    <div class="membership-box">
-      <h1 class="membership-box-title">新規会員登録</h1>
-      <p class="membership-box-toptxt">
-        お客様の情報をご入力後、利用規約をお読みになり、「下記の利用規約に同意して確認画面へ」ボタンを押してください。<br />※印は必須入力項目です。
-      </p>
-      <form style="margin-top: 50px; width: 90%" @submit="onSubmit">
-        <div class="form-wrapp" style="margin-left: 10%">
-          <p class="membership-Form-Item-Label" style="text-align: left">
-            お名前
-          </p>
-          <p class="em">{{ errors.ksName }}</p>
-          <p class="em">{{ errors.kfName }}</p>
-          <div class="membership-Form-Item">
-            <p
-              class="membership-Form-Item-Label"
-              style="width: 8%; text-align: center"
-            >
-              姓
-            </p>
-            <!-- <p class="membership-Form-Item-Label">お名前</p> -->
-            <input
-              type="text"
-              class="membership-Form-Item-Input-mini"
-              v-model="ksName"
-            />
-            <p
-              class="membership-Form-Item-Label"
-              style="width: 8%; text-align: center"
-            >
-              名
-            </p>
-            <input
-              type="text"
-              class="membership-Form-Item-Input-mini"
-              v-model="kfName"
-            />
-          </div>
-          <p class="membership-Form-Item-Label" style="text-align: left">
-            フリガナ
-          </p>
-          <p class="em">{{ errors.hsName }}</p>
-          <p class="em">{{ errors.hfName }}</p>
-          <div class="membership-Form-Item">
-            <p
-              class="membership-Form-Item-Label"
-              style="width: 8%; text-align: center"
-            >
-              セイ
-            </p>
-            <input
-              type="text"
-              class="membership-Form-Item-Input-mini"
-              v-model="hsName"
-            />
-            <p
-              class="membership-Form-Item-Label"
-              style="width: 8%; text-align: center"
-            >
-              メイ
-            </p>
-            <input
-              type="text"
-              class="membership-Form-Item-Input-mini"
-              v-model="hfName"
-            />
-          </div>
-
-          <p
-            class="membership-Form-Item-Label"
-            style="width: 80%; text-align: left"
-          >
-            性別
-          </p>
-          <p class="em">{{ errors.gender }}</p>
-          <div class="membership-Form-Item" style="width: 100%">
-            <div
-              class="membership-Form-Item-Label-radios"
-              style="
-                display: flex;
-                width: 5%;
-                align-items: center;
-                margin-left: 7%;
-                padding-right: 1em;
-                justify-content: space-around;
-                min-width: 165px;
-              "
-            >
-              <!-- <div class="membership-Form-Item-Label-radios" style="width: 20%;"> -->
-              <div
-                class="content"
-                style="
-                  display: flex;
-                  width: 25%;
-                  align-items: center;
-                  justify-content: space-between;
-                "
-              >
-                <label for="radio1">男</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  id="radio1"
-                  style="margin: 0; padding-left: 90%"
-                  value="男"
-                  v-model="gender"
-                />
-              </div>
-              <div
-                class="content"
-                style="
-                  display: flex;
-                  width: 25%;
-                  align-items: center;
-                  justify-content: space-between;
-                "
-              >
-                <label for="radio2">女</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  id="radio2"
-                  style="margin: 0; padding-left: 90%"
-                  value="女"
-                  v-model="gender"
-                />
-              </div>
-            </div>
-          </div>
-          <p class="membership-Form-Item-Label" style="text-align: left">
-            生年月日
-          </p>
-          <p class="em">{{ errors.date }}</p>
-          <div class="membership-Form-Item" style="justify-content: flex-end">
-            <input
-              type="date"
-              class="membership-Form-Item-Input"
-              style="
-                width: 70%;
-                padding: 0;
-                margin: 0;
-                margin-right: 20%;
-                padding-left: 1%;
-              "
-              min="1922-01-01"
-              max="2002-03-31"
-              v-model="date"
-            />
-          </div>
-          <p class="membership-Form-Item-Label" style="text-align: left">
-            メールアドレス
-          </p>
-          <p class="em">{{ errors.email }}</p>
-          <p style="color: #ff0000; text-arign: center">{{ data.emsagge }}</p>
-          <div class="membership-Form-Item" style="justify-content: flex-end">
-            <input
-              type="text"
-              class="membership-Form-Item-Input"
-              v-model="email"
-              style="
-                width: 70%;
-                padding: 0;
-                margin: 0;
-                margin-right: 20%;
-                padding-left: 1%;
-              "
-            />
-          </div>
-          <p class="membership-Form-Item-Label" style="text-align: left">
-            パスワード
-          </p>
-          <p class="em">{{ errors.password1 }}</p>
-          <div class="membership-Form-Item" style="justify-content: flex-end">
-            <input
-              type="password"
-              class="membership-Form-Item-Input"
-              style="
-                width: 70%;
-                padding: 0;
-                margin: 0;
-                margin-right: 20%;
-                padding-left: 1%;
-              "
-              v-model="password1"
-            />
-          </div>
-          <p class="membership-Form-Item-Label" style="text-align: left">
-            パスワード<br />（確認用）
-          </p>
-          <p class="em">{{ data.psemessage }}</p>
-          <p class="em">{{ errors.password2 }}</p>
-          <div class="membership-Form-Item" style="justify-content: flex-end">
-            <input
-              type="password"
-              class="membership-Form-Item-Input"
-              style="
-                width: 70%;
-                padding: 0;
-                margin: 0;
-                margin-right: 20%;
-                padding-left: 1%;
-              "
-              v-model="password2"
-            />
-          </div>
+    <div class="membership-wrap">
+      <form @submit="onSubmit">
+        <p class="em">{{ errors.ksName }}</p>
+        <p class="em">{{ errors.kfName }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">お名前</p>
+          <p class="mypage-change-Form-Item-Label-mini">姓</p>
+          <input
+            type="text"
+            class="membership-Form-Item-Input-mini"
+            style="margin-left: 15px"
+            v-model="ksName"
+          />
+          <p class="mypage-change-Form-Item-Label-mini">名</p>
+          <input
+            type="text"
+            class="membership-Form-Item-Input-mini"
+            v-model="kfName"
+          />
         </div>
-        <button
+        <p class="em">{{ errors.hsName }}</p>
+        <p class="em">{{ errors.hfName }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">フリガナ</p>
+          <p class="mypage-change-Form-Item-Label-name-mini">セイ</p>
+          <input
+            type="text"
+            class="membership-Form-Item-Input-mini"
+            v-model="hsName"
+          />
+          <p class="mypage-change-Form-Item-Label-name-mini">メイ</p>
+          <input
+            type="text"
+            class="membership-Form-Item-Input-mini"
+            v-model="hfName"
+          />
+        </div>
+        <p class="em">{{ errors.gender }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">性別</p>
+          <label class="mypage-change_RadioInput" style="padding-left: 6.2%"
+            ><input
+              class="mypage-change_RadioInput-Input"
+              type="radio"
+              name="radio"
+              value="男"
+              v-model="gender"
+            /><span class="mypage-change_RadioInput-DummyInput"></span
+            ><span class="mypage-change_RadioInput-LabelText">男</span></label
+          >
+          <label class="mypage-change_RadioInput" style="padding-left: 6.2%"
+            ><input
+              class="mypage-change_RadioInput-Input"
+              type="radio"
+              name="radio"
+              value="女"
+              v-model="gender"
+            /><span class="mypage-change_RadioInput-DummyInput"></span
+            ><span class="mypage-change_RadioInput-LabelText">女</span></label
+          >
+        </div>
+        <p class="em">{{ errors.date }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">生年月日</p>
+          <input
+            class="membership-Form-Item-Input"
+            type="date"
+            min="1922-01-01"
+            max="2002-03-31"
+            v-model="date"
+          />
+        </div>
+        <p class="em">{{ errors.email }}</p>
+        <p style="color: #ff0000; text-arign: center">{{ data.emsagge }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">メールアドレス</p>
+          <input
+            type="email"
+            class="membership-Form-Item-Input"
+            v-model="email"
+          />
+        </div>
+        <p class="em">{{ errors.password1 }}</p>
+        <p class="em">{{ data.psemessage }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">パスワード</p>
+          <input
+            type="password"
+            class="membership-Form-Item-Input"
+            v-model="password1"
+          />
+        </div>
+        <p class="em">{{ errors.password2 }}</p>
+        <div class="membership-Form-Item">
+          <p class="membership-Form-Item-Label">パスワード(確認用)</p>
+          <input
+            type="password"
+            class="membership-Form-Item-Input"
+            v-model="password2"
+          />
+        </div>
+        <input
           class="member-submiti-btn"
           type="submit"
           value="登録する"
           :disabled="!meta.valid"
-        >
-          登録する
-        </button>
+        />
       </form>
     </div>
   </div>

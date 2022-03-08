@@ -40,6 +40,7 @@ export const store = createStore({
         construction_date: null,
         station_walk: null
       },
+      topCount: 0,
       station: {
         1: "新宿",
         2: "代々木",

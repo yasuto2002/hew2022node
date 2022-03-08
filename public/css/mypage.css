@@ -255,6 +255,7 @@ dd {
     padding-left: 1%;
     font-weight: bold;
     font-size: 18px;
+    
   }
   @media screen and (max-width: 480px) {
     .mypage-change-Form-Item-Label {
@@ -284,6 +285,7 @@ dd {
     background: #545454;
     color: #fff;
     font-size: 14px;
+    outline: none!important;
   }
   @media screen and (max-width: 480px) {
     .mypage-change-Form-Item-Label-Required {
@@ -306,6 +308,7 @@ dd {
     max-width: 900px;
     background: #eaedf2;
     font-size: 18px;
+    outline: none!important;
   }
   @media screen and (max-width: 480px) {
     .mypage-change-Form-Item-Input {
@@ -328,6 +331,7 @@ dd {
       max-width: 400px;
       background: #eaedf2;
       font-size: 18px;
+      outline: none!important;
   }
   @media screen and (max-width: 480px) {
     .mypage-change-Form-Item-Input-mini {
@@ -357,6 +361,7 @@ dd {
     padding-left: 1%;
     font-weight: bold;
     font-size: 18px;
+    
   }
   @media screen and (max-width: 480px) {
     .mypage-change-Form-Item-Label-name-mini {
@@ -378,6 +383,7 @@ dd {
     max-width: 300px;
     background: #eaedf2;
     font-size: 18px;
+    outline: none!important;
 }
 @media screen and (max-width: 480px) {
   .mypage-change-birth-Form-Item-Input-mini {
@@ -400,6 +406,7 @@ dd {
     max-width: 200px;
     background: #eaedf2;
     font-size: 18px;
+    outline: none!important;
 }
 @media screen and (max-width: 480px) {
   .mypage-change-birth-Form-Item-Input-mini-mini{
@@ -415,6 +422,7 @@ dd {
     padding-left: 1%;
     font-weight: bold;
     font-size: 18px;
+    outline: none!important;
   }
   @media screen and (max-width: 480px) {
     .mypage-change-birth-Form-Item-Label-mini {
@@ -436,6 +444,7 @@ dd {
     max-width: 410px;
     background: #eaedf2;
     font-size: 18px;
+    outline: none!important;
   }
   @media screen and (max-width: 480px) {
     .mypage-change-Form-Item-Textarea {

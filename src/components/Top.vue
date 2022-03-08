@@ -1,6 +1,6 @@
 <template>
   <div class="headhead">
-    <div class="head_img"></div>
+    <div class="head_img" v-bind:class="data.back[$store.state.topCount]"></div>
     <div class="head_img_sec">
       <h2 class="head_img_sec-title">
         <span class="head-img-title-bg">TROUBLE</span><br /><span
@@ -704,9 +704,9 @@
 <script>
 import axios from "axios";
 import axiosJsonpAdapter from "axios-jsonp";
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, onBeforeMount } from "vue";
 import { useStore } from "vuex";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter, onBeforeRouteUpdate } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
 import $ from "jquery";
@@ -728,6 +728,7 @@ export default {
       station_walk: null,
       property: null,
       root: 1,
+      back: ["back0", "back1", "back2", "back3"],
     });
     const store = useStore();
     const router = useRouter();
@@ -797,6 +798,9 @@ export default {
         query: { number: st },
       });
     };
+    onBeforeMount(() => {
+      store.state.topCount = 0;
+    });
     onMounted(async () => {
       await newArrivals();
       $(".slider").slick({

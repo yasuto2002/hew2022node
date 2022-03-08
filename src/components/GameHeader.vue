@@ -30,9 +30,9 @@
             <router-link to="/Sarchcart-property"> 購入検索 </router-link>
           </li>
           <li class="logo">
-            <router-link to="/"
+            <a @click="jump"
               ><img src="images-game/hew-logo-bg.png" alt=""
-            /></router-link>
+            /></a>
           </li>
           <li class="navItem navItemAccess">
             <router-link to="/Property-search"> 物件検索 </router-link>
@@ -95,6 +95,9 @@ export default {
         data.viewflg = false;
       }
     };
+    const jump = () => {
+      router.push("/");
+    };
     onMounted(async () => {
       let flg = await LogCheck();
       if (flg) {
@@ -108,9 +111,13 @@ export default {
       data,
       Logout,
       update,
+      jump,
     };
   },
 };
 </script>
 <style scoped>
+a:hover {
+  cursor: pointer;
+}
 </style>

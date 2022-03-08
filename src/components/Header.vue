@@ -29,10 +29,11 @@
           <li class="navItem navItemAbout">
             <router-link to="/Sarchcart-property"> 購入検索 </router-link>
           </li>
-          <li class="logo">
-            <router-link to="/"
-              ><img src="images/hew-logo.png" alt=""
-            /></router-link>
+          <li class="logo" v-if="$route.path != '/'" @click="jump">
+            <a><img src="images/hew-logo.png" alt="" /></a>
+          </li>
+          <li class="logo" v-else @click="imgswitch">
+            <a><img src="images/hew-logo.png" alt="" /></a>
           </li>
           <li class="navItem navItemAccess">
             <router-link to="/Property-search"> 物件検索 </router-link>
@@ -95,6 +96,16 @@ export default {
         data.viewflg = false;
       }
     };
+    const imgswitch = () => {
+      if (store.state.topCount < 3) {
+        store.state.topCount = parseInt(store.state.topCount) + 1;
+      } else {
+        store.state.topCount = 0;
+      }
+    };
+    const jump = () => {
+      router.push("/");
+    };
     onMounted(async () => {
       let flg = await LogCheck();
       if (flg) {
@@ -108,12 +119,17 @@ export default {
       data,
       Logout,
       update,
+      imgswitch,
+      jump,
     };
   },
 };
 </script>
 <style scoped>
 .navItemIntroduce a:hover {
+  cursor: pointer;
+}
+a:hover {
   cursor: pointer;
 }
 </style>

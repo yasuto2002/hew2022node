@@ -36,8 +36,16 @@
             v-on:change="cheng"
           />
         </div>
-        <input id="box1" type="checkbox" />
-        <label for="box1">次回から自動ログイン</label>
+        <div class="login-checkbox" style="width: 230px">
+          <label class="ECM_CheckboxInput"
+            ><input class="ECM_CheckboxInput-Input" type="checkbox" /><span
+              class="ECM_CheckboxInput-DummyInput"
+            ></span
+            ><span class="ECM_CheckboxInput-LabelText" style="margin-left: 15px"
+              >次回から自動ログイン</span
+            ></label
+          >
+        </div>
         <input
           class="contact-btn"
           type="submit"
