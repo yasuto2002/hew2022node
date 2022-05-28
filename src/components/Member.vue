@@ -138,7 +138,7 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
-let url = "https://yasutosub.com/checkmaile";
+let url = "https://54.250.18.221/checkmaile";
 import UserHelper from "../functons/userHelper";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers.common["Access-Control-Allow-Headers"] = "";
